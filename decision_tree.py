@@ -2,6 +2,8 @@
 #  Imports
 # ----------------------------------------------------------------------
 
+from sklearn.metrics import confusion_matrix, accuracy_score
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import OneHotEncoder
@@ -87,7 +89,7 @@ y = merged_df['medication_code']
 
 print(X)
 print(y)
-put_to_csv(base_path, merged_df)
+# put_to_csv(base_path, merged_df)
 
 # Taking care of missing data
 # so far no missing data
@@ -96,8 +98,9 @@ put_to_csv(base_path, merged_df)
 # Encoding the Independent Variable
 ct = ColumnTransformer(
     transformers=[('encoder', OneHotEncoder(), [0, 1])], remainder='passthrough')
-X = np.array(ct.fit_transform(X))
+X = ct.fit_transform(X).toarray()
 print(X)
+# put_to_csv(base_path, X)
 
 # Encoding the Dependent Variable
 le = LabelEncoder()
@@ -112,5 +115,20 @@ print(X_test)
 print(y_train)
 print(y_test)
 
+# Feature scaling.
+# There is no need of feature scaling.
 
+# # Training the Decision Tree Classification model on the Training set
+classifier = DecisionTreeClassifier(criterion='entropy', random_state=0)
+classifier.fit(X_train, y_train)
+
+# Predicting the Test set results
+y_pred = classifier.predict(X_test)
+print(np.concatenate((y_pred.reshape(len(y_pred), 1), y_test.reshape(len(y_test), 1)), 1))
+
+# Making the Confusion Matrix
+cm = confusion_matrix(y_test, y_pred)
+print(cm)
+ac = accuracy_score(y_test, y_pred)
+print("ac: ", ac)
 # ======================================================================
