@@ -4,6 +4,8 @@ from extract_csv_data import medications_df, encounters_df, procedures_df, condi
 from pathlib import Path
 
 # ======================================================================
+# Extracting the requried data
+# ======================================================================
 
 merged_df = encounters_df.merge(
     medications_df, left_on='encounter_id', right_on='encounter_id')
@@ -40,4 +42,6 @@ print("#4")
 file_name = Path(base_path).resolve().joinpath('temp.csv')
 merged_df.to_csv(file_name, sep='\t', encoding='utf-8')
 print("#Done")
-# print (merged_df)
+print(merged_df)
+
+# ======================================================================
