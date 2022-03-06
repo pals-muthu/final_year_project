@@ -1,8 +1,11 @@
+# ----------------------------------------------------------------------
+#  Imports
+# ----------------------------------------------------------------------
 import pandas as pd
 from pathlib import Path
 import sys
 import os
-base_path = Path(__file__).resolve().parents[1].joinpath('temp\\csv')
+base_path = Path(__file__).resolve().parents[2].joinpath('temp\\csv')
 # print ("base path : ", base_path)
 
 # ======================================================================
