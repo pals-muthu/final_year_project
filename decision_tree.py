@@ -24,7 +24,7 @@ merged_df = encounters_df.merge(
     medications_df, left_on='encounter_id', right_on='encounter_id')
 print("#1")
 # First hundred entries
-merged_df = merged_df.head(1000)
+# merged_df = merged_df.head(100)
 
 # ----------------------------------------------------------------------
 # # https://pandas.pydata.org/pandas-docs/stable/user_guide/merging.html#database-style-dataframe-or-named-series-joining-merging
@@ -87,8 +87,8 @@ merged_df = merged_df[['encounter_type_code',
 X = merged_df.drop(['medication_code'], axis=1)
 y = merged_df['medication_code']
 
-print(X)
-print(y)
+# print(X)
+# print(y)
 # put_to_csv(base_path, merged_df)
 
 # Taking care of missing data
@@ -99,21 +99,21 @@ print(y)
 ct = ColumnTransformer(
     transformers=[('encoder', OneHotEncoder(), [0, 1])], remainder='passthrough')
 X = ct.fit_transform(X).toarray()
-print(X)
-put_np_array_to_csv(base_path, X)
+# print(X)
+# put_np_array_to_csv(base_path, X)
 
 # Encoding the Dependent Variable
 le = LabelEncoder()
 y = le.fit_transform(y)
-print(y)
+# print(y)
 
 # Splitting the dataset into the Training set and Test set
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=1)
-print(X_train)
-print(X_test)
-print(y_train)
-print(y_test)
+# print(X_train)
+# print(X_test)
+# print(y_train)
+# print(y_test)
 
 # Feature scaling.
 # There is no need of feature scaling.
@@ -128,7 +128,7 @@ print(np.concatenate((y_pred.reshape(len(y_pred), 1), y_test.reshape(len(y_test)
 
 # Making the Confusion Matrix
 cm = confusion_matrix(y_test, y_pred)
-print(cm)
+# print(cm)
 ac = accuracy_score(y_test, y_pred)
 print("ac: ", ac)
 # ======================================================================
