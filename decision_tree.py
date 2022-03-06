@@ -11,7 +11,7 @@ from sklearn.compose import ColumnTransformer
 import pandas as pd
 import numpy as np
 from modules.extract_csv_data import medications_df, encounters_df, procedures_df, conditions_df, observations_df, base_path
-from modules.put_to_csv import put_to_csv
+from modules.put_to_csv import put_to_csv, put_np_array_to_csv
 from pathlib import Path
 
 # ======================================================================
@@ -100,7 +100,7 @@ ct = ColumnTransformer(
     transformers=[('encoder', OneHotEncoder(), [0, 1])], remainder='passthrough')
 X = ct.fit_transform(X).toarray()
 print(X)
-# put_to_csv(base_path, X)
+put_np_array_to_csv(base_path, X)
 
 # Encoding the Dependent Variable
 le = LabelEncoder()
