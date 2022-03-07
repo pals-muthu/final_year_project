@@ -13,6 +13,7 @@ import numpy as np
 from modules.extract_csv_data import medications_df, encounters_df, procedures_df, conditions_df, observations_df, base_path
 from modules.put_to_csv import put_to_csv, put_np_array_to_csv
 from pathlib import Path
+import sys
 
 # ======================================================================
 # ----------------------------------------------------------------------
@@ -23,8 +24,8 @@ from pathlib import Path
 merged_df = encounters_df.merge(
     medications_df, left_on='encounter_id', right_on='encounter_id')
 print("#1")
-# First hundred entries
-# merged_df = merged_df.head(100)
+# First hundred/thousand entries
+merged_df = merged_df.head(100)
 
 # ----------------------------------------------------------------------
 # # https://pandas.pydata.org/pandas-docs/stable/user_guide/merging.html#database-style-dataframe-or-named-series-joining-merging
@@ -60,16 +61,47 @@ print("#1")
 # ----------------------------------------------------------------------
 # Way 3 - starting with the basics. mapping only the encounter and conditions with the medications.
 merged_df_1 = merged_df.merge(
-    conditions_df, left_on='encounter_id', right_on='encounter_id', how='inner')
+    procedures_df, left_on='encounter_id', right_on='encounter_id', how='inner')
 print("#2")
+merged_df_2 = merged_df.merge(
+    conditions_df, left_on='encounter_id', right_on='encounter_id', how='inner')
+# print("#3")
+# merged_df = merged_df_1.merge(merged_df_2, on=['encounter_id', 'patient_id', 'encounter_type_code', 'encounter_description',
+#                                                'encounter_reason_code', 'encounter_reason_description', 'medication_code', 'medication',
+#                                                'medication_reason_code', 'medication_reason_description'], how='outer')
+merged_df = merged_df_2
 
-merged_df = merged_df_1
+# ======================================================================
+# ----------------------------------------------------------------------
+#  Dropping the duplicates
+# ----------------------------------------------------------------------
+#
+
+merged_df = merged_df.drop_duplicates(subset=['encounter_id', 'medication_code',
+                                              'condition_type_code'], keep='first')
+
+# merged_df = merged_df.drop_duplicates(subset=['encounter_id', 'medication_code',
+#                           'condition_type_code', 'procedure_type_code'], keep='first')
+
+
+# ======================================================================
+# ----------------------------------------------------------------------
+#  Constructing the conditions as an array
+# ----------------------------------------------------------------------
+#
+
+merged_df = merged_df.astype({"condition_type_code": str}, errors='raise')
+
+merged_df = merged_df.groupby(['encounter_id', 'medication_code'])[
+    'condition_type_code'].apply(tuple).reset_index()
 
 # ======================================================================
 # ----------------------------------------------------------------------
 # Writing to a file
 # ----------------------------------------------------------------------
-# put_to_csv(base_path, merged_df)
+print(merged_df)
+put_to_csv(base_path, merged_df)
+sys.exit(0)
 
 # ======================================================================
 # ----------------------------------------------------------------------
@@ -80,7 +112,7 @@ merged_df = merged_df_1
 # merged_df = merged_df.drop(['encounter_id', 'patient_id', 'encounter_description', 'encounter_reason_code',
 #                             'encounter_reason_description', 'medication', 'medication_reason_code', 'medication_reason_description'], axis=1)
 merged_df = merged_df[['encounter_type_code',
-                       'condition_type_code', 'medication_code']]
+                       'condition_type_code', 'procedure_type_code', 'medication_code']]
 
 
 # separating the labels and the target variable.
@@ -89,7 +121,8 @@ y = merged_df['medication_code']
 
 # print(X)
 # print(y)
-# put_to_csv(base_path, merged_df)
+put_to_csv(base_path, merged_df)
+sys.exit(0)
 
 # Taking care of missing data
 # so far no missing data
@@ -118,6 +151,9 @@ X_train, X_test, y_train, y_test = train_test_split(
 # Feature scaling.
 # There is no need of feature scaling.
 
+# ----------------------------------------------------------------------
+# Model Training
+# ----------------------------------------------------------------------
 # # Training the Decision Tree Classification model on the Training set
 classifier = DecisionTreeClassifier(criterion='entropy', random_state=0)
 classifier.fit(X_train, y_train)
