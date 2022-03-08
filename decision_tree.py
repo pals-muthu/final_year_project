@@ -12,7 +12,7 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
 import pandas as pd
 import numpy as np
-from modules.extract_csv_data import medications_df, encounters_df, procedures_df, conditions_df, observations_df, base_path
+from modules.extract_csv_data import get_merged_data, base_path
 from modules.put_to_csv import put_to_csv, put_np_array_to_csv
 from pathlib import Path
 import sys
@@ -21,6 +21,13 @@ import sys
 # ----------------------------------------------------------------------
 # Extracting the requried data
 # ----------------------------------------------------------------------
+
+data = get_merged_data()
+medications_df = data['medications_df']
+encounters_df = data['encounters_df']
+procedures_df = data['procedures_df']
+conditions_df = data['conditions_df']
+# observations_df = data['observations_df']
 
 # Merging encounter with medication to get the target variable
 merged_df = encounters_df.merge(
@@ -152,6 +159,7 @@ print(y)
 
 
 def update_nan_most_frequent_category(DataFrame, src_df, ColName):
+
     temp_df = src_df[ColName].apply(
         lambda x: x[0] if type(x) == tuple else '')
 
