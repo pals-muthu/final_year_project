@@ -95,15 +95,15 @@ merged_df_2 = merged_df_2.drop_duplicates(subset=['encounter_id', 'medication_co
 # ----------------------------------------------------------------------
 #
 
-merged_df_1 = merged_df_1.astype({"procedure_type_code": str}, errors='raise')
+# merged_df_1 = merged_df_1.astype({"procedure_type_code": str}, errors='raise')
 
-merged_df_1 = merged_df_1.groupby(['encounter_id', 'encounter_type_code', 'medication_code'])[
-    'procedure_type_code'].apply(tuple).reset_index()
+# merged_df_1 = merged_df_1.groupby(['encounter_id', 'encounter_type_code', 'medication_code'])[
+#     'procedure_type_code'].apply(tuple).reset_index()
 
-merged_df_2 = merged_df_2.astype({"condition_type_code": str}, errors='raise')
+# merged_df_2 = merged_df_2.astype({"condition_type_code": str}, errors='raise')
 
-merged_df_2 = merged_df_2.groupby(['encounter_id', 'encounter_type_code', 'medication_code'])[
-    'condition_type_code'].apply(tuple).reset_index()
+# merged_df_2 = merged_df_2.groupby(['encounter_id', 'encounter_type_code', 'medication_code'])[
+#     'condition_type_code'].apply(tuple).reset_index()
 
 
 # ======================================================================
@@ -111,13 +111,13 @@ merged_df_2 = merged_df_2.groupby(['encounter_id', 'encounter_type_code', 'medic
 # Merging the dataframes
 # ----------------------------------------------------------------------
 
-# merged_df = merged_df_1.merge(merged_df_2, on=['encounter_id', 'patient_id', 'encounter_type_code', 'encounter_description',
-#                                                'encounter_reason_code', 'encounter_reason_description', 'medication_code', 'medication',
-#                                                'medication_reason_code', 'medication_reason_description'], how='outer')
+merged_df = merged_df_1.merge(merged_df_2, on=['encounter_id', 'patient_id', 'encounter_type_code', 'encounter_description',
+                                               'encounter_reason_code', 'encounter_reason_description', 'medication_code', 'medication',
+                                               'medication_reason_code', 'medication_reason_description'], how='outer')
 # merged_df = merged_df_2
 
-merged_df = merged_df_1.merge(merged_df_2, on=[
-                              'encounter_id', 'encounter_type_code', 'medication_code'], how='outer')
+# merged_df = merged_df_1.merge(merged_df_2, on=[
+#                               'encounter_id', 'encounter_type_code', 'medication_code'], how='outer')
 
 # ======================================================================
 # ----------------------------------------------------------------------
@@ -158,7 +158,7 @@ print(y)
 # Taking care of missing data
 
 
-def update_nan_most_frequent_category(DataFrame, src_df, ColName):
+def update_nan_most_frequent_category_tuple(DataFrame, src_df, ColName):
 
     temp_df = src_df[ColName].apply(
         lambda x: x[0] if type(x) == tuple else '')
@@ -178,6 +178,15 @@ def update_nan_most_frequent_category(DataFrame, src_df, ColName):
         '{}'.format(0),) if pd.isnull(x) else x)
 
 
+def update_nan_most_frequent_category(DataFrame, src_df, ColName):
+
+    # replace nan values with most occured category
+    # DataFrame[ColName] = DataFrame[ColName].apply(lambda x: (
+    #     '{}'.format(most_frequent_category),) if pd.isnull(x) else x)
+    DataFrame[ColName] = DataFrame[ColName].apply(
+        lambda x: 0 if pd.isnull(x) else x)
+
+
 def remove_nan(DataFrame, ColName):
     # DataFrame = DataFrame.dropna(subset=[ColName])
     DataFrame = DataFrame[DataFrame[ColName].notnull()]
@@ -185,6 +194,8 @@ def remove_nan(DataFrame, ColName):
 
 update_nan_most_frequent_category(X, merged_df_2, 'condition_type_code')
 update_nan_most_frequent_category(X, merged_df_1, 'procedure_type_code')
+# update_nan_most_frequent_category_tuple(X, merged_df_2, 'condition_type_code')
+# update_nan_most_frequent_category_tuple(X, merged_df_1, 'procedure_type_code')
 # remove_nan(X, "condition_type_code")
 # remove_nan(X, "procedure_type_code")
 print("post filling")
@@ -193,28 +204,34 @@ put_to_csv(base_path, X, "temp2.csv")
 
 # Encoding categorical data
 # Encoding the Independent Variable
-# encoding the procedure_type_code to multi-label encoding.
-mlb = MultiLabelBinarizer()
-temp_X1 = mlb.fit_transform(
-    X['procedure_type_code'])
-# print("after mlb: ", type(X), type(
-#     X['condition_type_code']), type(X['encounter_type_code']), type(temp_X1))
-# print(temp_X1)
 
-# encoding the condition_type_code to multi-label encoding.
-mlb_2 = MultiLabelBinarizer()
-temp_X2 = mlb_2.fit_transform(
-    X['condition_type_code'])
-# print(temp_X2)
-X['procedure_type_code'] = temp_X1
-X['condition_type_code'] = temp_X2
+# # encoding the procedure_type_code to multi-label encoding.
+# mlb = MultiLabelBinarizer()
+# temp_X1 = mlb.fit_transform(
+#     X['procedure_type_code'])
+# # print("after mlb: ", type(X), type(
+# #     X['condition_type_code']), type(X['encounter_type_code']), type(temp_X1))
+# # print(temp_X1)
 
-# converting the encounter_type_code to one hot encoding
+# # encoding the condition_type_code to multi-label encoding.
+# mlb_2 = MultiLabelBinarizer()
+# temp_X2 = mlb_2.fit_transform(
+#     X['condition_type_code'])
+# # print(temp_X2)
+# X['procedure_type_code'] = temp_X1
+# X['condition_type_code'] = temp_X2
+
+# # converting the encounter_type_code to one hot encoding
+# ct = ColumnTransformer(
+#     transformers=[('encoder', OneHotEncoder(), [0])], remainder='passthrough')
+# X = ct.fit_transform(X).toarray()
+# # print("after ct: ", X)
+# # put_np_array_to_csv(base_path, X)
+
+# converting the encounter_type_code, condition_type_code, procedure_type_code to one hot encoding
 ct = ColumnTransformer(
-    transformers=[('encoder', OneHotEncoder(), [0])], remainder='passthrough')
+    transformers=[('encoder', OneHotEncoder(), [0, 1, 2])], remainder='passthrough')
 X = ct.fit_transform(X).toarray()
-# print("after ct: ", X)
-# put_np_array_to_csv(base_path, X)
 
 # Encoding the Dependent Variable
 le = LabelEncoder()
