@@ -164,14 +164,21 @@ def update_nan_most_frequent_category(DataFrame, src_df, ColName):
     # print("most frequent: ", most_frequent_category)
 
     # replace nan values with most occured category
-    # DataFrame[ColName] = DataFrame[ColName].fillna(
-    #     ("'{}'".format(most_frequent_category),))
+    # DataFrame[ColName] = DataFrame[ColName].apply(lambda x: (
+    #     '{}'.format(most_frequent_category),) if pd.isnull(x) else x)
     DataFrame[ColName] = DataFrame[ColName].apply(lambda x: (
-        '{}'.format(most_frequent_category),) if pd.isnull(x) else x)
+        '{}'.format(0),) if pd.isnull(x) else x)
+
+
+def remove_nan(DataFrame, ColName):
+    # DataFrame = DataFrame.dropna(subset=[ColName])
+    DataFrame = DataFrame[DataFrame[ColName].notnull()]
 
 
 update_nan_most_frequent_category(X, merged_df_2, 'condition_type_code')
 update_nan_most_frequent_category(X, merged_df_1, 'procedure_type_code')
+# remove_nan(X, "condition_type_code")
+# remove_nan(X, "procedure_type_code")
 print("post filling")
 put_to_csv(base_path, X, "temp2.csv")
 # sys.exit(0)
@@ -183,14 +190,14 @@ mlb = MultiLabelBinarizer()
 temp_X1 = mlb.fit_transform(
     X['procedure_type_code'])
 # print("after mlb: ", type(X), type(
-#     X['condition_type_code']), type(X['encounter_type_code']), type(temp_X))
-# print(temp_X)
+#     X['condition_type_code']), type(X['encounter_type_code']), type(temp_X1))
+# print(temp_X1)
 
 # encoding the condition_type_code to multi-label encoding.
 mlb_2 = MultiLabelBinarizer()
-temp_X2 = mlb.fit_transform(
+temp_X2 = mlb_2.fit_transform(
     X['condition_type_code'])
-# print(temp_X)
+# print(temp_X2)
 X['procedure_type_code'] = temp_X1
 X['condition_type_code'] = temp_X2
 

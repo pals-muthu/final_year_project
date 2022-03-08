@@ -92,3 +92,7 @@ procedures_df = procedures_df.rename(columns={'ENCOUNTER': 'encounter_id', 'CODE
                                               'REASONDESCRIPTION': 'procedure_reason_description'})
 
 # ======================================================================
+
+
+def get_multi_csv_data():
+    pass
