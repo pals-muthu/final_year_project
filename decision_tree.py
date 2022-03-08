@@ -2,6 +2,7 @@
 #  Imports
 # ----------------------------------------------------------------------
 
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import MultiLabelBinarizer
 from sklearn.metrics import confusion_matrix, accuracy_score
 from sklearn.tree import DecisionTreeClassifier
@@ -117,7 +118,7 @@ merged_df = merged_df_1.merge(merged_df_2, on=[
 # ----------------------------------------------------------------------
 
 # print(merged_df)
-# put_to_csv(base_path, merged_df)
+put_to_csv(base_path, merged_df)
 # sys.exit(0)
 
 # ======================================================================
@@ -144,28 +145,35 @@ print("pre transformation: ", type(X), type(
     X['condition_type_code']), type(X['encounter_type_code']))
 print(X)
 print(y)
-put_to_csv(base_path, merged_df)
+# put_to_csv(base_path, merged_df)
 # sys.exit(0)
 
 # Taking care of missing data
 
 
-def update_nan_most_frequent_category(DataFrame, ColName):
-    # .mode()[0] - gives first category name
-    temp_df = DataFrame[ColName].apply(
+def update_nan_most_frequent_category(DataFrame, src_df, ColName):
+    temp_df = src_df[ColName].apply(
         lambda x: x[0] if type(x) == tuple else '')
-    print("temp_df: ", temp_df)
+
+    # for index, row in DataFrame.iterrows():
+    #     print("row: ", row[ColName], type(row[ColName]))
+    # print("temp_df: ", temp_df)
+
+    # .mode()[0] - gives first category name
     most_frequent_category = temp_df.mode()[0]
-    print("most frequent: ", most_frequent_category)
+    # print("most frequent: ", most_frequent_category)
+
     # replace nan values with most occured category
-    DataFrame[ColName].fillna(
-        "({},)".format(most_frequent_category), inplace=True)
+    # DataFrame[ColName] = DataFrame[ColName].fillna(
+    #     ("'{}'".format(most_frequent_category),))
+    DataFrame[ColName] = DataFrame[ColName].apply(lambda x: (
+        '{}'.format(most_frequent_category),) if pd.isnull(x) else x)
 
 
-update_nan_most_frequent_category(X, 'condition_type_code')
-update_nan_most_frequent_category(X, 'procedure_type_code')
+update_nan_most_frequent_category(X, merged_df_2, 'condition_type_code')
+update_nan_most_frequent_category(X, merged_df_1, 'procedure_type_code')
 print("post filling")
-put_to_csv(base_path, merged_df, "temp2.csv")
+put_to_csv(base_path, X, "temp2.csv")
 # sys.exit(0)
 
 # Encoding categorical data
@@ -215,6 +223,11 @@ X_train, X_test, y_train, y_test = train_test_split(
 # # Training the Decision Tree Classification model on the Training set
 classifier = DecisionTreeClassifier(criterion='entropy', random_state=0)
 classifier.fit(X_train, y_train)
+
+# # Training the Random Forest model on the Training set
+# classifier = RandomForestClassifier(
+#     n_estimators=10, criterion='entropy', random_state=0)
+# classifier.fit(X_train, y_train)
 
 # Predicting the Test set results
 y_pred = classifier.predict(X_test)
