@@ -14,6 +14,7 @@ import pandas as pd
 import numpy as np
 from modules.extract_csv_data import get_merged_data, base_path
 from modules.put_to_csv import put_to_csv, put_np_array_to_csv
+from modules.utility_functions import update_nan_most_frequent_category, update_nan_most_frequent_category_tuple, remove_nan
 from pathlib import Path
 import sys
 
@@ -125,7 +126,7 @@ merged_df = merged_df_1.merge(merged_df_2, on=['encounter_id', 'patient_id', 'en
 # ----------------------------------------------------------------------
 
 # print(merged_df)
-put_to_csv(base_path, merged_df)
+# put_to_csv(base_path, merged_df)
 # sys.exit(0)
 
 # ======================================================================
@@ -145,6 +146,8 @@ merged_df = merged_df[['encounter_type_code',
 # 21 % accuracy
 # merged_df = merged_df[['encounter_type_code', 'medication_code']]
 
+# ----------------------------------------------------------------------
+
 # separating the labels and the target variable.
 X = merged_df.drop(['medication_code'], axis=1)
 y = merged_df['medication_code']
@@ -155,43 +158,9 @@ print(y)
 # put_to_csv(base_path, merged_df)
 # sys.exit(0)
 
+# ----------------------------------------------------------------------
+
 # Taking care of missing data
-
-
-def update_nan_most_frequent_category_tuple(DataFrame, src_df, ColName):
-
-    temp_df = src_df[ColName].apply(
-        lambda x: x[0] if type(x) == tuple else '')
-
-    # for index, row in DataFrame.iterrows():
-    #     print("row: ", row[ColName], type(row[ColName]))
-    # print("temp_df: ", temp_df)
-
-    # .mode()[0] - gives first category name
-    most_frequent_category = temp_df.mode()[0]
-    # print("most frequent: ", most_frequent_category)
-
-    # replace nan values with most occured category
-    # DataFrame[ColName] = DataFrame[ColName].apply(lambda x: (
-    #     '{}'.format(most_frequent_category),) if pd.isnull(x) else x)
-    DataFrame[ColName] = DataFrame[ColName].apply(lambda x: (
-        '{}'.format(0),) if pd.isnull(x) else x)
-
-
-def update_nan_most_frequent_category(DataFrame, src_df, ColName):
-
-    # replace nan values with most occured category
-    # DataFrame[ColName] = DataFrame[ColName].apply(lambda x: (
-    #     '{}'.format(most_frequent_category),) if pd.isnull(x) else x)
-    DataFrame[ColName] = DataFrame[ColName].apply(
-        lambda x: 0 if pd.isnull(x) else x)
-
-
-def remove_nan(DataFrame, ColName):
-    # DataFrame = DataFrame.dropna(subset=[ColName])
-    DataFrame = DataFrame[DataFrame[ColName].notnull()]
-
-
 update_nan_most_frequent_category(X, merged_df_2, 'condition_type_code')
 update_nan_most_frequent_category(X, merged_df_1, 'procedure_type_code')
 # update_nan_most_frequent_category_tuple(X, merged_df_2, 'condition_type_code')
@@ -202,6 +171,7 @@ print("post filling")
 put_to_csv(base_path, X, "temp2.csv")
 # sys.exit(0)
 
+# ----------------------------------------------------------------------
 # Encoding categorical data
 # Encoding the Independent Variable
 
@@ -228,15 +198,21 @@ put_to_csv(base_path, X, "temp2.csv")
 # # print("after ct: ", X)
 # # put_np_array_to_csv(base_path, X)
 
+# ----------------------------------------------------------------------
+
 # converting the encounter_type_code, condition_type_code, procedure_type_code to one hot encoding
 ct = ColumnTransformer(
     transformers=[('encoder', OneHotEncoder(), [0, 1, 2])], remainder='passthrough')
 X = ct.fit_transform(X).toarray()
 
+# ----------------------------------------------------------------------
+
 # Encoding the Dependent Variable
 le = LabelEncoder()
 y = le.fit_transform(y)
 # print(y)
+
+# ----------------------------------------------------------------------
 
 # Splitting the dataset into the Training set and Test set
 X_train, X_test, y_train, y_test = train_test_split(
@@ -252,14 +228,21 @@ X_train, X_test, y_train, y_test = train_test_split(
 # ----------------------------------------------------------------------
 # Model Training
 # ----------------------------------------------------------------------
-# # Training the Decision Tree Classification model on the Training set
-classifier = DecisionTreeClassifier(criterion='entropy', random_state=0)
+
+# Training the Decision Tree Classification model on the Training set
+# classifier = DecisionTreeClassifier(criterion='entropy', random_state=0)
+# classifier.fit(X_train, y_train)
+
+# ----------------------------------------------------------------------
+
+# Training the Random Forest model on the Training set
+classifier = RandomForestClassifier(
+    n_estimators=10, criterion='entropy', random_state=0)
 classifier.fit(X_train, y_train)
 
-# # Training the Random Forest model on the Training set
-# classifier = RandomForestClassifier(
-#     n_estimators=10, criterion='entropy', random_state=0)
-# classifier.fit(X_train, y_train)
+# ----------------------------------------------------------------------
+# Test Results
+# ----------------------------------------------------------------------
 
 # Predicting the Test set results
 y_pred = classifier.predict(X_test)
@@ -267,7 +250,7 @@ print(np.concatenate((y_pred.reshape(len(y_pred), 1), y_test.reshape(len(y_test)
 
 # Making the Confusion Matrix
 cm = confusion_matrix(y_test, y_pred)
-# print(cm)
 ac = accuracy_score(y_test, y_pred)
-print("ac: ", ac)
+print("accuracy score: ", ac)
+
 # ======================================================================
