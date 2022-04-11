@@ -2,6 +2,7 @@
 #  Imports
 # ----------------------------------------------------------------------
 
+from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import MultiLabelBinarizer
 from sklearn.metrics import confusion_matrix, accuracy_score
@@ -28,12 +29,19 @@ medications_df = data['medications_df']
 encounters_df = data['encounters_df']
 procedures_df = data['procedures_df']
 conditions_df = data['conditions_df']
+patients_df = data['patients_df']
 # observations_df = data['observations_df']
 
-# Merging encounter with medication to get the target variable
+# Merging encounter with patients to get more information
 merged_df = encounters_df.merge(
-    medications_df, left_on='encounter_id', right_on='encounter_id')
-print("#1")
+    patients_df, left_on='patient_id', right_on='patient_id', how='inner')
+# Merging encounter with medication to get the target variable
+merged_df = merged_df.merge(
+    medications_df, left_on='encounter_id', right_on='encounter_id', how='inner')
+print("#2")
+print("merged_df: ", list(merged_df.columns.values))
+# put_to_csv(base_path, merged_df)
+# sys.exit(0)
 # First hundred/thousand entries
 # merged_df = merged_df.head(1000)
 
@@ -73,22 +81,23 @@ print("#1")
 merged_df_1 = merged_df.merge(
     procedures_df, left_on='encounter_id', right_on='encounter_id', how='inner')
 print("#2")
+print("merged_df_1: ", list(merged_df_1.columns.values))
 merged_df_2 = merged_df.merge(
     conditions_df, left_on='encounter_id', right_on='encounter_id', how='inner')
 print("#3")
-
+print("merged_df_2: ", list(merged_df_2.columns.values))
 # ======================================================================
 # ----------------------------------------------------------------------
 #  Dropping the duplicates
 # ----------------------------------------------------------------------
 #
 
-merged_df_1 = merged_df_1.drop_duplicates(subset=['encounter_id', 'medication_code',
-                                                  'procedure_type_code'], keep='first')
+merged_df_1 = merged_df_1.drop_duplicates(subset=['patient_id', 'encounter_id', 'medication_code',
+                                                  'procedure_type_code', 'year'], keep='first')
 
-merged_df_2 = merged_df_2.drop_duplicates(subset=['encounter_id', 'medication_code',
-                                                  'condition_type_code'], keep='first')
-
+merged_df_2 = merged_df_2.drop_duplicates(subset=['patient_id', 'encounter_id', 'medication_code',
+                                                  'condition_type_code', 'year'], keep='first')
+print("merged_df_22: ", list(merged_df_2.columns.values))
 
 # ======================================================================
 # ----------------------------------------------------------------------
@@ -114,7 +123,9 @@ merged_df_2 = merged_df_2.drop_duplicates(subset=['encounter_id', 'medication_co
 
 merged_df = merged_df_1.merge(merged_df_2, on=['encounter_id', 'patient_id', 'encounter_type_code', 'encounter_description',
                                                'encounter_reason_code', 'encounter_reason_description', 'medication_code', 'medication',
-                                               'medication_reason_code', 'medication_reason_description'], how='outer')
+                                               'medication_reason_code', 'medication_reason_description', 'race', 'ethnicity', 'gender', 'year'], how='outer')
+print("merged_dfmerged_df: ", list(merged_df.columns.values))
+
 # merged_df = merged_df_2
 
 # merged_df = merged_df_1.merge(merged_df_2, on=[
@@ -138,6 +149,10 @@ merged_df = merged_df_1.merge(merged_df_2, on=['encounter_id', 'patient_id', 'en
 # 25 % accuracy
 merged_df = merged_df[['encounter_type_code',
                        'condition_type_code', 'procedure_type_code', 'medication_code']]
+
+# 24 % accuracy
+# merged_df = merged_df[['encounter_type_code',
+#                        'condition_type_code', 'procedure_type_code', 'year', 'medication_code']]
 
 # 28 % accuracy
 # merged_df = merged_df[['encounter_type_code',
@@ -201,6 +216,11 @@ put_to_csv(base_path, X, "temp2.csv")
 # ----------------------------------------------------------------------
 
 # converting the encounter_type_code, condition_type_code, procedure_type_code to one hot encoding
+# ct = ColumnTransformer(
+#     transformers=[('encoder', OneHotEncoder(), [0, 1, 2])], remainder='passthrough')
+# sc = StandardScaler()
+# X['year'] = sc.fit_transform(X['year'].values.reshape(-1, 1))
+# print("post sc:", X)
 ct = ColumnTransformer(
     transformers=[('encoder', OneHotEncoder(), [0, 1, 2])], remainder='passthrough')
 X = ct.fit_transform(X).toarray()

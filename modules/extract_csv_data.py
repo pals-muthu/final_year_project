@@ -52,9 +52,10 @@ def get_csv_data(base_path):
 
     encounters_path = Path(base_path).resolve().joinpath('encounters.csv')
     encounters_df = pd.read_csv(encounters_path, low_memory=False)
-    encounters_df = encounters_df.drop(['DATE'], axis=1)
+    # encounters_df = encounters_df.drop(['DATE'], axis=1)
+    encounters_df['DATE'] = encounters_df['DATE'].str[0:4]
     encounters_df = encounters_df.rename(columns={'ID': 'encounter_id', 'PATIENT': 'patient_id', 'CODE': 'encounter_type_code', 'DESCRIPTION': 'encounter_description',
-                                                  'REASONCODE': 'encounter_reason_code',
+                                                  'REASONCODE': 'encounter_reason_code', 'DATE': 'year',
                                                   'REASONDESCRIPTION': 'encounter_reason_description'})
     # print ("encounters_df: ", encounters_df)
 
@@ -81,8 +82,21 @@ def get_csv_data(base_path):
     # # Patients Data
     # # ----------------------------------------------------------------------
 
-    # patients_path = Path(base_path).resolve().joinpath('patients.csv')
-    # patients_df = pd.read_csv(patients_path, low_memory=False)
+    patients_path = Path(base_path).resolve().joinpath('patients.csv')
+    # print("patients_path: ", patients_path)
+    patients_df = pd.read_csv(patients_path, low_memory=False)
+    patients_df = patients_df.drop(['BIRTHDATE', 'DEATHDATE', 'SSN', 'DRIVERS', 'PASSPORT', 'PREFIX', 'FIRST', 'LAST',
+                                    'SUFFIX', 'MAIDEN', 'MARITAL', 'BIRTHPLACE', 'ADDRESS'], axis=1)
+
+    # patients_df = patients_df[len(patients_df['GENDER']) == 1]
+    # patients_df = patients_df.drop(
+    #     patients_df[patients_df['GENDER'] != 'M' & patients_df['GENDER'] != 'F'].index)
+    # patients_df = patients_df.drop(
+    #     patients_df[patients_df.GENDER == 'M' | patients_df.GENDER == 'F'].index)
+    patients_df = patients_df.query('GENDER == "M" or GENDER == "F"')
+    patients_df = patients_df.rename(columns={
+        'ID': 'patient_id', 'RACE': 'race', 'ETHNICITY': 'ethnicity', 'GENDER': 'gender'})
+    patients_df = patients_df[['patient_id', 'race', 'ethnicity', 'gender']]
 
     # ----------------------------------------------------------------------
     # Procedures Data
@@ -102,7 +116,7 @@ def get_csv_data(base_path):
         "procedures_df": procedures_df,
         "conditions_df": conditions_df,
         # "observations_df": observations_df,
-        # "patients_df": patients_df,
+        "patients_df": patients_df,
         # "immunizations_df": immunizations_df,
         # "careplans_df": careplans_df,
         # "allergies_df": allergies_df
@@ -127,7 +141,7 @@ def merge_data(*args):
         procedures_frames.append(arg["procedures_df"])
         conditions_frames.append(arg["conditions_df"])
         # observations_frames.append(arg["observations_df"])
-        # patients_frames.append(arg["patients_df"])
+        patients_frames.append(arg["patients_df"])
         # immunizations_frames.append(arg["immunizations_df"])
         # careplans_frames.append(arg["careplans_df"])
         # allergies_frames.append(arg["allergies_df"])
@@ -137,7 +151,7 @@ def merge_data(*args):
     procedures_df = pd.concat(procedures_frames)
     conditions_df = pd.concat(conditions_frames)
     # observations_df = pd.concat(observations_frames)
-    # patients_df = pd.concat(patients_frames)
+    patients_df = pd.concat(patients_frames)
     # immunizations_df = pd.concat(immunizations_frames)
     # careplans_df = pd.concat(careplans_frames)
     # allergies_df = pd.concat(allergies_frames)
@@ -148,7 +162,7 @@ def merge_data(*args):
         "procedures_df": procedures_df,
         "conditions_df": conditions_df,
         # "observations_df": observations_df,
-        # "patients_df": patients_df,
+        "patients_df": patients_df,
         # "immunizations_df": immunizations_df,
         # "careplans_df": careplans_df,
         # "allergies_df": allergies_df
