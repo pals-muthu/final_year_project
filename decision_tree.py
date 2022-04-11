@@ -18,12 +18,13 @@ from modules.put_to_csv import put_to_csv, put_np_array_to_csv
 from modules.utility_functions import update_nan_most_frequent_category, update_nan_most_frequent_category_tuple, remove_nan
 from pathlib import Path
 import sys
+import datetime
 
 # ======================================================================
 # ----------------------------------------------------------------------
 # Extracting the requried data
 # ----------------------------------------------------------------------
-
+print("start time: ", datetime.datetime.now())
 data = get_merged_data()
 medications_df = data['medications_df']
 encounters_df = data['encounters_df']
@@ -256,8 +257,10 @@ X_train, X_test, y_train, y_test = train_test_split(
 # ----------------------------------------------------------------------
 
 # Training the Random Forest model on the Training set
+# classifier = RandomForestClassifier(
+#     n_estimators=10, criterion='entropy', random_state=0)
 classifier = RandomForestClassifier(
-    n_estimators=10, criterion='entropy', random_state=0)
+    n_estimators=100, criterion='entropy', random_state=0)
 classifier.fit(X_train, y_train)
 
 # ----------------------------------------------------------------------
@@ -272,5 +275,6 @@ print(np.concatenate((y_pred.reshape(len(y_pred), 1), y_test.reshape(len(y_test)
 cm = confusion_matrix(y_test, y_pred)
 ac = accuracy_score(y_test, y_pred)
 print("accuracy score: ", ac)
+print("end time: ", datetime.datetime.now())
 
 # ======================================================================
