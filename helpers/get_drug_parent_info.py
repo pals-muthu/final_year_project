@@ -15,10 +15,11 @@ def get_drug_info(code):
     # print("##data: ", data)
     concept_group = data["allRelatedGroup"]["conceptGroup"]
     response = {
-        "parent_id": 'XXX',
+        "medication_code": code,
+        "parent_code": 'XXX',
         "parent_name": 'NNNN',
 
-        "dose_form_id": 'DDDD',
+        "dose_form_code": 'DDDD',
         "dose_form_name": 'EEEE'
     }
     for group in concept_group:
@@ -40,7 +41,7 @@ def get_drug_info(code):
             print("DFG property4: ", group)
             response["dose_form_id"] = group["conceptProperties"][0]["rxcui"]
             response["dose_form_name"] = group["conceptProperties"][0]["name"]
-    print("pre response: ", response)
+    # print("pre response: ", response)
     return response
 
 
