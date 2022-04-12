@@ -88,11 +88,6 @@ def get_csv_data(base_path):
     patients_df = patients_df.drop(['BIRTHDATE', 'DEATHDATE', 'SSN', 'DRIVERS', 'PASSPORT', 'PREFIX', 'FIRST', 'LAST',
                                     'SUFFIX', 'MAIDEN', 'MARITAL', 'BIRTHPLACE', 'ADDRESS'], axis=1)
 
-    # patients_df = patients_df[len(patients_df['GENDER']) == 1]
-    # patients_df = patients_df.drop(
-    #     patients_df[patients_df['GENDER'] != 'M' & patients_df['GENDER'] != 'F'].index)
-    # patients_df = patients_df.drop(
-    #     patients_df[patients_df.GENDER == 'M' | patients_df.GENDER == 'F'].index)
     patients_df = patients_df.query('GENDER == "M" or GENDER == "F"')
     patients_df = patients_df.rename(columns={
         'ID': 'patient_id', 'RACE': 'race', 'ETHNICITY': 'ethnicity', 'GENDER': 'gender'})
@@ -176,6 +171,10 @@ def get_merged_data():
         'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_3',
         'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_4',
         'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_5',
+        'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_6',
+        'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_7',
+        'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_8',
+        'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_9',
     ]
     data = []
     for path in list_of_paths:
@@ -184,3 +183,20 @@ def get_merged_data():
         data.append(temp_data)
 
     return merge_data(*data)
+
+
+def dump_drug_code():
+    data = get_merged_data()
+    my_set = set()
+    medications_df = data['medications_df']
+    print("obtained data")
+    for index, row in medications_df.iterrows():
+        # print("adding to set: ", type(
+        #     row['medication_code']), row['medication_code'])
+        my_set.add(row['medication_code'])
+
+    print("my_set: ", my_set, len(my_set))
+
+
+if __name__ == '__main__':
+    dump_drug_code()
