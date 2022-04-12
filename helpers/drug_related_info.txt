@@ -1,0 +1,551 @@
+code:  978950
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '22968', 'name': 'dienogest', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '4083', 'name': 'estradiol', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '748794', 'name': 'inert ingredients', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+multiple parent property2:  {'tty': 'MIN', 'conceptProperties': [{'rxcui': '994203', 'name': 'dienogest / estradiol', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '24395', 'name': 'estradiol valerate', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}     
+pre response:  {'parent_id': '24395', 'parent_name': 'estradiol valerate', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '24395', 'parent_name': 'estradiol valerate', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  389128
+pre response:  {'parent_id': 'XXX', 'parent_name': 'NNNN', 'dose_form_id': 'DDDD', 'dose_form_name': 'EEEE'}
+response:  {'parent_id': 'XXX', 'parent_name': 'NNNN', 'dose_form_id': 'DDDD', 'dose_form_name': 'EEEE'}
+code:  834060
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '7984', 'name': 'penicillin V', 'synonym': 'phenoxymethylpenicillin', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '203195', 'name': 'penicillin V potassium', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '203195', 'parent_name': 'penicillin V potassium', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '203195', 'parent_name': 'penicillin V potassium', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  833036
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '161', 'name': 'acetaminophen', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '5489', 'name': 'hydrocodone', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+multiple parent property2:  {'tty': 'MIN', 'conceptProperties': [{'rxcui': '214182', 'name': 'acetaminophen / hydrocodone', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '142439', 'name': 'hydrocodone bitartrate', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '142439', 'parent_name': 'hydrocodone bitartrate', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '142439', 'parent_name': 'hydrocodone bitartrate', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  849437
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '7258', 'name': 'naproxen', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '142442', 'name': 'naproxen sodium', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}       
+pre response:  {'parent_id': '142442', 'parent_name': 'naproxen sodium', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '142442', 'parent_name': 'naproxen sodium', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  1049630
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '3498', 'name': 'diphenhydramine', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '1362', 'name': 'diphenhydramine hydrochloride', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '1362', 'parent_name': 'diphenhydramine hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '1362', 'parent_name': 'diphenhydramine hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  1602593
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '135447', 'name': 'donepezil', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '6719', 'name': 'memantine', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+multiple parent property2:  {'tty': 'MIN', 'conceptProperties': [{'rxcui': '1430990', 'name': 'donepezil / memantine', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '236559', 'name': 'donepezil hydrochloride', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '236685', 'name': 'memantine hydrochloride', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '236559', 'parent_name': 'donepezil hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '236559', 'parent_name': 'donepezil hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  1856546
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151136', 'name': 'Drug Implant Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '6373', 'name': 'levonorgestrel', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '6373', 'parent_name': 'levonorgestrel', 'dose_form_id': '1151136', 'dose_form_name': 'Drug Implant Product'}
+response:  {'parent_id': '6373', 'parent_name': 'levonorgestrel', 'dose_form_id': '1151136', 'dose_form_name': 'Drug Implant Product'}
+code:  1049636
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '161', 'name': 'acetaminophen', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '7804', 'name': 'oxycodone', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+multiple parent property2:  {'tty': 'MIN', 'conceptProperties': [{'rxcui': '214183', 'name': 'acetaminophen / oxycodone', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '82063', 'name': 'oxycodone hydrochloride', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '82063', 'parent_name': 'oxycodone hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '82063', 'parent_name': 'oxycodone hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  1049639
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '161', 'name': 'acetaminophen', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '7804', 'name': 'oxycodone', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+multiple parent property2:  {'tty': 'MIN', 'conceptProperties': [{'rxcui': '214183', 'name': 'acetaminophen / oxycodone', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '82063', 'name': 'oxycodone hydrochloride', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '82063', 'parent_name': 'oxycodone hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '82063', 'parent_name': 'oxycodone hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  575020
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '6851', 'name': 'methotrexate', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '6851', 'parent_name': 'methotrexate', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '6851', 'parent_name': 'methotrexate', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  831533
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '7514', 'name': 'norethindrone', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '7514', 'parent_name': 'norethindrone', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '7514', 'parent_name': 'norethindrone', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  583214
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151126', 'name': 'Injectable Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '56946', 'name': 'paclitaxel', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '56946', 'parent_name': 'paclitaxel', 'dose_form_id': '1151126', 'dose_form_name': 'Injectable Product'}
+response:  {'parent_id': '56946', 'parent_name': 'paclitaxel', 'dose_form_id': '1151126', 'dose_form_name': 'Injectable Product'}
+code:  834101
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '7984', 'name': 'penicillin V', 'synonym': 'phenoxymethylpenicillin', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '203195', 'name': 'penicillin V potassium', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '203195', 'parent_name': 'penicillin V potassium', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '203195', 'parent_name': 'penicillin V potassium', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  1536586
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151122', 'name': 'Topical Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1294723', 'name': 'Transdermal Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '326374', 'name': 'norelgestromin', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '4124', 'name': 'ethinyl estradiol', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+multiple parent property2:  {'tty': 'MIN', 'conceptProperties': [{'rxcui': '352377', 'name': 'ethinyl estradiol / norelgestromin', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '352377', 'parent_name': 'ethinyl estradiol / norelgestromin', 'dose_form_id': '1151122', 'dose_form_name': 'Topical Product'}
+response:  {'parent_id': '352377', 'parent_name': 'ethinyl estradiol / norelgestromin', 'dose_form_id': '1151122', 'dose_form_name': 'Topical Product'}
+code:  311372
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '28889', 'name': 'loratadine', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '28889', 'parent_name': 'loratadine', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '28889', 'parent_name': 'loratadine', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  141918
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '42330', 'name': 'terfenadine', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '42330', 'parent_name': 'terfenadine', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '42330', 'parent_name': 'terfenadine', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  1091166
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '6901', 'name': 'methylphenidate', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '203188', 'name': 'methylphenidate hydrochloride', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '203188', 'parent_name': 'methylphenidate hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '203188', 'parent_name': 'methylphenidate hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  897122
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151126', 'name': 'Injectable Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '475968', 'name': 'liraglutide', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '475968', 'parent_name': 'liraglutide', 'dose_form_id': '1151126', 'dose_form_name': 'Injectable Product'}
+response:  {'parent_id': '475968', 'parent_name': 'liraglutide', 'dose_form_id': '1151126', 'dose_form_name': 'Injectable Product'}
+code:  646250
+pre response:  {'parent_id': 'XXX', 'parent_name': 'NNNN', 'dose_form_id': 'DDDD', 'dose_form_name': 'EEEE'}
+response:  {'parent_id': 'XXX', 'parent_name': 'NNNN', 'dose_form_id': 'DDDD', 'dose_form_name': 'EEEE'}
+code:  602735
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '4637', 'name': 'galantamine', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '4637', 'parent_name': 'galantamine', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '4637', 'parent_name': 'galantamine', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  997488
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '87636', 'name': 'fexofenadine', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '236474', 'name': 'fexofenadine hydrochloride', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '236474', 'parent_name': 'fexofenadine hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '236474', 'parent_name': 'fexofenadine hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  833137
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '588250', 'name': 'milnacipran', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '30003', 'name': 'milnacipran hydrochloride', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '30003', 'parent_name': 'milnacipran hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '30003', 'parent_name': 'milnacipran hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  309362
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '32968', 'name': 'clopidogrel', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '32968', 'parent_name': 'clopidogrel', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '32968', 'parent_name': 'clopidogrel', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  997501
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '87636', 'name': 'fexofenadine', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '236474', 'name': 'fexofenadine hydrochloride', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '236474', 'parent_name': 'fexofenadine hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '236474', 'parent_name': 'fexofenadine hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  1648767
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '7454', 'name': 'nitrofurantoin', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '235559', 'name': 'nitrofurantoin, macrocrystals', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '235559', 'parent_name': 'nitrofurantoin, macrocrystals', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '235559', 'parent_name': 'nitrofurantoin, macrocrystals', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  312961
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '36567', 'name': 'simvastatin', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '36567', 'parent_name': 'simvastatin', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '36567', 'parent_name': 'simvastatin', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  1049221
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '161', 'name': 'acetaminophen', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '7804', 'name': 'oxycodone', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+multiple parent property2:  {'tty': 'MIN', 'conceptProperties': [{'rxcui': '214183', 'name': 'acetaminophen / oxycodone', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '82063', 'name': 'oxycodone hydrochloride', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '82063', 'parent_name': 'oxycodone hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '82063', 'parent_name': 'oxycodone hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  1605257
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151136', 'name': 'Drug Implant Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '6373', 'name': 'levonorgestrel', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '6373', 'parent_name': 'levonorgestrel', 'dose_form_id': '1151136', 'dose_form_name': 'Drug Implant Product'}
+response:  {'parent_id': '6373', 'parent_name': 'levonorgestrel', 'dose_form_id': '1151136', 'dose_form_name': 'Drug Implant Product'}
+code:  1736854
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151126', 'name': 'Injectable Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '2555', 'name': 'cisplatin', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '2555', 'parent_name': 'cisplatin', 'dose_form_id': '1151126', 'dose_form_name': 'Injectable Product'}
+response:  {'parent_id': '2555', 'parent_name': 'cisplatin', 'dose_form_id': '1151126', 'dose_form_name': 'Injectable Product'}
+code:  1803932
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151126', 'name': 'Injectable Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '6313', 'name': 'leucovorin', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '6313', 'parent_name': 'leucovorin', 'dose_form_id': '1151126', 'dose_form_name': 'Injectable Product'}
+response:  {'parent_id': '6313', 'parent_name': 'leucovorin', 'dose_form_id': '1151126', 'dose_form_name': 'Injectable Product'}
+code:  849574
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '7258', 'name': 'naproxen', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '142442', 'name': 'naproxen sodium', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}       
+pre response:  {'parent_id': '142442', 'parent_name': 'naproxen sodium', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '142442', 'parent_name': 'naproxen sodium', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  310965
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '5640', 'name': 'ibuprofen', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '5640', 'parent_name': 'ibuprofen', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '5640', 'parent_name': 'ibuprofen', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  998582
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '135447', 'name': 'donepezil', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '236559', 'name': 'donepezil hydrochloride', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '236559', 'parent_name': 'donepezil hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '236559', 'parent_name': 'donepezil hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  259255
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '83367', 'name': 'atorvastatin', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '83367', 'parent_name': 'atorvastatin', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '83367', 'parent_name': 'atorvastatin', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  896188
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151123', 'name': 'Inhalant Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '36117', 'name': 'salmeterol', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '41126', 'name': 'fluticasone', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+multiple parent property2:  {'tty': 'MIN', 'conceptProperties': [{'rxcui': '284635', 'name': 'fluticasone / salmeterol', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '50121', 'name': 'fluticasone propionate', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '50121', 'parent_name': 'fluticasone propionate', 'dose_form_id': '1151123', 'dose_form_name': 'Inhalant Product'}
+response:  {'parent_id': '50121', 'parent_name': 'fluticasone propionate', 'dose_form_id': '1151123', 'dose_form_name': 'Inhalant Product'}
+code:  1000128
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151126', 'name': 'Injectable Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '6691', 'name': 'medroxyprogesterone', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}       
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '1000112', 'name': 'medroxyprogesterone acetate', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '1000112', 'parent_name': 'medroxyprogesterone acetate', 'dose_form_id': '1151126', 'dose_form_name': 'Injectable Product'}
+response:  {'parent_id': '1000112', 'parent_name': 'medroxyprogesterone acetate', 'dose_form_id': '1151126', 'dose_form_name': 'Injectable Product'}
+code:  749762
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '4124', 'name': 'ethinyl estradiol', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '6373', 'name': 'levonorgestrel', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+multiple parent property2:  {'tty': 'MIN', 'conceptProperties': [{'rxcui': '214558', 'name': 'ethinyl estradiol / levonorgestrel', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '214558', 'parent_name': 'ethinyl estradiol / levonorgestrel', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '214558', 'parent_name': 'ethinyl estradiol / levonorgestrel', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  1734340
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151126', 'name': 'Injectable Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '4179', 'name': 'etoposide', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '4179', 'parent_name': 'etoposide', 'dose_form_id': '1151126', 'dose_form_name': 'Injectable Product'}
+response:  {'parent_id': '4179', 'parent_name': 'etoposide', 'dose_form_id': '1151126', 'dose_form_name': 'Injectable Product'}
+code:  745679
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151123', 'name': 'Inhalant Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '435', 'name': 'albuterol', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '435', 'parent_name': 'albuterol', 'dose_form_id': '1151123', 'dose_form_name': 'Inhalant Product'}
+response:  {'parent_id': '435', 'parent_name': 'albuterol', 'dose_form_id': '1151123', 'dose_form_name': 'Inhalant Product'}
+code:  568530
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151137', 'name': 'Oral Liquid Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '7454', 'name': 'nitrofurantoin', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '7454', 'parent_name': 'nitrofurantoin', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '7454', 'parent_name': 'nitrofurantoin', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  749785
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '31994', 'name': 'norgestimate', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '4124', 'name': 'ethinyl estradiol', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '748794', 'name': 'inert ingredients', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+multiple parent property2:  {'tty': 'MIN', 'conceptProperties': [{'rxcui': '214559', 'name': 'ethinyl estradiol / norgestimate', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '214559', 'parent_name': 'ethinyl estradiol / norgestimate', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '214559', 'parent_name': 'ethinyl estradiol / norgestimate', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  1000158
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151126', 'name': 'Injectable Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '6691', 'name': 'medroxyprogesterone', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '1000112', 'name': 'medroxyprogesterone acetate', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '1000112', 'parent_name': 'medroxyprogesterone acetate', 'dose_form_id': '1151126', 'dose_form_name': 'Injectable Product'}
+response:  {'parent_id': '1000112', 'parent_name': 'medroxyprogesterone acetate', 'dose_form_id': '1151126', 'dose_form_name': 'Injectable Product'}
+code:  904420
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '46041', 'name': 'alendronate', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '236083', 'name': 'alendronic acid', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}       
+pre response:  {'parent_id': '236083', 'parent_name': 'alendronic acid', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '236083', 'parent_name': 'alendronic acid', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  1020137
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151137', 'name': 'Oral Liquid Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '3289', 'name': 'dextromethorphan', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+multiple parent property2:  {'tty': 'MIN', 'conceptProperties': [{'rxcui': '1007141', 'name': 'acetaminophen / dextromethorphan / pseudoephedrine / pyrilamine', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1007587', 'name': 'acetaminophen / chlorpheniramine / dextromethorphan', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1008092', 'name': 'brompheniramine / dextromethorphan / phenylephrine', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1008802', 'name': 'acetaminophen / dextromethorphan / diphenhydramine / phenylephrine', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '214180', 'name': 'acetaminophen / dextromethorphan', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '214390', 'name': 'chlorpheniramine / dextromethorphan', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '214488', 'name': 'dextromethorphan / guaifenesin', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '214492', 'name': 'dextromethorphan / pseudoephedrine', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '214494', 'name': 'dextromethorphan / guaifenesin / phenylephrine', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '214495', 'name': 'dextromethorphan / guaifenesin / pseudoephedrine', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '2173661', 'name': 'acetaminophen / dextromethorphan / phenylephrine / triprolidine', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '2173666', 'name': 'acetaminophen / dextromethorphan / triprolidine', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '466431', 'name': 'chlorpheniramine / dextromethorphan / pseudoephedrine', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '466486', 'name': 'dextromethorphan / phenylephrine', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '466524', 'name': 'acetaminophen / dextromethorphan / doxylamine / pseudoephedrine', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '689580', 'name': 'acetaminophen / chlorpheniramine / dextromethorphan / phenylephrine', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '689582', 'name': 'acetaminophen / chlorpheniramine / dextromethorphan / pseudoephedrine', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '689776', 'name': 'acetaminophen / dextromethorphan / guaifenesin / phenylephrine', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '690808', 'name': 'brompheniramine / dextromethorphan / pseudoephedrine', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '705258', 'name': 'acetaminophen / dextromethorphan / doxylamine', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '705259', 'name': 'acetaminophen / dextromethorphan / phenylephrine', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '815166', 'name': 'dextromethorphan / doxylamine', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '102490', 'name': 'dextromethorphan hydrobromide', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '102490', 'parent_name': 'dextromethorphan hydrobromide', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '102490', 'parent_name': 'dextromethorphan hydrobromide', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  197361
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '17767', 'name': 'amlodipine', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '17767', 'parent_name': 'amlodipine', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '17767', 'parent_name': 'amlodipine', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  197378
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '42328', 'name': 'astemizole', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '42328', 'parent_name': 'astemizole', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '42328', 'parent_name': 'astemizole', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  198405
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '5640', 'name': 'ibuprofen', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '5640', 'parent_name': 'ibuprofen', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '5640', 'parent_name': 'ibuprofen', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  106258
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151122', 'name': 'Topical Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '5492', 'name': 'hydrocortisone', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '5492', 'parent_name': 'hydrocortisone', 'dose_form_id': '1151122', 'dose_form_name': 'Topical Product'}
+response:  {'parent_id': '5492', 'parent_name': 'hydrocortisone', 'dose_form_id': '1151122', 'dose_form_name': 'Topical Product'}
+code:  727316
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151126', 'name': 'Injectable Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '3992', 'name': 'epinephrine', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '3992', 'parent_name': 'epinephrine', 'dose_form_id': '1151126', 'dose_form_name': 'Injectable Product'}
+response:  {'parent_id': '3992', 'parent_name': 'epinephrine', 'dose_form_id': '1151126', 'dose_form_name': 'Injectable Product'}
+code:  1373463
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '1373458', 'name': 'canagliflozin', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '1373458', 'parent_name': 'canagliflozin', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '1373458', 'parent_name': 'canagliflozin', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  861467
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '6754', 'name': 'meperidine', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '103755', 'name': 'meperidine hydrochloride', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '103755', 'parent_name': 'meperidine hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '103755', 'parent_name': 'meperidine hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  1359133
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '24941', 'name': 'ferrous fumarate', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '4124', 'name': 'ethinyl estradiol', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '7514', 'name': 'norethindrone', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+multiple parent property2:  {'tty': 'MIN', 'conceptProperties': [{'rxcui': '384410', 'name': 'ethinyl estradiol / norethindrone', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '31983', 'name': 'norethindrone acetate', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}  
+pre response:  {'parent_id': '31983', 'parent_name': 'norethindrone acetate', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '31983', 'parent_name': 'norethindrone acetate', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  751905
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '31994', 'name': 'norgestimate', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '4124', 'name': 'ethinyl estradiol', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '748794', 'name': 'inert ingredients', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+multiple parent property2:  {'tty': 'MIN', 'conceptProperties': [{'rxcui': '214559', 'name': 'ethinyl estradiol / norgestimate', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '214559', 'parent_name': 'ethinyl estradiol / norgestimate', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '214559', 'parent_name': 'ethinyl estradiol / norgestimate', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  607015
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '187832', 'name': 'pregabalin', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '187832', 'parent_name': 'pregabalin', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '187832', 'parent_name': 'pregabalin', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  312617
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '8640', 'name': 'prednisone', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '8640', 'parent_name': 'prednisone', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '8640', 'parent_name': 'prednisone', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  860975
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '6809', 'name': 'metformin', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '235743', 'name': 'metformin hydrochloride', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '235743', 'parent_name': 'metformin hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '235743', 'parent_name': 'metformin hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  309043
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '2176', 'name': 'cefaclor', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '2176', 'parent_name': 'cefaclor', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '2176', 'parent_name': 'cefaclor', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  834357
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151126', 'name': 'Injectable Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '703', 'name': 'amiodarone', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '203114', 'name': 'amiodarone hydrochloride', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '203114', 'parent_name': 'amiodarone hydrochloride', 'dose_form_id': '1151126', 'dose_form_name': 'Injectable Product'}
+response:  {'parent_id': '203114', 'parent_name': 'amiodarone hydrochloride', 'dose_form_id': '1151126', 'dose_form_name': 'Injectable Product'}
+code:  748856
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '11636', 'name': 'drospirenone', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '4124', 'name': 'ethinyl estradiol', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '748794', 'name': 'inert ingredients', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+multiple parent property2:  {'tty': 'MIN', 'conceptProperties': [{'rxcui': '840781', 'name': 'drospirenone / ethinyl estradiol', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '840781', 'parent_name': 'drospirenone / ethinyl estradiol', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '840781', 'parent_name': 'drospirenone / ethinyl estradiol', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  749882
+pre response:  {'parent_id': 'XXX', 'parent_name': 'NNNN', 'dose_form_id': 'DDDD', 'dose_form_name': 'EEEE'}
+response:  {'parent_id': 'XXX', 'parent_name': 'NNNN', 'dose_form_id': 'DDDD', 'dose_form_name': 'EEEE'}
+code:  835900
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '3008', 'name': 'cyclosporine', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '236077', 'name': 'cyclosporine, modified', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '236077', 'parent_name': 'cyclosporine, modified', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '236077', 'parent_name': 'cyclosporine, modified', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  849727
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '7258', 'name': 'naproxen', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '142442', 'name': 'naproxen sodium', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}       
+pre response:  {'parent_id': '142442', 'parent_name': 'naproxen sodium', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '142442', 'parent_name': 'naproxen sodium', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  1366342
+pre response:  {'parent_id': 'XXX', 'parent_name': 'NNNN', 'dose_form_id': 'DDDD', 'dose_form_name': 'EEEE'}
+response:  {'parent_id': 'XXX', 'parent_name': 'NNNN', 'dose_form_id': 'DDDD', 'dose_form_name': 'EEEE'}
+code:  727374
+pre response:  {'parent_id': 'XXX', 'parent_name': 'NNNN', 'dose_form_id': 'DDDD', 'dose_form_name': 'EEEE'}
+response:  {'parent_id': 'XXX', 'parent_name': 'NNNN', 'dose_form_id': 'DDDD', 'dose_form_name': 'EEEE'}
+code:  748879
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '4124', 'name': 'ethinyl estradiol', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '6373', 'name': 'levonorgestrel', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '748794', 'name': 'inert ingredients', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+multiple parent property2:  {'tty': 'MIN', 'conceptProperties': [{'rxcui': '214558', 'name': 'ethinyl estradiol / levonorgestrel', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '214558', 'parent_name': 'ethinyl estradiol / levonorgestrel', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '214558', 'parent_name': 'ethinyl estradiol / levonorgestrel', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  308056
+pre response:  {'parent_id': 'XXX', 'parent_name': 'NNNN', 'dose_form_id': 'DDDD', 'dose_form_name': 'EEEE'}
+response:  {'parent_id': 'XXX', 'parent_name': 'NNNN', 'dose_form_id': 'DDDD', 'dose_form_name': 'EEEE'}
+code:  757594
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '7514', 'name': 'norethindrone', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '7514', 'parent_name': 'norethindrone', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '7514', 'parent_name': 'norethindrone', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  567645
+pre response:  {'parent_id': 'XXX', 'parent_name': 'NNNN', 'dose_form_id': 'DDDD', 'dose_form_name': 'EEEE'}
+response:  {'parent_id': 'XXX', 'parent_name': 'NNNN', 'dose_form_id': 'DDDD', 'dose_form_name': 'EEEE'}
+code:  282464
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '161', 'name': 'acetaminophen', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '161', 'parent_name': 'acetaminophen', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '161', 'parent_name': 'acetaminophen', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  313185
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '10318', 'name': 'tacrine', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '10318', 'parent_name': 'tacrine', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '10318', 'parent_name': 'tacrine', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  997221
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '135447', 'name': 'donepezil', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '236559', 'name': 'donepezil hydrochloride', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '236559', 'parent_name': 'donepezil hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '236559', 'parent_name': 'donepezil hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  309097
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '2194', 'name': 'cefuroxime', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '2194', 'parent_name': 'cefuroxime', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '2194', 'parent_name': 'cefuroxime', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  239981
+pre response:  {'parent_id': 'XXX', 'parent_name': 'NNNN', 'dose_form_id': 'DDDD', 'dose_form_name': 'EEEE'}
+response:  {'parent_id': 'XXX', 'parent_name': 'NNNN', 'dose_form_id': 'DDDD', 'dose_form_name': 'EEEE'}
+code:  807283
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151136', 'name': 'Drug Implant Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '6373', 'name': 'levonorgestrel', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '6373', 'parent_name': 'levonorgestrel', 'dose_form_id': '1151136', 'dose_form_name': 'Drug Implant Product'}
+response:  {'parent_id': '6373', 'parent_name': 'levonorgestrel', 'dose_form_id': '1151136', 'dose_form_name': 'Drug Implant Product'}
+code:  824184
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '48203', 'name': 'clavulanate', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '723', 'name': 'amoxicillin', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+multiple parent property2:  {'tty': 'MIN', 'conceptProperties': [{'rxcui': '19711', 'name': 'amoxicillin / clavulanate', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '19711', 'parent_name': 'amoxicillin / clavulanate', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '19711', 'parent_name': 'amoxicillin / clavulanate', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  235389
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '6782', 'name': 'mestranol', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '7515', 'name': 'norethynodrel', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+multiple parent property2:  {'tty': 'MIN', 'conceptProperties': [{'rxcui': '235389', 'name': 'mestranol / norethynodrel', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '235389', 'parent_name': 'mestranol / norethynodrel', 'dose_form_id': 'DDDD', 'dose_form_name': 'EEEE'}
+response:  {'parent_id': '235389', 'parent_name': 'mestranol / norethynodrel', 'dose_form_id': 'DDDD', 'dose_form_name': 'EEEE'}
+code:  996741
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151137', 'name': 'Oral Liquid Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '6719', 'name': 'memantine', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '236685', 'name': 'memantine hydrochloride', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '236685', 'parent_name': 'memantine hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '236685', 'parent_name': 'memantine hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  1190795
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151126', 'name': 'Injectable Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '1223', 'name': 'atropine', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '153971', 'name': 'atropine sulfate', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}      
+pre response:  {'parent_id': '153971', 'parent_name': 'atropine sulfate', 'dose_form_id': '1151126', 'dose_form_name': 'Injectable Product'}
+response:  {'parent_id': '153971', 'parent_name': 'atropine sulfate', 'dose_form_id': '1151126', 'dose_form_name': 'Injectable Product'}
+code:  106892
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151126', 'name': 'Injectable Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '1605101', 'name': 'insulin isophane', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '253182', 'name': 'insulin, regular, human', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+multiple parent property2:  {'tty': 'MIN', 'conceptProperties': [{'rxcui': '1008501', 'name': 'insulin isophane / insulin, regular, human', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '253181', 'name': 'insulin isophane, human', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '253181', 'parent_name': 'insulin isophane, human', 'dose_form_id': '1151126', 'dose_form_name': 'Injectable Product'}
+response:  {'parent_id': '253181', 'parent_name': 'insulin isophane, human', 'dose_form_id': '1151126', 'dose_form_name': 'Injectable Product'}
+code:  573839
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '519', 'name': 'allopurinol', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '519', 'parent_name': 'allopurinol', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '519', 'parent_name': 'allopurinol', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  1367439
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151125', 'name': 'Vaginal Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '14584', 'name': 'etonogestrel', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '4124', 'name': 'ethinyl estradiol', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+multiple parent property2:  {'tty': 'MIN', 'conceptProperties': [{'rxcui': '352376', 'name': 'ethinyl estradiol / etonogestrel', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '352376', 'parent_name': 'ethinyl estradiol / etonogestrel', 'dose_form_id': '1151125', 'dose_form_name': 'Vaginal Product'}
+response:  {'parent_id': '352376', 'parent_name': 'ethinyl estradiol / etonogestrel', 'dose_form_id': '1151125', 'dose_form_name': 'Vaginal Product'}
+code:  1014676
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '20610', 'name': 'cetirizine', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '203150', 'name': 'cetirizine hydrochloride', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '203150', 'parent_name': 'cetirizine hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '203150', 'parent_name': 'cetirizine hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  1014678
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '20610', 'name': 'cetirizine', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '203150', 'name': 'cetirizine hydrochloride', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '203150', 'parent_name': 'cetirizine hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '203150', 'parent_name': 'cetirizine hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  748962
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '7514', 'name': 'norethindrone', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '7514', 'parent_name': 'norethindrone', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '7514', 'parent_name': 'norethindrone', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  608680
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1294711', 'name': 'Oral Powder Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1294716', 'name': 'Chewable Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '161', 'name': 'acetaminophen', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '161', 'parent_name': 'acetaminophen', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '161', 'parent_name': 'acetaminophen', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  857005
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '161', 'name': 'acetaminophen', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '5489', 'name': 'hydrocodone', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+multiple parent property2:  {'tty': 'MIN', 'conceptProperties': [{'rxcui': '214182', 'name': 'acetaminophen / hydrocodone', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '142439', 'name': 'hydrocodone bitartrate', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '142439', 'parent_name': 'hydrocodone bitartrate', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '142439', 'parent_name': 'hydrocodone bitartrate', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  313782
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '161', 'name': 'acetaminophen', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '161', 'parent_name': 'acetaminophen', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '161', 'parent_name': 'acetaminophen', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  564666
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151129', 'name': 'Mucosal Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '4917', 'name': 'nitroglycerin', 'synonym': 'glyceryl trinitrate', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '4917', 'parent_name': 'nitroglycerin', 'dose_form_id': '1151129', 'dose_form_name': 'Mucosal Product'}
+response:  {'parent_id': '4917', 'parent_name': 'nitroglycerin', 'dose_form_id': '1151129', 'dose_form_name': 'Mucosal Product'}
+code:  596927
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '72625', 'name': 'duloxetine', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '72625', 'parent_name': 'duloxetine', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '72625', 'parent_name': 'duloxetine', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  1049544
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '7804', 'name': 'oxycodone', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '82063', 'name': 'oxycodone hydrochloride', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '82063', 'parent_name': 'oxycodone hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '82063', 'parent_name': 'oxycodone hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  858069
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '2683', 'name': 'colchicine', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '2683', 'parent_name': 'colchicine', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '2683', 'parent_name': 'colchicine', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  243670
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '1191', 'name': 'aspirin', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '1191', 'parent_name': 'aspirin', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '1191', 'parent_name': 'aspirin', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  392151
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '723', 'name': 'amoxicillin', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '723', 'parent_name': 'amoxicillin', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '723', 'parent_name': 'amoxicillin', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  617944
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '38400', 'name': 'atomoxetine', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '38400', 'parent_name': 'atomoxetine', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '38400', 'parent_name': 'atomoxetine', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  1094108
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '8120', 'name': 'phenazopyridine', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '203197', 'name': 'phenazopyridine hydrochloride', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '203197', 'parent_name': 'phenazopyridine hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '203197', 'parent_name': 'phenazopyridine hydrochloride', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  308192
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '723', 'name': 'amoxicillin', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '723', 'parent_name': 'amoxicillin', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '723', 'parent_name': 'amoxicillin', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  575971
+pre response:  {'parent_id': 'XXX', 'parent_name': 'NNNN', 'dose_form_id': 'DDDD', 'dose_form_name': 'EEEE'}
+response:  {'parent_id': 'XXX', 'parent_name': 'NNNN', 'dose_form_id': 'DDDD', 'dose_form_name': 'EEEE'}
+code:  1111011
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151136', 'name': 'Drug Implant Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '14584', 'name': 'etonogestrel', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '14584', 'parent_name': 'etonogestrel', 'dose_form_id': '1151136', 'dose_form_name': 'Drug Implant Product'}
+response:  {'parent_id': '14584', 'parent_name': 'etonogestrel', 'dose_form_id': '1151136', 'dose_form_name': 'Drug Implant Product'}
+code:  1310197
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '161', 'name': 'acetaminophen', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '5489', 'name': 'hydrocodone', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+multiple parent property2:  {'tty': 'MIN', 'conceptProperties': [{'rxcui': '214182', 'name': 'acetaminophen / hydrocodone', 'synonym': '', 'tty': 'MIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '142439', 'name': 'hydrocodone bitartrate', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '142439', 'parent_name': 'hydrocodone bitartrate', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '142439', 'parent_name': 'hydrocodone bitartrate', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  665078
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151131', 'name': 'Oral Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1151133', 'name': 'Pill', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}, {'rxcui': '1294716', 'name': 'Chewable Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '28889', 'name': 'loratadine', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+pre response:  {'parent_id': '28889', 'parent_name': 'loratadine', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+response:  {'parent_id': '28889', 'parent_name': 'loratadine', 'dose_form_id': '1151131', 'dose_form_name': 'Oral Product'}
+code:  895994
+DFG property4:  {'tty': 'DFG', 'conceptProperties': [{'rxcui': '1151123', 'name': 'Inhalant Product', 'synonym': '', 'tty': 'DFG', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property1:  {'tty': 'IN', 'conceptProperties': [{'rxcui': '41126', 'name': 'fluticasone', 'synonym': '', 'tty': 'IN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]}
+parent property3:  {'tty': 'PIN', 'conceptProperties': [{'rxcui': '50121', 'name': 'fluticasone propionate', 'synonym': '', 'tty': 'PIN', 'language': 'ENG', 'suppress': 'N', 'umlscui': ''}]} 
+pre response:  {'parent_id': '50121', 'parent_name': 'fluticasone propionate', 'dose_form_id': '1151123', 'dose_form_name': 'Inhalant Product'}
+response:  {'parent_id': '50121', 'parent_name': 'fluticasone propionate', 'dose_form_id': '1151123', 'dose_form_name': 'Inhalant Product'}
