@@ -20,6 +20,8 @@ def get_csv_data(base_path):
     medications_df = medications_df.drop(['START', 'STOP', 'PATIENT'], axis=1)
     medications_df = medications_df.rename(columns={'ENCOUNTER': 'encounter_id', 'CODE': 'medication_code', 'DESCRIPTION': 'medication', 'REASONCODE': 'medication_reason_code',
                                                     'REASONDESCRIPTION': 'medication_reason_description'})
+    # print("pre obtained data: ", len(medications_df.index))
+
     # print ("medications_df: ", medications_df)
 
     # # ----------------------------------------------------------------------
@@ -82,16 +84,16 @@ def get_csv_data(base_path):
     # # Patients Data
     # # ----------------------------------------------------------------------
 
-    patients_path = Path(base_path).resolve().joinpath('patients.csv')
-    # print("patients_path: ", patients_path)
-    patients_df = pd.read_csv(patients_path, low_memory=False)
-    patients_df = patients_df.drop(['BIRTHDATE', 'DEATHDATE', 'SSN', 'DRIVERS', 'PASSPORT', 'PREFIX', 'FIRST', 'LAST',
-                                    'SUFFIX', 'MAIDEN', 'MARITAL', 'BIRTHPLACE', 'ADDRESS'], axis=1)
+    # patients_path = Path(base_path).resolve().joinpath('patients.csv')
+    # # print("patients_path: ", patients_path)
+    # patients_df = pd.read_csv(patients_path, low_memory=False)
+    # patients_df = patients_df.drop(['BIRTHDATE', 'DEATHDATE', 'SSN', 'DRIVERS', 'PASSPORT', 'PREFIX', 'FIRST', 'LAST',
+    #                                 'SUFFIX', 'MAIDEN', 'MARITAL', 'BIRTHPLACE', 'ADDRESS'], axis=1)
 
-    patients_df = patients_df.query('GENDER == "M" or GENDER == "F"')
-    patients_df = patients_df.rename(columns={
-        'ID': 'patient_id', 'RACE': 'race', 'ETHNICITY': 'ethnicity', 'GENDER': 'gender'})
-    patients_df = patients_df[['patient_id', 'race', 'ethnicity', 'gender']]
+    # patients_df = patients_df.query('GENDER == "M" or GENDER == "F"')
+    # patients_df = patients_df.rename(columns={
+    #     'ID': 'patient_id', 'RACE': 'race', 'ETHNICITY': 'ethnicity', 'GENDER': 'gender'})
+    # patients_df = patients_df[['patient_id', 'race', 'ethnicity', 'gender']]
 
     # ----------------------------------------------------------------------
     # Procedures Data
@@ -111,7 +113,7 @@ def get_csv_data(base_path):
         "procedures_df": procedures_df,
         "conditions_df": conditions_df,
         # "observations_df": observations_df,
-        "patients_df": patients_df,
+        # "patients_df": patients_df,
         # "immunizations_df": immunizations_df,
         # "careplans_df": careplans_df,
         # "allergies_df": allergies_df
@@ -136,7 +138,7 @@ def merge_data(*args):
         procedures_frames.append(arg["procedures_df"])
         conditions_frames.append(arg["conditions_df"])
         # observations_frames.append(arg["observations_df"])
-        patients_frames.append(arg["patients_df"])
+        # patients_frames.append(arg["patients_df"])
         # immunizations_frames.append(arg["immunizations_df"])
         # careplans_frames.append(arg["careplans_df"])
         # allergies_frames.append(arg["allergies_df"])
@@ -146,7 +148,7 @@ def merge_data(*args):
     procedures_df = pd.concat(procedures_frames)
     conditions_df = pd.concat(conditions_frames)
     # observations_df = pd.concat(observations_frames)
-    patients_df = pd.concat(patients_frames)
+    # patients_df = pd.concat(patients_frames)
     # immunizations_df = pd.concat(immunizations_frames)
     # careplans_df = pd.concat(careplans_frames)
     # allergies_df = pd.concat(allergies_frames)
@@ -157,7 +159,7 @@ def merge_data(*args):
         "procedures_df": procedures_df,
         "conditions_df": conditions_df,
         # "observations_df": observations_df,
-        "patients_df": patients_df,
+        # "patients_df": patients_df,
         # "immunizations_df": immunizations_df,
         # "careplans_df": careplans_df,
         # "allergies_df": allergies_df
@@ -185,18 +187,51 @@ def get_merged_data():
     return merge_data(*data)
 
 
-def dump_drug_code():
-    data = get_merged_data()
+def dump_drug_code(data):
     my_set = set()
     medications_df = data['medications_df']
-    print("obtained data")
+    print("obtained data: ", len(medications_df.index))
     for index, row in medications_df.iterrows():
         # print("adding to set: ", type(
         #     row['medication_code']), row['medication_code'])
         my_set.add(row['medication_code'])
 
-    print("my_set: ", my_set, len(my_set))
+    print("my_drug_set: ", my_set, len(my_set))
+
+
+def dump_conditions_code(data):
+    my_set = set()
+    conditions_df = data['conditions_df']
+    print("obtained data: ", len(conditions_df.index))
+    for index, row in conditions_df.iterrows():
+        my_set.add(row['condition_type_code'])
+
+    print("my_conditions_set: ", my_set, len(my_set))
+
+
+def dump_procedures_code(data):
+    my_set = set()
+    procedures_df = data['procedures_df']
+    print("obtained data: ", len(procedures_df.index))
+    for index, row in procedures_df.iterrows():
+        my_set.add(row['procedure_type_code'])
+
+    print("my_procedures_set: ", my_set, len(my_set))
+
+
+def dump_encounters_code(data):
+    my_set = set()
+    encounters_df = data['encounters_df']
+    print("obtained data: ", len(encounters_df.index))
+    for index, row in encounters_df.iterrows():
+        my_set.add(row['encounter_type_code'])
+
+    print("my_encounters_set: ", my_set, len(my_set))
 
 
 if __name__ == '__main__':
-    dump_drug_code()
+    data = get_merged_data()
+    dump_drug_code(data)
+    dump_conditions_code(data)
+    dump_procedures_code(data)
+    dump_encounters_code(data)
