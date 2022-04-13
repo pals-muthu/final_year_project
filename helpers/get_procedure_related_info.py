@@ -7,65 +7,42 @@ import csv
 
 def get_drug_info(code):
     # code = "310965"
-    URL = f"https://rxnav.nlm.nih.gov/REST/rxcui/{code}/allrelated.json"
-    r = requests.get(url=URL, params={})
+    URL = f"https://snowstorm-fhir.snomedtools.org/fhir/CodeSystem/$lookup?system=http://snomed.info/sct&code={code}"
+    headers = {
+        "User-Agent": "PostmanRuntime/7.28.3",
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Connection": "keep-alive",
+        "Content-Type": "application/json"
+    }
+    r = requests.get(url=URL, headers=headers, verify=False)
 
     # extracting data in json format
     data = r.json()
-    # print("##data: ", data)
-    concept_group = data["allRelatedGroup"]["conceptGroup"]
+   # print("##data: ", data)
+    if ("parameter" not in data):
+        print("paramater not found in: ", data)
+        return {
+            "reason_code": code,
+            "parent_codes": [],
+            "parent_code": 'XXXXX'
+        }
+    parameters = data["parameter"]
     response = {
-        "medication_code": code,
-
-        "parent_code": 'XXX',
-        "parent_name": 'NNNN',
-
-        "dose_form_code": 'DDDD',
-        "dose_form_name": 'EEEE',
-
+        "reason_code": code,
         "parent_codes": [],
-        "parent_names": [],
-
-        "dose_form_codes": [],
-        "dose_form_names": []
+        "parent_code": 'XXX'
     }
-    for group in concept_group:
+    for parameter in parameters:
 
-        if group["tty"] == "IN" and ("conceptProperties" in group):
-            print("parent property1: ", group)
-            response["parent_code"] = group["conceptProperties"][0]["rxcui"]
-            response["parent_name"] = group["conceptProperties"][0]["name"]
-            response["parent_codes"].append(
-                group["conceptProperties"][0]["rxcui"])
-            response["parent_names"].append(
-                group["conceptProperties"][0]["name"])
-
-        elif group["tty"] == "PIN" and ("conceptProperties" in group):
-            print("parent property3: ", group)
-            response["parent_code"] = group["conceptProperties"][0]["rxcui"]
-            response["parent_name"] = group["conceptProperties"][0]["name"]
-            response["parent_codes"].append(
-                group["conceptProperties"][0]["rxcui"])
-            response["parent_names"].append(
-                group["conceptProperties"][0]["name"])
-
-        elif group["tty"] == "MIN" and ("conceptProperties" in group):
-            print("multiple parent property2: ", group)
-            response["parent_code"] = group["conceptProperties"][0]["rxcui"]
-            response["parent_name"] = group["conceptProperties"][0]["name"]
-            response["parent_codes"].append(
-                group["conceptProperties"][0]["rxcui"])
-            response["parent_names"].append(
-                group["conceptProperties"][0]["name"])
-
-        if group["tty"] == "DFG" and ("conceptProperties" in group):
-            print("DFG property4: ", group)
-            response["dose_form_code"] = group["conceptProperties"][0]["rxcui"]
-            response["dose_form_name"] = group["conceptProperties"][0]["name"]
-            response["dose_form_codes"].append(
-                group["conceptProperties"][0]["rxcui"])
-            response["dose_form_names"].append(
-                group["conceptProperties"][0]["name"])
+        if parameter["name"] == "property" and ("part" in parameter) and ("valueString" in parameter["part"][0]) and \
+                (parameter["part"][0]["valueString"] == "parent"):
+            response["parent_codes"].append(parameter["part"][1]["valueCode"])
+            response["parent_code"] = parameter["part"][1]["valueCode"]
+        elif parameter["name"] == "property" and ("part" in parameter) and ("valueString" in parameter["part"][1]) and \
+                (parameter["part"][1]["valueString"] == "parent"):
+            response["parent_codes"].append(parameter["part"][0]["valueCode"])
+            response["parent_code"] = parameter["part"][0]["valueCode"]
 
     # print("pre response: ", response)
     return response
