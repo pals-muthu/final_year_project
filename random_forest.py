@@ -52,7 +52,7 @@ print("merged_df: ", list(merged_df.columns.values))
 # sys.exit(0)
 
 # First hundred/thousand entries
-merged_df = merged_df.head(1000)
+# merged_df = merged_df.head(1000)
 
 # ----------------------------------------------------------------------
 # Mapping the encounter, procedure and conditions with the medications.
@@ -183,14 +183,14 @@ def label_race(row):
     row['dose_form_code'] = drugs_dict[int(
         row['medication_code'])]['dose_form_code']
 
-    row['new_condition_type_code'] = conditions_feature_dict[int(
-        row['condition_type_code'])] if not pd.isnull(row['condition_type_code']) else []
+    # row['new_condition_type_code'] = conditions_feature_dict[int(
+    #     row['condition_type_code'])] if not pd.isnull(row['condition_type_code']) else []
 
-    row['new_procedure_type_code'] = procedure_feature_dict[int(
-        row['procedure_type_code'])] if not pd.isnull(row['procedure_type_code']) else []
+    # row['new_procedure_type_code'] = procedure_feature_dict[int(
+    #     row['procedure_type_code'])] if not pd.isnull(row['procedure_type_code']) else []
 
-    row['new_encounter_type_code'] = encounter_feature_dict[int(
-        row['encounter_type_code'])]
+    # row['new_encounter_type_code'] = encounter_feature_dict[int(
+    #     row['encounter_type_code'])]
 
     return row
 
