@@ -176,7 +176,7 @@ def label_race(row):
     # row['new_medication_code'] = selected_row_df['parent_code']
     # row['dose_form_code'] = selected_row_df['dose_form_code']
 
-    print("current row info: ", row)
+    # print("current row info: ", row)
 
     row['new_medication_code'] = drugs_dict[int(
         row['medication_code'])]['parent_code']
@@ -200,10 +200,17 @@ merged_df = merged_df.apply(
 
 print("updated drug info")
 
-print("writing to file and exiting")
-put_to_csv(base_path, merged_df)
-sys.exit(0)
+# print("writing to file and exiting")
+# put_to_csv(base_path, merged_df)
+# sys.exit(0)
 
+# Again - Dropping columns that are not required
+# X % accuracy
+merged_df = merged_df.drop(['medication_code'], axis=1)
+merged_df = merged_df.rename(
+    columns={'new_medication_code': 'medication_code'})
+merged_df = merged_df[['encounter_type_code',
+                       'condition_type_code', 'procedure_type_code', 'medication_code']]
 
 # ----------------------------------------------------------------------
 
