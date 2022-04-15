@@ -203,11 +203,15 @@ merged_df.to_pickle('temp.pkl')
 
 # Again - Dropping columns that are not required
 # 37 % accuracy
-merged_df = merged_df.drop(['medication_code'], axis=1)
+merged_df = merged_df.drop(['medication_code', 'encounter_type_code',
+                           'condition_type_code', 'procedure_type_code'], axis=1)
 merged_df = merged_df.rename(
-    columns={'new_medication_code': 'medication_code'})
-merged_df = merged_df[['encounter_type_code',
-                       'condition_type_code', 'procedure_type_code', 'dose_form_code', 'medication_code']]
+    columns={'new_medication_code': 'medication_code',
+             'new_encounter_type_code': 'encounter_type_code',
+             'new_condition_type_code': 'condition_type_code',
+             'new_procedure_type_code': 'procedure_type_code'})
+merged_df = merged_df[['dose_form_code', 'encounter_type_code',
+                       'condition_type_code', 'procedure_type_code', 'medication_code']]
 
 # ----------------------------------------------------------------------
 
@@ -223,13 +227,16 @@ print(y)
 
 # ----------------------------------------------------------------------
 
-# Taking care of missing data
-update_nan_most_frequent_category(X, merged_df_2, 'condition_type_code')
-update_nan_most_frequent_category(X, merged_df_1, 'procedure_type_code')
+# # Taking care of missing data
+# update_nan_most_frequent_category(X, merged_df_2, 'condition_type_code')
+# update_nan_most_frequent_category(X, merged_df_1, 'procedure_type_code')
+
 # update_nan_most_frequent_category_tuple(X, merged_df_2, 'condition_type_code')
 # update_nan_most_frequent_category_tuple(X, merged_df_1, 'procedure_type_code')
+
 # remove_nan(X, "condition_type_code")
 # remove_nan(X, "procedure_type_code")
+
 print("post filling")
 put_to_csv(base_path, X, "temp2.csv")
 # sys.exit(0)
@@ -238,40 +245,54 @@ put_to_csv(base_path, X, "temp2.csv")
 # Encoding categorical data
 # Encoding the Independent Variable
 
-# # encoding the procedure_type_code to multi-label encoding.
-# mlb = MultiLabelBinarizer()
-# temp_X1 = mlb.fit_transform(
-#     X['procedure_type_code'])
-# # print("after mlb: ", type(X), type(
-# #     X['condition_type_code']), type(X['encounter_type_code']), type(temp_X1))
-# # print(temp_X1)
+# encoding the procedure_type_code to multi-label encoding.
+mlb = MultiLabelBinarizer()
+temp_X1 = mlb.fit_transform(
+    X['procedure_type_code'])
+# print("after mlb: ", type(X), type(
+#     X['condition_type_code']), type(X['encounter_type_code']), type(temp_X1))
+# print(temp_X1)
 
-# # encoding the condition_type_code to multi-label encoding.
-# mlb_2 = MultiLabelBinarizer()
-# temp_X2 = mlb_2.fit_transform(
-#     X['condition_type_code'])
-# # print(temp_X2)
-# X['procedure_type_code'] = temp_X1
-# X['condition_type_code'] = temp_X2
+# encoding the condition_type_code to multi-label encoding.
+mlb_2 = MultiLabelBinarizer()
+temp_X2 = mlb_2.fit_transform(
+    X['condition_type_code'])
+# print(temp_X2)
 
-# # converting the encounter_type_code to one hot encoding
+# encoding the encounter_type_code to multi-label encoding.
+mlb_3 = MultiLabelBinarizer()
+temp_X3 = mlb_3.fit_transform(
+    X['encounter_type_code'])
+# print(temp_X2)
+
+X['procedure_type_code'] = temp_X1
+X['condition_type_code'] = temp_X2
+X['encounter_type_code'] = temp_X3
+print("after all: ", X)
+
+# converting the does_form_code to one hot encoding
 # ct = ColumnTransformer(
 #     transformers=[('encoder', OneHotEncoder(), [0])], remainder='passthrough')
 # X = ct.fit_transform(X).toarray()
-# # print("after ct: ", X)
-# # put_np_array_to_csv(base_path, X)
+# print("after ct: ", X)
+# put_np_array_to_csv(base_path, X, "temp3.csv")
 
 # ----------------------------------------------------------------------
 
 # converting the encounter_type_code, condition_type_code, procedure_type_code to one hot encoding
+
+# When year field is available.
 # ct = ColumnTransformer(
 #     transformers=[('encoder', OneHotEncoder(), [0, 1, 2])], remainder='passthrough')
 # sc = StandardScaler()
 # X['year'] = sc.fit_transform(X['year'].values.reshape(-1, 1))
 # print("post sc:", X)
-ct = ColumnTransformer(
-    transformers=[('encoder', OneHotEncoder(), [0, 1, 2, 3])], remainder='passthrough')
-X = ct.fit_transform(X).toarray()
+
+# ----------------------
+
+# ct = ColumnTransformer(
+#     transformers=[('encoder', OneHotEncoder(), [0, 1, 2, 3])], remainder='passthrough')
+# X = ct.fit_transform(X).toarray()
 
 # ----------------------------------------------------------------------
 
