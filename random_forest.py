@@ -52,7 +52,7 @@ print("merged_df: ", list(merged_df.columns.values))
 # sys.exit(0)
 
 # First hundred/thousand entries
-merged_df = merged_df.head(1000)
+# merged_df = merged_df.head(1000)
 
 # ----------------------------------------------------------------------
 # Mapping the encounter, procedure and conditions with the medications.
