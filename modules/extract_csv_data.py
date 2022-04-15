@@ -173,10 +173,10 @@ def get_merged_data():
         'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_3',
         'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_4',
         'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_5',
-        'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_6',
-        'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_7',
-        'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_8',
-        'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_9',
+        # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_6',
+        # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_7',
+        # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_8',
+        # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_9',
     ]
     data = []
     for path in list_of_paths:
@@ -185,6 +185,34 @@ def get_merged_data():
         data.append(temp_data)
 
     return merge_data(*data)
+
+
+def get_drug_data_from_csv():
+    base_path = Path(__file__).resolve().parents[1].joinpath(
+        'helpers\\drug_related_info_update.csv')
+    drugs_df = pd.read_csv(base_path, low_memory=False)
+    return drugs_df
+
+
+def get_condition_data_from_csv():
+    base_path = Path(__file__).resolve().parents[1].joinpath(
+        'helpers\\reason_related_info_update.csv')
+    condition_df = pd.read_csv(base_path, low_memory=False)
+    return condition_df
+
+
+def get_procedure_data_from_csv():
+    base_path = Path(__file__).resolve().parents[1].joinpath(
+        'helpers\\procedure_related_info_update.csv')
+    procedure_df = pd.read_csv(base_path, low_memory=False)
+    return procedure_df
+
+
+def get_encounter_data_from_csv():
+    base_path = Path(__file__).resolve().parents[1].joinpath(
+        'helpers\\encounter_related_info_update.csv')
+    encounter_df = pd.read_csv(base_path, low_memory=False)
+    return encounter_df
 
 
 def dump_drug_code(data):
