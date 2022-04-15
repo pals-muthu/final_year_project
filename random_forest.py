@@ -52,7 +52,7 @@ print("merged_df: ", list(merged_df.columns.values))
 # sys.exit(0)
 
 # First hundred/thousand entries
-# merged_df = merged_df.head(1000)
+merged_df = merged_df.head(1000)
 
 # ----------------------------------------------------------------------
 # Mapping the encounter, procedure and conditions with the medications.
@@ -171,26 +171,19 @@ print("encounter_feature_df: ", encounter_feature_dict)
 
 def label_race(row):
 
-    # selected_row_df = drugs_df[drugs_df['medication_code']
-    #                            == row['medication_code']].iloc[0]
-    # row['new_medication_code'] = selected_row_df['parent_code']
-    # row['dose_form_code'] = selected_row_df['dose_form_code']
-
-    # print("current row info: ", row)
-
     row['new_medication_code'] = drugs_dict[int(
         row['medication_code'])]['parent_code']
     row['dose_form_code'] = drugs_dict[int(
         row['medication_code'])]['dose_form_code']
 
-    # row['new_condition_type_code'] = conditions_feature_dict[int(
-    #     row['condition_type_code'])] if not pd.isnull(row['condition_type_code']) else []
+    row['new_condition_type_code'] = conditions_feature_dict[int(
+        row['condition_type_code'])] if not pd.isnull(row['condition_type_code']) else []
 
-    # row['new_procedure_type_code'] = procedure_feature_dict[int(
-    #     row['procedure_type_code'])] if not pd.isnull(row['procedure_type_code']) else []
+    row['new_procedure_type_code'] = procedure_feature_dict[int(
+        row['procedure_type_code'])] if not pd.isnull(row['procedure_type_code']) else []
 
-    # row['new_encounter_type_code'] = encounter_feature_dict[int(
-    #     row['encounter_type_code'])]
+    row['new_encounter_type_code'] = encounter_feature_dict[int(
+        row['encounter_type_code'])]
 
     return row
 
@@ -200,17 +193,21 @@ merged_df = merged_df.apply(
 
 print("updated drug info")
 
+merged_df.to_pickle('temp.pkl')
+
+# merged_df = pd.read_pickle('temp.pkl')
+
 # print("writing to file and exiting")
 # put_to_csv(base_path, merged_df)
 # sys.exit(0)
 
 # Again - Dropping columns that are not required
-# X % accuracy
+# 37 % accuracy
 merged_df = merged_df.drop(['medication_code'], axis=1)
 merged_df = merged_df.rename(
     columns={'new_medication_code': 'medication_code'})
 merged_df = merged_df[['encounter_type_code',
-                       'condition_type_code', 'procedure_type_code', 'medication_code']]
+                       'condition_type_code', 'procedure_type_code', 'dose_form_code', 'medication_code']]
 
 # ----------------------------------------------------------------------
 
@@ -273,7 +270,7 @@ put_to_csv(base_path, X, "temp2.csv")
 # X['year'] = sc.fit_transform(X['year'].values.reshape(-1, 1))
 # print("post sc:", X)
 ct = ColumnTransformer(
-    transformers=[('encoder', OneHotEncoder(), [0, 1, 2])], remainder='passthrough')
+    transformers=[('encoder', OneHotEncoder(), [0, 1, 2, 3])], remainder='passthrough')
 X = ct.fit_transform(X).toarray()
 
 # ----------------------------------------------------------------------
