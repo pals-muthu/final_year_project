@@ -1,0 +1,103 @@
+medication_code,parent_code,parent_name,dose_form_code,dose_form_name,parent_codes,parent_names
+978950,994203,dienogest / estradiol,1151131,Oral Product,"['22968', '994203', '24395']","['dienogest', 'dienogest / estradiol', 'estradiol valerate']"
+389128,371447,chlorpheniramine,1151131,Oral Product,[],[]
+834060,203195,penicillin V potassium,1151131,Oral Product,"['7984', '203195']","['penicillin V', 'penicillin V potassium']"
+833036,214182,acetaminophen / hydrocodone,1151131,Oral Product,"['161', '214182', '142439']","['acetaminophen', 'acetaminophen / hydrocodone', 'hydrocodone bitartrate']"
+849437,142442,naproxen sodium,1151131,Oral Product,"['7258', '142442']","['naproxen', 'naproxen sodium']"
+1049630,1362,diphenhydramine hydrochloride,1151131,Oral Product,"['3498', '1362']","['diphenhydramine', 'diphenhydramine hydrochloride']"
+1602593,1430990,donepezil / memantine,1151131,Oral Product,"['135447', '1430990', '236559']","['donepezil', 'donepezil / memantine', 'donepezil hydrochloride']"
+1856546,6373,levonorgestrel,1151136,Drug Implant Product,['6373'],['levonorgestrel']
+1049636,214183,acetaminophen / oxycodone,1151131,Oral Product,"['161', '214183', '82063']","['acetaminophen', 'acetaminophen / oxycodone', 'oxycodone hydrochloride']"
+1049639,214183,acetaminophen / oxycodone,1151131,Oral Product,"['161', '214183', '82063']","['acetaminophen', 'acetaminophen / oxycodone', 'oxycodone hydrochloride']"
+575020,6851,methotrexate,1151131,Oral Product,['6851'],['methotrexate']
+831533,7514,norethindrone,1151131,Oral Product,['7514'],['norethindrone']
+583214,56946,paclitaxel,1151126,Injectable Product,['56946'],['paclitaxel']
+834101,203195,penicillin V potassium,1151131,Oral Product,"['7984', '203195']","['penicillin V', 'penicillin V potassium']"
+1536586,352377,ethinyl estradiol / norelgestromin,1151122,Topical Product,"['326374', '352377']","['norelgestromin', 'ethinyl estradiol / norelgestromin']"
+311372,28889,loratadine,1151131,Oral Product,['28889'],['loratadine']
+141918,42330,terfenadine,1151131,Oral Product,['42330'],['terfenadine']
+1091166,203188,methylphenidate hydrochloride,1151131,Oral Product,"['6901', '203188']","['methylphenidate', 'methylphenidate hydrochloride']"
+897122,475968,liraglutide,1151126,Injectable Product,['475968'],['liraglutide']
+646250,XXX,NNNN,DDDD,EEEE,[],[]
+602735,4637,galantamine,1151131,Oral Product,['4637'],['galantamine']
+997488,236474,fexofenadine hydrochloride,1151131,Oral Product,"['87636', '236474']","['fexofenadine', 'fexofenadine hydrochloride']"
+833137,30003,milnacipran hydrochloride,1151131,Oral Product,"['588250', '30003']","['milnacipran', 'milnacipran hydrochloride']"
+309362,32968,clopidogrel,1151131,Oral Product,['32968'],['clopidogrel']
+997501,236474,fexofenadine hydrochloride,1151131,Oral Product,"['87636', '236474']","['fexofenadine', 'fexofenadine hydrochloride']"
+1648767,235559,"nitrofurantoin, macrocrystals",1151131,Oral Product,"['7454', '235559']","['nitrofurantoin', 'nitrofurantoin, macrocrystals']"
+312961,36567,simvastatin,1151131,Oral Product,['36567'],['simvastatin']
+1049221,214183,acetaminophen / oxycodone,1151131,Oral Product,"['161', '214183', '82063']","['acetaminophen', 'acetaminophen / oxycodone', 'oxycodone hydrochloride']"
+1605257,6373,levonorgestrel,1151136,Drug Implant Product,['6373'],['levonorgestrel']
+1736854,2555,cisplatin,1151126,Injectable Product,['2555'],['cisplatin']
+1803932,6313,leucovorin,1151126,Injectable Product,['6313'],['leucovorin']
+849574,142442,naproxen sodium,1151131,Oral Product,"['7258', '142442']","['naproxen', 'naproxen sodium']"
+310965,5640,ibuprofen,1151131,Oral Product,['5640'],['ibuprofen']
+998582,236559,donepezil hydrochloride,1151131,Oral Product,"['135447', '236559']","['donepezil', 'donepezil hydrochloride']"
+259255,83367,atorvastatin,1151131,Oral Product,['83367'],['atorvastatin']
+896188,50121,fluticasone propionate,1151123,Inhalant Product,"['36117', '284635', '50121']","['salmeterol', 'fluticasone / salmeterol', 'fluticasone propionate']"
+1000128,1000112,medroxyprogesterone acetate,1151126,Injectable Product,"['6691', '1000112']","['medroxyprogesterone', 'medroxyprogesterone acetate']"
+749762,214558,ethinyl estradiol / levonorgestrel,1151131,Oral Product,"['4124', '214558']","['ethinyl estradiol', 'ethinyl estradiol / levonorgestrel']"
+1734340,4179,etoposide,1151126,Injectable Product,['4179'],['etoposide']
+745679,435,albuterol,1151123,Inhalant Product,['435'],['albuterol']
+568530,7454,nitrofurantoin,1151131,Oral Product,['7454'],['nitrofurantoin']
+749785,214559,ethinyl estradiol / norgestimate,1151131,Oral Product,"['31994', '214559']","['norgestimate', 'ethinyl estradiol / norgestimate']"
+1000158,1000112,medroxyprogesterone acetate,1151126,Injectable Product,"['6691', '1000112']","['medroxyprogesterone', 'medroxyprogesterone acetate']"
+904420,236083,alendronic acid,1151131,Oral Product,"['46041', '236083']","['alendronate', 'alendronic acid']"
+1020137,102490,dextromethorphan hydrobromide,1151131,Oral Product,"['3289', '1007141', '102490']","['dextromethorphan', 'acetaminophen / dextromethorphan / pseudoephedrine / pyrilamine', 'dextromethorphan hydrobromide']"
+197361,17767,amlodipine,1151131,Oral Product,['17767'],['amlodipine']
+197378,42328,astemizole,1151131,Oral Product,['42328'],['astemizole']
+198405,5640,ibuprofen,1151131,Oral Product,['5640'],['ibuprofen']
+106258,5492,hydrocortisone,1151122,Topical Product,['5492'],['hydrocortisone']
+727316,3992,epinephrine,1151126,Injectable Product,['3992'],['epinephrine']
+1373463,1373458,canagliflozin,1151131,Oral Product,['1373458'],['canagliflozin']
+861467,103755,meperidine hydrochloride,1151131,Oral Product,"['6754', '103755']","['meperidine', 'meperidine hydrochloride']"
+1359133,31983,norethindrone acetate,1151131,Oral Product,"['24941', '384410', '31983']","['ferrous fumarate', 'ethinyl estradiol / norethindrone', 'norethindrone acetate']"
+751905,214559,ethinyl estradiol / norgestimate,1151131,Oral Product,"['31994', '214559']","['norgestimate', 'ethinyl estradiol / norgestimate']"
+607015,187832,pregabalin,1151131,Oral Product,['187832'],['pregabalin']
+312617,8640,prednisone,1151131,Oral Product,['8640'],['prednisone']
+860975,235743,metformin hydrochloride,1151131,Oral Product,"['6809', '235743']","['metformin', 'metformin hydrochloride']"
+309043,2176,cefaclor,1151131,Oral Product,['2176'],['cefaclor']
+834357,203114,amiodarone hydrochloride,1151126,Injectable Product,"['703', '203114']","['amiodarone', 'amiodarone hydrochloride']"
+748856,840781,drospirenone / ethinyl estradiol,1151131,Oral Product,"['11636', '840781']","['drospirenone', 'drospirenone / ethinyl estradiol']"
+749882,XXX,NNNN,DDDD,EEEE,[],[]
+835900,236077,"cyclosporine, modified",1151131,Oral Product,"['3008', '236077']","['cyclosporine', 'cyclosporine, modified']"
+849727,142442,naproxen sodium,1151131,Oral Product,"['7258', '142442']","['naproxen', 'naproxen sodium']"
+1366342,XXX,NNNN,DDDD,EEEE,[],[]
+727374,XXX,NNNN,DDDD,EEEE,[],[]
+748879,214558,ethinyl estradiol / levonorgestrel,1151131,Oral Product,"['4124', '214558']","['ethinyl estradiol', 'ethinyl estradiol / levonorgestrel']"
+308056,XXX,NNNN,DDDD,EEEE,[],[]
+757594,7514,norethindrone,1151131,Oral Product,['7514'],['norethindrone']
+567645,XXX,NNNN,DDDD,EEEE,[],[]
+282464,161,acetaminophen,1151131,Oral Product,['161'],['acetaminophen']
+313185,10318,tacrine,1151131,Oral Product,['10318'],['tacrine']
+997221,236559,donepezil hydrochloride,1151131,Oral Product,"['135447', '236559']","['donepezil', 'donepezil hydrochloride']"
+309097,2194,cefuroxime,1151131,Oral Product,['2194'],['cefuroxime']
+239981,XXX,NNNN,DDDD,EEEE,[],[]
+807283,6373,levonorgestrel,1151136,Drug Implant Product,['6373'],['levonorgestrel']
+824184,19711,amoxicillin / clavulanate,1151131,Oral Product,"['48203', '19711']","['clavulanate', 'amoxicillin / clavulanate']"
+235389,235389,mestranol / norethynodrel,DDDD,EEEE,"['6782', '235389']","['mestranol', 'mestranol / norethynodrel']"
+996741,236685,memantine hydrochloride,1151131,Oral Product,"['6719', '236685']","['memantine', 'memantine hydrochloride']"
+1190795,153971,atropine sulfate,1151126,Injectable Product,"['1223', '153971']","['atropine', 'atropine sulfate']"
+106892,253181,"insulin isophane, human",1151126,Injectable Product,"['1605101', '1008501', '253181']","['insulin isophane', 'insulin isophane / insulin, regular, human', 'insulin isophane, human']"
+573839,519,allopurinol,1151131,Oral Product,['519'],['allopurinol']
+1367439,352376,ethinyl estradiol / etonogestrel,1151125,Vaginal Product,"['14584', '352376']","['etonogestrel', 'ethinyl estradiol / etonogestrel']"
+1014676,203150,cetirizine hydrochloride,1151131,Oral Product,"['20610', '203150']","['cetirizine', 'cetirizine hydrochloride']"
+1014678,203150,cetirizine hydrochloride,1151131,Oral Product,"['20610', '203150']","['cetirizine', 'cetirizine hydrochloride']"
+748962,7514,norethindrone,1151131,Oral Product,['7514'],['norethindrone']
+608680,161,acetaminophen,1151131,Oral Product,['161'],['acetaminophen']
+857005,214182,acetaminophen / hydrocodone,1151131,Oral Product,"['161', '214182', '142439']","['acetaminophen', 'acetaminophen / hydrocodone', 'hydrocodone bitartrate']"
+313782,161,acetaminophen,1151131,Oral Product,['161'],['acetaminophen']
+564666,4917,nitroglycerin,1151129,Mucosal Product,['4917'],['nitroglycerin']
+596927,72625,duloxetine,1151131,Oral Product,['72625'],['duloxetine']
+1049544,82063,oxycodone hydrochloride,1151131,Oral Product,"['7804', '82063']","['oxycodone', 'oxycodone hydrochloride']"
+858069,2683,colchicine,1151131,Oral Product,['2683'],['colchicine']
+243670,1191,aspirin,1151131,Oral Product,['1191'],['aspirin']
+392151,723,amoxicillin,1151131,Oral Product,['723'],['amoxicillin']
+617944,38400,atomoxetine,1151131,Oral Product,['38400'],['atomoxetine']
+1094108,203197,phenazopyridine hydrochloride,1151131,Oral Product,"['8120', '203197']","['phenazopyridine', 'phenazopyridine hydrochloride']"
+308192,723,amoxicillin,1151131,Oral Product,['723'],['amoxicillin']
+575971,XXX,NNNN,DDDD,EEEE,[],[]
+1111011,14584,etonogestrel,1151136,Drug Implant Product,['14584'],['etonogestrel']
+1310197,214182,acetaminophen / hydrocodone,1151131,Oral Product,"['161', '214182', '142439']","['acetaminophen', 'acetaminophen / hydrocodone', 'hydrocodone bitartrate']"
+665078,28889,loratadine,1151131,Oral Product,['28889'],['loratadine']
+895994,50121,fluticasone propionate,1151123,Inhalant Product,"['41126', '50121']","['fluticasone', 'fluticasone propionate']"
