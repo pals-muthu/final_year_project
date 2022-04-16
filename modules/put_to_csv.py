@@ -16,3 +16,8 @@ def put_np_array_to_csv(base_path, np_array, file_name=None):
     df = pd.DataFrame(data=np_array[1:, 0:],    # values
                       columns=np_array[0, 0:])
     put_to_csv(base_path, df, file_name)
+
+
+def put_unconstructed_np_array_to_csv(base_path, np_array, file_name=None):
+    df = pd.DataFrame(data=np_array)
+    put_to_csv(base_path, df, file_name)

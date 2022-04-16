@@ -16,7 +16,7 @@ from sklearn.compose import ColumnTransformer
 import pandas as pd
 import numpy as np
 from modules.extract_csv_data import get_merged_data, base_path, get_drug_data_from_csv, get_condition_data_from_csv, get_procedure_data_from_csv, get_encounter_data_from_csv
-from modules.put_to_csv import put_to_csv, put_np_array_to_csv
+from modules.put_to_csv import put_to_csv, put_np_array_to_csv, put_unconstructed_np_array_to_csv
 from modules.utility_functions import update_nan_most_frequent_category, update_nan_most_frequent_category_tuple, remove_nan
 from pathlib import Path
 import sys
@@ -70,10 +70,10 @@ print("merged_df_2 condition: ", list(merged_df_2.columns.values))
 # ----------------------------------------------------------------------
 #
 
-merged_df_1 = merged_df_1.drop_duplicates(subset=['patient_id', 'encounter_id', 'medication_code',
+merged_df_1 = merged_df_1.drop_duplicates(subset=['encounter_id', 'medication_code',
                                                   'procedure_type_code', 'year'], keep='first')
 
-merged_df_2 = merged_df_2.drop_duplicates(subset=['patient_id', 'encounter_id', 'medication_code',
+merged_df_2 = merged_df_2.drop_duplicates(subset=['encounter_id', 'medication_code',
                                                   'condition_type_code', 'year'], keep='first')
 print("dropping duplicates procedure: ", list(merged_df_1.columns.values))
 print("dropping duplicates condition: ", list(merged_df_2.columns.values))
@@ -83,11 +83,13 @@ print("dropping duplicates condition: ", list(merged_df_2.columns.values))
 # Merging the dataframes
 # ----------------------------------------------------------------------
 
-merged_df = merged_df_1.merge(merged_df_2, on=['encounter_id', 'patient_id', 'encounter_type_code', 'encounter_description',
+merged_df = merged_df_1.merge(merged_df_2, on=['encounter_id', 'encounter_type_code', 'encounter_description',
                                                'encounter_reason_code', 'encounter_reason_description', 'medication_code', 'medication',
                                                'medication_reason_code', 'medication_reason_description', 'year'], how='outer')
 print("after merging the conditions and procedures: ",
       list(merged_df.columns.values))
+
+# Remove duplicates here once again
 
 # ======================================================================
 # ----------------------------------------------------------------------
@@ -123,8 +125,8 @@ merged_df = merged_df[['encounter_type_code',
 # Adding More Features
 # ----------------------------------------------------------------------
 
-# adding new_medication_code
-# read the medication file.
+# # adding new_medication_code
+# # read the medication file.
 # drugs_df = get_drug_data_from_csv()
 # print("obtained drugs df")
 # drugs_dict = {}
@@ -193,6 +195,11 @@ merged_df = merged_df[['encounter_type_code',
 
 # print("updated drug info")
 
+# ----------------------------------------------------------------------
+# Dumping and loading pickle file for faster processing
+# ----------------------------------------------------------------------
+
+
 # merged_df.to_pickle('temp.pkl')
 
 merged_df = pd.read_pickle('temp.pkl')
@@ -201,22 +208,26 @@ merged_df = pd.read_pickle('temp.pkl')
 # put_to_csv(base_path, merged_df)
 # sys.exit(0)
 
+# ----------------------------------------------------------------------
+# Reacalibrating the dataframe
+# ----------------------------------------------------------------------
+
 # Again - Dropping columns that are not required
 # 51.9 % accuracy
 merged_df = merged_df.drop(
     [
         'medication_code',
-        #     'encounter_type_code',
-        #    'condition_type_code',
-        #    'procedure_type_code'
+        'encounter_type_code',
+        'condition_type_code',
+        'procedure_type_code'
     ], axis=1)
 
 merged_df = merged_df.rename(
     columns={
         'new_medication_code': 'medication_code',
-        #  'new_encounter_type_code': 'encounter_type_code',
-        #  'new_condition_type_code': 'condition_type_code',
-        #  'new_procedure_type_code': 'procedure_type_code'
+        'new_encounter_type_code': 'encounter_type_code',
+        'new_condition_type_code': 'condition_type_code',
+        'new_procedure_type_code': 'procedure_type_code'
     })
 merged_df = merged_df[['dose_form_code',
                        'encounter_type_code',
@@ -238,55 +249,49 @@ print(y)
 
 # ----------------------------------------------------------------------
 
-# # Taking care of missing data
-update_nan_most_frequent_category(X, merged_df_2, 'condition_type_code')
-update_nan_most_frequent_category(X, merged_df_1, 'procedure_type_code')
+# # Taking care of missing data - not required when dealing with arrays
+# update_nan_most_frequent_category(X, merged_df_2, 'condition_type_code')
+# update_nan_most_frequent_category(X, merged_df_1, 'procedure_type_code')
 
-# update_nan_most_frequent_category_tuple(X, merged_df_2, 'condition_type_code')
-# update_nan_most_frequent_category_tuple(X, merged_df_1, 'procedure_type_code')
-
-# remove_nan(X, "condition_type_code")
-# remove_nan(X, "procedure_type_code")
-
-print("post filling")
-put_to_csv(base_path, X, "temp2.csv")
-# sys.exit(0)
+# print("post filling")
+# put_to_csv(base_path, X, "temp2.csv")
 
 # ----------------------------------------------------------------------
 # Encoding categorical data
 # Encoding the Independent Variable
 
-# # encoding the procedure_type_code to multi-label encoding.
-# mlb = MultiLabelBinarizer()
-# temp_X1 = mlb.fit_transform(
-#     X['procedure_type_code'])
-# # print("after mlb: ", type(X), type(
-# #     X['condition_type_code']), type(X['encounter_type_code']), type(temp_X1))
-# # print(temp_X1)
+# encoding the procedure_type_code to multi-label encoding.
+mlb = MultiLabelBinarizer()
+temp_X1 = mlb.fit_transform(
+    X['procedure_type_code'])
 
-# # encoding the condition_type_code to multi-label encoding.
-# mlb_2 = MultiLabelBinarizer()
-# temp_X2 = mlb_2.fit_transform(
-#     X['condition_type_code'])
-# # print(temp_X2)
+# encoding the condition_type_code to multi-label encoding.
+mlb_2 = MultiLabelBinarizer()
+temp_X2 = mlb_2.fit_transform(
+    X['condition_type_code'])
 
-# # encoding the encounter_type_code to multi-label encoding.
-# mlb_3 = MultiLabelBinarizer()
-# temp_X3 = mlb_3.fit_transform(
-#     X['encounter_type_code'])
-# # print(temp_X2)
+# encoding the encounter_type_code to multi-label encoding.
+mlb_3 = MultiLabelBinarizer()
+temp_X3 = mlb_3.fit_transform(
+    X['encounter_type_code'])
 
-# X['procedure_type_code'] = temp_X1
-# X['condition_type_code'] = temp_X2
-# X['encounter_type_code'] = temp_X3
-# print("after all: ", X)
+# print("after procedure_type_code: ", temp_X1)
+# print("after condition_type_code: ", temp_X2)
+# print("after encounter_type_code: ", temp_X3)
+# put_unconstructed_np_array_to_csv(base_path, temp_X1, "tempP.csv")
+# put_unconstructed_np_array_to_csv(base_path, temp_X2, "tempC.csv")
+# put_unconstructed_np_array_to_csv(base_path, temp_X3, "tempE.csv")
 
 # converting the does_form_code to one hot encoding
-# ct = ColumnTransformer(
-#     transformers=[('encoder', OneHotEncoder(), [0])], remainder='passthrough')
-# X = ct.fit_transform(X).toarray()
+ct = ColumnTransformer(
+    transformers=[('encoder', OneHotEncoder(), [0])], remainder='drop')
+temp_X4 = ct.fit_transform(X).toarray()
+# print("after dose_form_code: ", temp_X4)
+# put_unconstructed_np_array_to_csv(base_path, temp_X4, "tempD.csv")
+
+X = np.concatenate((temp_X1, temp_X2, temp_X3, temp_X4), axis=1)
 # print("after ct: ", X)
-# put_np_array_to_csv(base_path, X, "temp3.csv")
+# put_unconstructed_np_array_to_csv(base_path, X, "tempMerge.csv")
 
 # ----------------------------------------------------------------------
 
@@ -301,9 +306,9 @@ put_to_csv(base_path, X, "temp2.csv")
 
 # ----------------------
 
-ct = ColumnTransformer(
-    transformers=[('encoder', OneHotEncoder(), [0, 1, 2, 3])], remainder='passthrough')
-X = ct.fit_transform(X).toarray()
+# ct = ColumnTransformer(
+#     transformers=[('encoder', OneHotEncoder(), [0, 1, 2, 3])], remainder='passthrough')
+# X = ct.fit_transform(X).toarray()
 
 # ----------------------------------------------------------------------
 
