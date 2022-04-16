@@ -125,93 +125,104 @@ merged_df = merged_df[['encounter_type_code',
 
 # adding new_medication_code
 # read the medication file.
-drugs_df = get_drug_data_from_csv()
-print("obtained drugs df")
-drugs_dict = {}
-drugs_df = drugs_df.reset_index()
-for index, row in drugs_df.iterrows():
+# drugs_df = get_drug_data_from_csv()
+# print("obtained drugs df")
+# drugs_dict = {}
+# drugs_df = drugs_df.reset_index()
+# for index, row in drugs_df.iterrows():
 
-    drugs_dict[row['medication_code']] = {
-        'parent_code': row['parent_code'],
-        'dose_form_code': row['dose_form_code']
-    }
+#     drugs_dict[row['medication_code']] = {
+#         'parent_code': row['parent_code'],
+#         'dose_form_code': row['dose_form_code']
+#     }
 
-print("drugs_dict: ", drugs_dict)
+# print("drugs_dict: ", drugs_dict)
 
-conditions_feature_df = get_condition_data_from_csv()
-conditions_feature_dict = {}
-conditions_feature_df = conditions_feature_df.reset_index()
-for index, row in conditions_feature_df.iterrows():
+# conditions_feature_df = get_condition_data_from_csv()
+# conditions_feature_dict = {}
+# conditions_feature_df = conditions_feature_df.reset_index()
+# for index, row in conditions_feature_df.iterrows():
 
-    conditions_feature_dict[row['reason_code']] = ast.literal_eval(
-        row['compiled_codes'])
+#     conditions_feature_dict[row['reason_code']] = ast.literal_eval(
+#         row['compiled_codes'])
 
-print("conditions_feature_df: ", conditions_feature_dict)
+# print("conditions_feature_df: ", conditions_feature_dict)
 
-procedure_feature_df = get_procedure_data_from_csv()
-procedure_feature_dict = {}
-procedure_feature_df = procedure_feature_df.reset_index()
-for index, row in procedure_feature_df.iterrows():
+# procedure_feature_df = get_procedure_data_from_csv()
+# procedure_feature_dict = {}
+# procedure_feature_df = procedure_feature_df.reset_index()
+# for index, row in procedure_feature_df.iterrows():
 
-    procedure_feature_dict[row['reason_code']
-                           ] = ast.literal_eval(row['compiled_codes'])
+#     procedure_feature_dict[row['reason_code']
+#                            ] = ast.literal_eval(row['compiled_codes'])
 
-print("procedure_feature_dict: ", procedure_feature_dict)
+# print("procedure_feature_dict: ", procedure_feature_dict)
 
-encounter_feature_df = get_encounter_data_from_csv()
-encounter_feature_dict = {}
-encounter_feature_df = encounter_feature_df.reset_index()
-for index, row in encounter_feature_df.iterrows():
+# encounter_feature_df = get_encounter_data_from_csv()
+# encounter_feature_dict = {}
+# encounter_feature_df = encounter_feature_df.reset_index()
+# for index, row in encounter_feature_df.iterrows():
 
-    encounter_feature_dict[row['reason_code']
-                           ] = ast.literal_eval(row['compiled_codes'])
+#     encounter_feature_dict[row['reason_code']
+#                            ] = ast.literal_eval(row['compiled_codes'])
 
-print("encounter_feature_df: ", encounter_feature_dict)
-
-
-def label_race(row):
-
-    row['new_medication_code'] = drugs_dict[int(
-        row['medication_code'])]['parent_code']
-    row['dose_form_code'] = drugs_dict[int(
-        row['medication_code'])]['dose_form_code']
-
-    row['new_condition_type_code'] = conditions_feature_dict[int(
-        row['condition_type_code'])] if not pd.isnull(row['condition_type_code']) else []
-
-    row['new_procedure_type_code'] = procedure_feature_dict[int(
-        row['procedure_type_code'])] if not pd.isnull(row['procedure_type_code']) else []
-
-    row['new_encounter_type_code'] = encounter_feature_dict[int(
-        row['encounter_type_code'])]
-
-    return row
+# print("encounter_feature_df: ", encounter_feature_dict)
 
 
-merged_df = merged_df.apply(
-    lambda row: label_race(row), axis=1)
+# def label_race(row):
 
-print("updated drug info")
+#     row['new_medication_code'] = drugs_dict[int(
+#         row['medication_code'])]['parent_code']
+#     row['dose_form_code'] = drugs_dict[int(
+#         row['medication_code'])]['dose_form_code']
 
-merged_df.to_pickle('temp.pkl')
+#     row['new_condition_type_code'] = conditions_feature_dict[int(
+#         row['condition_type_code'])] if not pd.isnull(row['condition_type_code']) else []
 
-# merged_df = pd.read_pickle('temp.pkl')
+#     row['new_procedure_type_code'] = procedure_feature_dict[int(
+#         row['procedure_type_code'])] if not pd.isnull(row['procedure_type_code']) else []
+
+#     row['new_encounter_type_code'] = encounter_feature_dict[int(
+#         row['encounter_type_code'])]
+
+#     return row
+
+
+# merged_df = merged_df.apply(
+#     lambda row: label_race(row), axis=1)
+
+# print("updated drug info")
+
+# merged_df.to_pickle('temp.pkl')
+
+merged_df = pd.read_pickle('temp.pkl')
 
 # print("writing to file and exiting")
 # put_to_csv(base_path, merged_df)
 # sys.exit(0)
 
 # Again - Dropping columns that are not required
-# 37 % accuracy
-merged_df = merged_df.drop(['medication_code', 'encounter_type_code',
-                           'condition_type_code', 'procedure_type_code'], axis=1)
+# 51.9 % accuracy
+merged_df = merged_df.drop(
+    [
+        'medication_code',
+        #     'encounter_type_code',
+        #    'condition_type_code',
+        #    'procedure_type_code'
+    ], axis=1)
+
 merged_df = merged_df.rename(
-    columns={'new_medication_code': 'medication_code',
-             'new_encounter_type_code': 'encounter_type_code',
-             'new_condition_type_code': 'condition_type_code',
-             'new_procedure_type_code': 'procedure_type_code'})
-merged_df = merged_df[['dose_form_code', 'encounter_type_code',
-                       'condition_type_code', 'procedure_type_code', 'medication_code']]
+    columns={
+        'new_medication_code': 'medication_code',
+        #  'new_encounter_type_code': 'encounter_type_code',
+        #  'new_condition_type_code': 'condition_type_code',
+        #  'new_procedure_type_code': 'procedure_type_code'
+    })
+merged_df = merged_df[['dose_form_code',
+                       'encounter_type_code',
+                       'condition_type_code',
+                       'procedure_type_code',
+                       'medication_code']]
 
 # ----------------------------------------------------------------------
 
@@ -228,8 +239,8 @@ print(y)
 # ----------------------------------------------------------------------
 
 # # Taking care of missing data
-# update_nan_most_frequent_category(X, merged_df_2, 'condition_type_code')
-# update_nan_most_frequent_category(X, merged_df_1, 'procedure_type_code')
+update_nan_most_frequent_category(X, merged_df_2, 'condition_type_code')
+update_nan_most_frequent_category(X, merged_df_1, 'procedure_type_code')
 
 # update_nan_most_frequent_category_tuple(X, merged_df_2, 'condition_type_code')
 # update_nan_most_frequent_category_tuple(X, merged_df_1, 'procedure_type_code')
@@ -245,30 +256,30 @@ put_to_csv(base_path, X, "temp2.csv")
 # Encoding categorical data
 # Encoding the Independent Variable
 
-# encoding the procedure_type_code to multi-label encoding.
-mlb = MultiLabelBinarizer()
-temp_X1 = mlb.fit_transform(
-    X['procedure_type_code'])
-# print("after mlb: ", type(X), type(
-#     X['condition_type_code']), type(X['encounter_type_code']), type(temp_X1))
-# print(temp_X1)
+# # encoding the procedure_type_code to multi-label encoding.
+# mlb = MultiLabelBinarizer()
+# temp_X1 = mlb.fit_transform(
+#     X['procedure_type_code'])
+# # print("after mlb: ", type(X), type(
+# #     X['condition_type_code']), type(X['encounter_type_code']), type(temp_X1))
+# # print(temp_X1)
 
-# encoding the condition_type_code to multi-label encoding.
-mlb_2 = MultiLabelBinarizer()
-temp_X2 = mlb_2.fit_transform(
-    X['condition_type_code'])
-# print(temp_X2)
+# # encoding the condition_type_code to multi-label encoding.
+# mlb_2 = MultiLabelBinarizer()
+# temp_X2 = mlb_2.fit_transform(
+#     X['condition_type_code'])
+# # print(temp_X2)
 
-# encoding the encounter_type_code to multi-label encoding.
-mlb_3 = MultiLabelBinarizer()
-temp_X3 = mlb_3.fit_transform(
-    X['encounter_type_code'])
-# print(temp_X2)
+# # encoding the encounter_type_code to multi-label encoding.
+# mlb_3 = MultiLabelBinarizer()
+# temp_X3 = mlb_3.fit_transform(
+#     X['encounter_type_code'])
+# # print(temp_X2)
 
-X['procedure_type_code'] = temp_X1
-X['condition_type_code'] = temp_X2
-X['encounter_type_code'] = temp_X3
-print("after all: ", X)
+# X['procedure_type_code'] = temp_X1
+# X['condition_type_code'] = temp_X2
+# X['encounter_type_code'] = temp_X3
+# print("after all: ", X)
 
 # converting the does_form_code to one hot encoding
 # ct = ColumnTransformer(
@@ -290,9 +301,9 @@ print("after all: ", X)
 
 # ----------------------
 
-# ct = ColumnTransformer(
-#     transformers=[('encoder', OneHotEncoder(), [0, 1, 2, 3])], remainder='passthrough')
-# X = ct.fit_transform(X).toarray()
+ct = ColumnTransformer(
+    transformers=[('encoder', OneHotEncoder(), [0, 1, 2, 3])], remainder='passthrough')
+X = ct.fit_transform(X).toarray()
 
 # ----------------------------------------------------------------------
 
