@@ -13,6 +13,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
+from sklearn.svm import LinearSVC, NuSVC, SVC
+from sklearn.neighbors import KNeighborsClassifier
 import pandas as pd
 import numpy as np
 from modules.extract_csv_data import get_merged_data, base_path, get_drug_data_from_csv, get_condition_data_from_csv, get_procedure_data_from_csv, get_encounter_data_from_csv
@@ -202,7 +204,7 @@ print("updated drug info")
 
 # merged_df.to_pickle('temp.pkl')
 
-merged_df = pd.read_pickle('temp.pkl')
+# merged_df = pd.read_pickle('temp.pkl')
 
 # print("writing to file and exiting")
 # put_to_csv(base_path, merged_df)
@@ -341,17 +343,40 @@ X_train, X_test, y_train, y_test = train_test_split(
 # ----------------------------------------------------------------------
 
 # Training the Random Forest model on the Training set
-# classifier = RandomForestClassifier(
-#     n_estimators=10, criterion='entropy', random_state=0)
-# classifier.fit(X_train, y_train)
+classifier = RandomForestClassifier(
+    n_estimators=10, criterion='entropy', random_state=0)
+classifier.fit(X_train, y_train)
 
 # ----------------------------------------------------------------------
 
 # Training the Random Forest model on the Training set
-classifier = RandomForestClassifier(
-    n_estimators=700, criterion='entropy', random_state=0,
-    min_samples_split=2, min_samples_leaf=4, max_features='sqrt', max_depth=80, bootstrap=False)
-classifier.fit(X_train, y_train)
+# classifier = RandomForestClassifier(
+#     n_estimators=700, criterion='entropy', random_state=0,
+#     min_samples_split=2, min_samples_leaf=4, max_features='sqrt', max_depth=80, bootstrap=False)
+# classifier.fit(X_train, y_train)
+
+# ----------------------------------------------------------------------
+
+# SVM - Linear SVC classifier - 48%
+# classifier = LinearSVC(penalty='l2', loss='squared_hinge', dual=False, tol=0.0001,
+#                        C=1.0, multi_class='ovr', fit_intercept=True, intercept_scaling=1,
+#                        class_weight=None, verbose=0, random_state=None, max_iter=1000)
+# classifier.fit(X_train, y_train)
+
+# ----------------------------------------------------------------------
+
+#  C- support SVM
+# classifier = SVC(C=1.0, kernel='rbf', degree=3, gamma='scale', coef0=0.0, shrinking=True,
+#                  probability=False, tol=0.001, cache_size=200, class_weight=None, verbose=False, max_iter=-1,
+#                  decision_function_shape='ovr', break_ties=False, random_state=None)
+# classifier.fit(X_train, y_train)
+
+# ----------------------------------------------------------------------
+
+# K-Means clustering - 37%
+# classifier = KNeighborsClassifier(n_neighbors=5, weights='uniform', algorithm='auto',
+#                                   leaf_size=30, p=2, metric='minkowski', metric_params=None, n_jobs=None)
+# classifier.fit(X_train, y_train)
 
 # ----------------------------------------------------------------------
 
