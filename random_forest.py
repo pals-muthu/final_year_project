@@ -351,18 +351,18 @@ X_train, X_test, y_train, y_test = train_test_split(
 # ----------------------------------------------------------------------
 
 # Training the Random Forest model on the Training set
-classifier = RandomForestClassifier(
-    n_estimators=700, criterion='entropy', random_state=0,
-    min_samples_split=2, min_samples_leaf=4, max_features='sqrt', max_depth=80, bootstrap=False)
-classifier.fit(X_train, y_train)
+# classifier = RandomForestClassifier(
+#     n_estimators=700, criterion='entropy', random_state=0,
+#     min_samples_split=2, min_samples_leaf=4, max_features='sqrt', max_depth=80, bootstrap=False)
+# classifier.fit(X_train, y_train)
 
 # ----------------------------------------------------------------------
 
 # SVM - Linear SVC classifier - 48%
-# classifier = LinearSVC(penalty='l2', loss='squared_hinge', dual=False, tol=0.0001,
-#                        C=1.0, multi_class='ovr', fit_intercept=True, intercept_scaling=1,
-#                        class_weight=None, verbose=0, random_state=None, max_iter=1000)
-# classifier.fit(X_train, y_train)
+classifier = LinearSVC(penalty='l1', loss='squared_hinge', dual=False, tol=0.0001,
+                       C=1.0, multi_class='ovr', fit_intercept=True, intercept_scaling=1,
+                       class_weight=None, verbose=0, random_state=None, max_iter=2000)
+classifier.fit(X_train, y_train)
 
 # ----------------------------------------------------------------------
 
