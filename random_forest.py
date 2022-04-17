@@ -55,7 +55,7 @@ print("merged_df: ", list(merged_df.columns.values))
 # sys.exit(0)
 
 # First hundred/thousand entries
-merged_df = merged_df.head(2000)
+merged_df = merged_df.head(10000)
 
 # ----------------------------------------------------------------------
 # Mapping the encounter, procedure and conditions with the medications.
@@ -351,10 +351,10 @@ X_train, X_test, y_train, y_test = train_test_split(
 # ----------------------------------------------------------------------
 
 # Training the Random Forest model on the Training set
-# classifier = RandomForestClassifier(
-#     n_estimators=700, criterion='entropy', random_state=0,
-#     min_samples_split=2, min_samples_leaf=4, max_features='sqrt', max_depth=80, bootstrap=False)
-# classifier.fit(X_train, y_train)
+classifier = RandomForestClassifier(
+    n_estimators=700, criterion='entropy', random_state=0,
+    min_samples_split=2, min_samples_leaf=4, max_features='sqrt', max_depth=80, bootstrap=False)
+classifier.fit(X_train, y_train)
 
 # ----------------------------------------------------------------------
 
@@ -414,7 +414,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 # ----------------------------------------------------------------------
 
 # Predicting the Test set results
-# y_pred = classifier.predict(X_test)
+y_pred = classifier.predict(X_test)
 
 # ----------------------------------------------------------------------
 
@@ -423,9 +423,9 @@ X_train, X_test, y_train, y_test = train_test_split(
 # print(np.concatenate((y_pred.reshape(len(y_pred), 1), y_test.reshape(len(y_test), 1)), 1))
 
 # Making the Confusion Matrix
-# cm = confusion_matrix(y_test, y_pred)
-# ac = accuracy_score(y_test, y_pred)
-# print("accuracy score: ", ac)
+cm = confusion_matrix(y_test, y_pred)
+ac = accuracy_score(y_test, y_pred)
+print("accuracy score: ", ac*100.0)
 
 print("end time: ", datetime.datetime.now())
 
@@ -473,16 +473,16 @@ print("end time: ", datetime.datetime.now())
 
 # ----------------------------------------------------------------------
 
-kfold2 = ShuffleSplit(n_splits=10, test_size=0.30, random_state=100)
+# kfold2 = ShuffleSplit(n_splits=10, test_size=0.30, random_state=100)
 
-model_shufflecv = RandomForestClassifier(
-    n_estimators=700, criterion='entropy', random_state=0,
-    min_samples_split=2, min_samples_leaf=4, max_features='sqrt', max_depth=80, bootstrap=False)
+# model_shufflecv = RandomForestClassifier(
+#     n_estimators=700, criterion='entropy', random_state=0,
+#     min_samples_split=2, min_samples_leaf=4, max_features='sqrt', max_depth=80, bootstrap=False)
 
-results_4 = cross_val_score(model_shufflecv, X_train, y_train, cv=kfold2)
+# results_4 = cross_val_score(model_shufflecv, X_train, y_train, cv=kfold2)
 
-print("Overall: ", results_4)
-print("Accuracy: %.2f%% (%.2f%%)" %
-      (results_4.mean()*100.0, results_4.std()*100.0))
+# print("Overall: ", results_4)
+# print("Accuracy: %.2f%% (%.2f%%)" %
+#       (results_4.mean()*100.0, results_4.std()*100.0))
 
 # ----------------------------------------------------------------------
