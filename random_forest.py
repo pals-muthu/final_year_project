@@ -15,6 +15,7 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.svm import LinearSVC, NuSVC, SVC
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import KFold, cross_val_score, StratifiedKFold, ShuffleSplit, LeaveOneOut
 import pandas as pd
 import numpy as np
 from modules.extract_csv_data import get_merged_data, base_path, get_drug_data_from_csv, get_condition_data_from_csv, get_procedure_data_from_csv, get_encounter_data_from_csv
@@ -54,7 +55,7 @@ print("merged_df: ", list(merged_df.columns.values))
 # sys.exit(0)
 
 # First hundred/thousand entries
-merged_df = merged_df.head(1000)
+merged_df = merged_df.head(2000)
 
 # ----------------------------------------------------------------------
 # Mapping the encounter, procedure and conditions with the medications.
@@ -343,9 +344,9 @@ X_train, X_test, y_train, y_test = train_test_split(
 # ----------------------------------------------------------------------
 
 # Training the Random Forest model on the Training set
-classifier = RandomForestClassifier(
-    n_estimators=10, criterion='entropy', random_state=0)
-classifier.fit(X_train, y_train)
+# classifier = RandomForestClassifier(
+#     n_estimators=10, criterion='entropy', random_state=0)
+# classifier.fit(X_train, y_train)
 
 # ----------------------------------------------------------------------
 
@@ -413,18 +414,75 @@ classifier.fit(X_train, y_train)
 # ----------------------------------------------------------------------
 
 # Predicting the Test set results
-y_pred = classifier.predict(X_test)
+# y_pred = classifier.predict(X_test)
 
 # ----------------------------------------------------------------------
 
 # y_pred = rf_random.predict(X_test)
 
-print(np.concatenate((y_pred.reshape(len(y_pred), 1), y_test.reshape(len(y_test), 1)), 1))
+# print(np.concatenate((y_pred.reshape(len(y_pred), 1), y_test.reshape(len(y_test), 1)), 1))
 
 # Making the Confusion Matrix
-cm = confusion_matrix(y_test, y_pred)
-ac = accuracy_score(y_test, y_pred)
-print("accuracy score: ", ac)
+# cm = confusion_matrix(y_test, y_pred)
+# ac = accuracy_score(y_test, y_pred)
+# print("accuracy score: ", ac)
+
 print("end time: ", datetime.datetime.now())
 
 # ======================================================================
+
+# ----------------------------------------------------------------------
+
+# Training the Random Forest model on the Training set - K-cross validation
+# kfold = KFold(n_splits=15, random_state=100, shuffle=True)
+
+# model_kfold = RandomForestClassifier(
+#     n_estimators=700, criterion='entropy', random_state=0,
+#     min_samples_split=2, min_samples_leaf=4, max_features='sqrt', max_depth=80, bootstrap=False)
+
+# results_kfold = cross_val_score(model_kfold, X_train, y_train, cv=kfold)
+
+# print("Overall: ", results_kfold)
+# print("Accuracy: %.2f%%" % (results_kfold.mean()*100.0))
+
+# ----------------------------------------------------------------------
+
+# skfold = StratifiedKFold(n_splits=10, random_state=100, shuffle=True)
+
+# model_skfold = RandomForestClassifier(
+#     n_estimators=700, criterion='entropy', random_state=0,
+#     min_samples_split=2, min_samples_leaf=4, max_features='sqrt', max_depth=80, bootstrap=False)
+
+# results_skfold = cross_val_score(model_skfold, X_train, y_train, cv=skfold)
+
+# print("Overall: ", results_skfold)
+# print("Accuracy: %.2f%%" % (results_skfold.mean()*100.0))
+
+# ----------------------------------------------------------------------
+
+# loocv = LeaveOneOut()
+
+# model_loocv = RandomForestClassifier(
+#     n_estimators=700, criterion='entropy', random_state=0,
+#     min_samples_split=2, min_samples_leaf=4, max_features='sqrt', max_depth=80, bootstrap=False)
+
+# results_loocv = cross_val_score(model_loocv, X_train, y_train, cv=loocv)
+
+# print("Overall: ", results_loocv)
+# print("Accuracy: %.2f%%" % (results_loocv.mean()*100.0))
+
+# ----------------------------------------------------------------------
+
+kfold2 = ShuffleSplit(n_splits=10, test_size=0.30, random_state=100)
+
+model_shufflecv = RandomForestClassifier(
+    n_estimators=700, criterion='entropy', random_state=0,
+    min_samples_split=2, min_samples_leaf=4, max_features='sqrt', max_depth=80, bootstrap=False)
+
+results_4 = cross_val_score(model_shufflecv, X_train, y_train, cv=kfold2)
+
+print("Overall: ", results_4)
+print("Accuracy: %.2f%% (%.2f%%)" %
+      (results_4.mean()*100.0, results_4.std()*100.0))
+
+# ----------------------------------------------------------------------
