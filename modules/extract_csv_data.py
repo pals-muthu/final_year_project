@@ -189,7 +189,7 @@ def get_merged_data():
 
 def get_drug_data_from_csv():
     base_path = Path(__file__).resolve().parents[1].joinpath(
-        'helpers\\drug_related_info_update.csv')
+        'helpers\\drug_related_info_update_more_general.csv')
     drugs_df = pd.read_csv(base_path, low_memory=False)
     return drugs_df
 
