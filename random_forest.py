@@ -55,7 +55,7 @@ print("merged_df: ", list(merged_df.columns.values))
 # sys.exit(0)
 
 # First hundred/thousand entries
-merged_df = merged_df.head(10000)
+# merged_df = merged_df.head(10000)
 
 # ----------------------------------------------------------------------
 # Mapping the encounter, procedure and conditions with the medications.
@@ -78,8 +78,8 @@ merged_df_1 = merged_df_1.drop_duplicates(subset=['encounter_id', 'medication_co
 
 merged_df_2 = merged_df_2.drop_duplicates(subset=['encounter_id', 'medication_code',
                                                   'condition_type_code', 'year'], keep='first')
-print("dropping duplicates procedure: ", list(merged_df_1.columns.values))
-print("dropping duplicates condition: ", list(merged_df_2.columns.values))
+# print("dropping duplicates procedure: ", list(merged_df_1.columns.values))
+# print("dropping duplicates condition: ", list(merged_df_2.columns.values))
 
 # ======================================================================
 # ----------------------------------------------------------------------
@@ -88,7 +88,7 @@ print("dropping duplicates condition: ", list(merged_df_2.columns.values))
 
 merged_df = merged_df_1.merge(merged_df_2, on=['encounter_id', 'encounter_type_code', 'encounter_description',
                                                'encounter_reason_code', 'encounter_reason_description', 'medication_code', 'medication',
-                                               'medication_reason_code', 'medication_reason_description', 'year'], how='outer')
+                                               'medication_reason_code', 'medication_reason_description', 'year', 'dose_form_code'], how='outer')
 print("after merging the conditions and procedures: ",
       list(merged_df.columns.values))
 
@@ -99,118 +99,11 @@ print("after merging the conditions and procedures: ",
 # Writing to a file
 # ----------------------------------------------------------------------
 
-# print("writing to file and exiting")
-# put_to_csv(base_path, merged_df)
+print("writing to file and exiting")
+put_to_csv(base_path, merged_df)
 # sys.exit(0)
 
 # ======================================================================
-# ----------------------------------------------------------------------
-# Data Pre-preprocessing
-# ----------------------------------------------------------------------
-
-# Dropping columns that are not required
-# 25 % accuracy
-merged_df = merged_df[['encounter_type_code',
-                       'condition_type_code', 'procedure_type_code', 'medication_code']]
-
-# 24 % accuracy
-# merged_df = merged_df[['encounter_type_code',
-#                        'condition_type_code', 'procedure_type_code', 'year', 'medication_code']]
-
-# 28 % accuracy
-# merged_df = merged_df[['encounter_type_code',
-#                        'condition_type_code', 'medication_code']]
-
-# 21 % accuracy
-# merged_df = merged_df[['encounter_type_code', 'medication_code']]
-
-# ----------------------------------------------------------------------
-# Adding More Features
-# ----------------------------------------------------------------------
-
-# adding new_medication_code
-# read the medication file.
-drugs_df = get_drug_data_from_csv()
-print("obtained drugs df")
-drugs_dict = {}
-drugs_df = drugs_df.reset_index()
-for index, row in drugs_df.iterrows():
-
-    drugs_dict[row['medication_code']] = {
-        'parent_code': row['parent_code'],
-        'dose_form_code': row['dose_form_code']
-    }
-
-print("drugs_dict: ", drugs_dict)
-
-conditions_feature_df = get_condition_data_from_csv()
-conditions_feature_dict = {}
-conditions_feature_df = conditions_feature_df.reset_index()
-for index, row in conditions_feature_df.iterrows():
-
-    conditions_feature_dict[row['reason_code']] = ast.literal_eval(
-        row['compiled_codes'])
-
-print("conditions_feature_df: ", conditions_feature_dict)
-
-procedure_feature_df = get_procedure_data_from_csv()
-procedure_feature_dict = {}
-procedure_feature_df = procedure_feature_df.reset_index()
-for index, row in procedure_feature_df.iterrows():
-
-    procedure_feature_dict[row['reason_code']
-                           ] = ast.literal_eval(row['compiled_codes'])
-
-print("procedure_feature_dict: ", procedure_feature_dict)
-
-encounter_feature_df = get_encounter_data_from_csv()
-encounter_feature_dict = {}
-encounter_feature_df = encounter_feature_df.reset_index()
-for index, row in encounter_feature_df.iterrows():
-
-    encounter_feature_dict[row['reason_code']
-                           ] = ast.literal_eval(row['compiled_codes'])
-
-print("encounter_feature_df: ", encounter_feature_dict)
-
-
-def label_race(row):
-
-    row['new_medication_code'] = drugs_dict[int(
-        row['medication_code'])]['parent_code']
-    row['dose_form_code'] = drugs_dict[int(
-        row['medication_code'])]['dose_form_code']
-
-    row['new_condition_type_code'] = conditions_feature_dict[int(
-        row['condition_type_code'])] if not pd.isnull(row['condition_type_code']) else []
-
-    row['new_procedure_type_code'] = procedure_feature_dict[int(
-        row['procedure_type_code'])] if not pd.isnull(row['procedure_type_code']) else []
-
-    row['new_encounter_type_code'] = encounter_feature_dict[int(
-        row['encounter_type_code'])]
-
-    return row
-
-
-merged_df = merged_df.apply(
-    lambda row: label_race(row), axis=1)
-
-print("updated drug info")
-
-# ----------------------------------------------------------------------
-# Dumping and loading pickle file for faster processing
-# ----------------------------------------------------------------------
-
-
-# merged_df.to_pickle('temp.pkl')
-
-# merged_df = pd.read_pickle('temp.pkl')
-
-# print("writing to file and exiting")
-# put_to_csv(base_path, merged_df)
-# sys.exit(0)
-
 # ----------------------------------------------------------------------
 # Reacalibrating the dataframe
 # ----------------------------------------------------------------------
@@ -227,16 +120,63 @@ merged_df = merged_df.drop(
 
 merged_df = merged_df.rename(
     columns={
-        'new_medication_code': 'medication_code',
-        'new_encounter_type_code': 'encounter_type_code',
+        'new_medication_code_x': 'medication_code',
+        'new_encounter_type_code_x': 'encounter_type_code',
         'new_condition_type_code': 'condition_type_code',
         'new_procedure_type_code': 'procedure_type_code'
     })
-merged_df = merged_df[['dose_form_code',
-                       'encounter_type_code',
-                       'condition_type_code',
-                       'procedure_type_code',
-                       'medication_code']]
+
+# ----------------------------------------------------------------------
+# Data Pre-preprocessing
+# ----------------------------------------------------------------------
+
+# Dropping columns that are not required
+
+# 25 % accuracy
+merged_df = merged_df[['dose_form_code', 'encounter_type_code',
+                       'condition_type_code', 'procedure_type_code', 'medication_code']]
+
+
+def merged_mapping(row):
+
+    row['procedure_type_code'] = row['procedure_type_code'] if not pd.isnull(
+        row['procedure_type_code']) else []
+    row['condition_type_code'] = row['condition_type_code'] if not pd.isnull(
+        row['condition_type_code']) else []
+
+    return row
+
+
+merged_df = merged_df.apply(
+    lambda row: merged_mapping(row), axis=1)
+
+# # 25 % accuracy
+# merged_df = merged_df[['encounter_type_code',
+#                        'condition_type_code', 'procedure_type_code', 'medication_code']]
+
+# 24 % accuracy
+# merged_df = merged_df[['encounter_type_code',
+#                        'condition_type_code', 'procedure_type_code', 'year', 'medication_code']]
+
+# 28 % accuracy
+# merged_df = merged_df[['encounter_type_code',
+#                        'condition_type_code', 'medication_code']]
+
+# 21 % accuracy
+# merged_df = merged_df[['encounter_type_code', 'medication_code']]
+
+# ----------------------------------------------------------------------
+# Dumping and loading pickle file for faster processing
+# ----------------------------------------------------------------------
+
+
+# merged_df.to_pickle('temp.pkl')
+
+# merged_df = pd.read_pickle('temp.pkl')
+
+# print("writing to file and exiting")
+# put_to_csv(base_path, merged_df)
+# sys.exit(0)
 
 # ----------------------------------------------------------------------
 
@@ -344,9 +284,10 @@ X_train, X_test, y_train, y_test = train_test_split(
 # ----------------------------------------------------------------------
 
 # Training the Random Forest model on the Training set
-# classifier = RandomForestClassifier(
-#     n_estimators=10, criterion='entropy', random_state=0)
-# classifier.fit(X_train, y_train)
+classifier = RandomForestClassifier(
+    n_estimators=20, criterion='entropy', random_state=0,
+    min_samples_split=2, min_samples_leaf=4, max_features='sqrt', max_depth=80, bootstrap=False)
+classifier.fit(X_train, y_train)
 
 # ----------------------------------------------------------------------
 
@@ -359,10 +300,10 @@ X_train, X_test, y_train, y_test = train_test_split(
 # ----------------------------------------------------------------------
 
 # SVM - Linear SVC classifier - 48%
-classifier = LinearSVC(penalty='l1', loss='squared_hinge', dual=False, tol=0.0001,
-                       C=1.0, multi_class='ovr', fit_intercept=True, intercept_scaling=1,
-                       class_weight=None, verbose=0, random_state=None, max_iter=2000)
-classifier.fit(X_train, y_train)
+# classifier = LinearSVC(penalty='l1', loss='squared_hinge', dual=False, tol=0.0001,
+#                        C=1.0, multi_class='ovr', fit_intercept=True, intercept_scaling=1,
+#                        class_weight=None, verbose=0, random_state=None, max_iter=2000)
+# classifier.fit(X_train, y_train)
 
 # ----------------------------------------------------------------------
 
