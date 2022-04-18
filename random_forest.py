@@ -51,7 +51,7 @@ merged_df = encounters_df.merge(
 print("#2")
 print("merged_df: ", list(merged_df.columns.values))
 
-# put_to_csv(base_path, merged_df)
+put_to_csv(base_path, merged_df, "temp1.csv")
 # sys.exit(0)
 
 # First hundred/thousand entries
@@ -63,10 +63,16 @@ merged_df_1 = merged_df.merge(
     procedures_df, left_on='encounter_id', right_on='encounter_id', how='inner')
 print("#2")
 print("merged_df_1 procedure: ", list(merged_df_1.columns.values))
+
+put_to_csv(base_path, merged_df, "merged_df_1.csv")
+
 merged_df_2 = merged_df.merge(
     conditions_df, left_on='encounter_id', right_on='encounter_id', how='inner')
 print("#3")
 print("merged_df_2 condition: ", list(merged_df_2.columns.values))
+
+put_to_csv(base_path, merged_df, "merged_df_2.csv")
+
 # ======================================================================
 # ----------------------------------------------------------------------
 #  Dropping the duplicates
@@ -86,9 +92,11 @@ merged_df_2 = merged_df_2.drop_duplicates(subset=['encounter_id', 'medication_co
 # Merging the dataframes
 # ----------------------------------------------------------------------
 
-merged_df = merged_df_1.merge(merged_df_2, on=['encounter_id', 'encounter_type_code', 'encounter_description',
-                                               'encounter_reason_code', 'encounter_reason_description', 'medication_code', 'medication',
-                                               'medication_reason_code', 'medication_reason_description', 'year', 'dose_form_code'], how='outer')
+merged_df_1.to_pickle('tempdf1.pkl')
+merged_df_2.to_pickle('tempdf2.pkl')
+
+merged_df = merged_df_1.merge(merged_df_2, on=['encounter_id', 'patient_id', 'encounter_type_code', 'encounter_description',
+                                               'medication_code', 'medication', 'year', 'dose_form_code'], how='outer')
 print("after merging the conditions and procedures: ",
       list(merged_df.columns.values))
 
@@ -100,13 +108,23 @@ print("after merging the conditions and procedures: ",
 # ----------------------------------------------------------------------
 
 print("writing to file and exiting")
-put_to_csv(base_path, merged_df)
+put_to_csv(base_path, merged_df, "temp2.csv")
 # sys.exit(0)
 
 # ======================================================================
 # ----------------------------------------------------------------------
 # Reacalibrating the dataframe
 # ----------------------------------------------------------------------
+
+merged_df = merged_df[merged_df['procedure_type_code']
+                      != 428191000124101]
+
+print("writing to file and exiting")
+put_to_csv(base_path, merged_df, "tempPre.csv")
+
+merged_df.to_pickle('temp2.pkl')
+
+# merged_df = pd.read_pickle('temp2.pkl')
 
 # Again - Dropping columns that are not required
 # 51.9 % accuracy
@@ -126,6 +144,25 @@ merged_df = merged_df.rename(
         'new_procedure_type_code': 'procedure_type_code'
     })
 
+
+def merged_df_mapping(row):
+
+    row['encounter_type_code'] = row['new_encounter_type_code_y'] if not isinstance(
+        row['encounter_type_code'], (list, tuple, np.ndarray)) else []
+    row['medication_code'] = row['new_medication_code_y'] if not isinstance(
+        row['medication_code'], (list, tuple, np.ndarray)) else []
+
+    row['procedure_type_code'] = row['procedure_type_code'] if isinstance(
+        row['procedure_type_code'], (list, tuple, np.ndarray)) else []
+    row['condition_type_code'] = row['condition_type_code'] if isinstance(
+        row['condition_type_code'], (list, tuple, np.ndarray)) else []
+
+    return row
+
+
+merged_df = merged_df.apply(
+    lambda row: merged_df_mapping(row), axis=1)
+
 # ----------------------------------------------------------------------
 # Data Pre-preprocessing
 # ----------------------------------------------------------------------
@@ -136,34 +173,15 @@ merged_df = merged_df.rename(
 merged_df = merged_df[['dose_form_code', 'encounter_type_code',
                        'condition_type_code', 'procedure_type_code', 'medication_code']]
 
+print("starting mapping...")
 
-def merged_mapping(row):
+merged_df.to_pickle('temp1.pkl')
 
-    row['procedure_type_code'] = row['procedure_type_code'] if not pd.isnull(
-        row['procedure_type_code']) else []
-    row['condition_type_code'] = row['condition_type_code'] if not pd.isnull(
-        row['condition_type_code']) else []
-
-    return row
+# merged_df = pd.read_pickle('temp1.pkl')
 
 
-merged_df = merged_df.apply(
-    lambda row: merged_mapping(row), axis=1)
-
-# # 25 % accuracy
-# merged_df = merged_df[['encounter_type_code',
-#                        'condition_type_code', 'procedure_type_code', 'medication_code']]
-
-# 24 % accuracy
-# merged_df = merged_df[['encounter_type_code',
-#                        'condition_type_code', 'procedure_type_code', 'year', 'medication_code']]
-
-# 28 % accuracy
-# merged_df = merged_df[['encounter_type_code',
-#                        'condition_type_code', 'medication_code']]
-
-# 21 % accuracy
-# merged_df = merged_df[['encounter_type_code', 'medication_code']]
+print("writing to file and exiting")
+put_to_csv(base_path, merged_df, "tempPost.csv")
 
 # ----------------------------------------------------------------------
 # Dumping and loading pickle file for faster processing

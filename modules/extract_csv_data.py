@@ -18,9 +18,10 @@ def get_csv_data(base_path):
     medications_path = Path(base_path).resolve().joinpath('medications.csv')
     # print ("medications path : ", medications_path, os.path.exists(medications_path))
     medications_df = pd.read_csv(medications_path, low_memory=False)
-    medications_df = medications_df.drop(['START', 'STOP', 'PATIENT'], axis=1)
-    medications_df = medications_df.rename(columns={'ENCOUNTER': 'encounter_id', 'CODE': 'medication_code', 'DESCRIPTION': 'medication', 'REASONCODE': 'medication_reason_code',
-                                                    'REASONDESCRIPTION': 'medication_reason_description'})
+    medications_df = medications_df.drop(
+        ['START', 'STOP', 'PATIENT', 'REASONCODE', 'REASONDESCRIPTION'], axis=1)
+    medications_df = medications_df.rename(
+        columns={'ENCOUNTER': 'encounter_id', 'CODE': 'medication_code', 'DESCRIPTION': 'medication'})
     # print("pre obtained data: ", len(medications_df.index))
 
     # print ("medications_df: ", medications_df)
@@ -55,11 +56,12 @@ def get_csv_data(base_path):
 
     encounters_path = Path(base_path).resolve().joinpath('encounters.csv')
     encounters_df = pd.read_csv(encounters_path, low_memory=False)
-    # encounters_df = encounters_df.drop(['DATE'], axis=1)
+    encounters_df = encounters_df.drop(
+        ['REASONCODE', 'REASONDESCRIPTION'], axis=1)
     encounters_df['DATE'] = encounters_df['DATE'].str[0:4]
     encounters_df = encounters_df.rename(columns={'ID': 'encounter_id', 'PATIENT': 'patient_id', 'CODE': 'encounter_type_code', 'DESCRIPTION': 'encounter_description',
-                                                  'REASONCODE': 'encounter_reason_code', 'DATE': 'year',
-                                                  'REASONDESCRIPTION': 'encounter_reason_description'})
+                                                  'DATE': 'year',
+                                                  })
 
     # print ("encounters_df: ", encounters_df)
 
@@ -102,10 +104,10 @@ def get_csv_data(base_path):
     # ----------------------------------------------------------------------
     procedures_path = Path(base_path).resolve().joinpath('procedures.csv')
     procedures_df = pd.read_csv(procedures_path, low_memory=False)
-    procedures_df = procedures_df.drop(['DATE', 'PATIENT'], axis=1)
+    procedures_df = procedures_df.drop(
+        ['DATE', 'PATIENT', 'REASONCODE', 'REASONDESCRIPTION'], axis=1)
     procedures_df = procedures_df.rename(columns={'ENCOUNTER': 'encounter_id', 'CODE': 'procedure_type_code', 'DESCRIPTION': 'procedure_description',
-                                                  'REASONCODE': 'procedure_reason_code',
-                                                  'REASONDESCRIPTION': 'procedure_reason_description'})
+                                                  })
 
     # ======================================================================
 
@@ -237,9 +239,6 @@ def merge_data(*args):
             row['procedure_type_code'])] if not pd.isnull(row['procedure_type_code']) else []
 
         return row
-
-    procedures_df = procedures_df[procedures_df['procedure_type_code']
-                                  != 428191000124101]
 
     procedures_df = procedures_df.apply(
         lambda row: procedure_mapping(row), axis=1)
