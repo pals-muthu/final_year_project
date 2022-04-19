@@ -133,9 +133,9 @@ for encounter_id, encounter_type_code, medication_code in encounter_id_set:
         temp_conditions_arrays += row['new_condition_type_code']
 
     encounter_id_new_map.append([encounter_id, temp_df['year'].values[0],
-                                 temp_df.iloc[[0]]['patient_id'],
+                                 temp_df['patient_id'].values[0],
                                  encounter_type_code,
-                                 temp_df.iloc[[0]]['encounter_description'],
+                                 temp_df['encounter_description'].values[0],
                                  temp_df['new_encounter_type_code'].values[0],
                                  medication_code,
                                  temp_df['medication'].values[0],
@@ -199,14 +199,16 @@ put_to_csv(base_path, merged_df, "temp2.csv")
 # Reacalibrating the dataframe
 # ----------------------------------------------------------------------
 
-merged_df = merged_df[428191000124101 not in merged_df['procedure_type_code']]
-
-print("writing to file and exiting")
-put_to_csv(base_path, merged_df, "tempPre.csv")
-
 merged_df.to_pickle('temp2.pkl')
 
 # merged_df = pd.read_pickle('temp2.pkl')
+
+# merged_df = merged_df[428191000124101 not in merged_df['procedure_type_code']]
+merged_df = merged_df[merged_df['procedure_type_code'].apply(
+    lambda x: [428191000124101] != x)]
+
+print("writing to file and exiting")
+put_to_csv(base_path, merged_df, "tempPre.csv")
 
 # Again - Dropping columns that are not required
 # 51.9 % accuracy
