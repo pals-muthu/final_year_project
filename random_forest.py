@@ -3,6 +3,7 @@
 # ----------------------------------------------------------------------
 
 # Number of trees in random forest
+from typing import OrderedDict
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
@@ -55,7 +56,7 @@ put_to_csv(base_path, merged_df, "temp1.csv")
 # sys.exit(0)
 
 # First hundred/thousand entries
-# merged_df = merged_df.head(10000)
+merged_df = merged_df.head(1000)
 
 # ----------------------------------------------------------------------
 # Mapping the encounter, procedure and conditions with the medications.
@@ -64,14 +65,98 @@ merged_df_1 = merged_df.merge(
 print("#2")
 print("merged_df_1 procedure: ", list(merged_df_1.columns.values))
 
-put_to_csv(base_path, merged_df, "merged_df_1.csv")
-
 merged_df_2 = merged_df.merge(
     conditions_df, left_on='encounter_id', right_on='encounter_id', how='inner')
 print("#3")
 print("merged_df_2 condition: ", list(merged_df_2.columns.values))
 
-put_to_csv(base_path, merged_df, "merged_df_2.csv")
+put_to_csv(base_path, merged_df_2, "merged_df_2_pre.csv")
+# merged_df_2.groupby(['encounter_id', 'medication_code', 'year', 'patient_id', 'encounter_type_code', 'encounter_description'])
+subset_merged_df_2 = merged_df_2[['encounter_id', 'medication_code']]
+subset_merged_df_2 = subset_merged_df_2.drop_duplicates(
+    subset=['encounter_id', 'medication_code'], keep='first')
+
+encounter_id_set = subset_merged_df_2.values.tolist()
+# print("obtained set: ", encounter_id_set)
+
+encounter_id_new_dict = {
+    'encounter_id': [],
+    'year': [],
+    'patient_id': [],
+    'encounter_type_code': [],
+    'encounter_description': [],
+    'new_encounter_type_code': [],
+    'medication_code': [],
+    'medication': [],
+    'new_medication_code': [],
+    'dose_form_code': [],
+    'condition_type_code': [],
+    'new_condition_type_code': []
+}
+
+encounter_id_new_map = []
+
+for encounter_id, medication_code in encounter_id_set:
+    temp_df = merged_df_2[(merged_df_2['encounter_id'] ==
+                          encounter_id) & (merged_df_2['medication_code'] == medication_code)]
+    temp_conditions = []
+    temp_conditions_arrays = []
+
+    for index, row in temp_df.iterrows():
+        temp_conditions.append(row['condition_type_code'])
+        temp_conditions_arrays += row['new_condition_type_code']
+
+    # encounter_id_new_dict['encounter_id'].append(encounter_id)
+    # encounter_id_new_dict['year'].append(temp_df.iloc[[0]]['year'])
+    # encounter_id_new_dict['patient_id'].append(
+    #     temp_df.iloc[[0]]['patient_id'])
+    # encounter_id_new_dict['encounter_type_code'].append(
+    #     temp_df.iloc[[0]]['encounter_type_code'])
+    # encounter_id_new_dict['encounter_description'].append(
+    #     temp_df.iloc[[0]]['encounter_description'])
+    # encounter_id_new_dict['new_encounter_type_code'].append(
+    #     temp_df.iloc[[0]]['new_encounter_type_code'])
+    # encounter_id_new_dict['medication_code'].append(medication_code),
+    # encounter_id_new_dict['medication'].append(
+    #     temp_df.iloc[[0]]['medication'])
+    # encounter_id_new_dict['new_medication_code'].append(
+    #     temp_df.iloc[[0]]['new_medication_code'])
+    # encounter_id_new_dict['dose_form_code'].append(
+    #     temp_df.iloc[[0]]['dose_form_code'])
+    # encounter_id_new_dict['condition_type_code'].append(temp_conditions)
+    # encounter_id_new_dict['new_condition_type_code'].append(
+    #     temp_conditions_arrays)
+
+    encounter_id_new_map.append([encounter_id, temp_df.iloc[[0]]['year'],
+                                 temp_df.iloc[[0]]['patient_id'],
+                                 temp_df.iloc[[0]]['encounter_type_code'],
+                                 temp_df.iloc[[0]]['encounter_description'],
+                                 temp_df.iloc[[
+                                     0]]['new_encounter_type_code'], medication_code,
+                                 temp_df.iloc[[0]]['medication'],
+                                 temp_df.iloc[[0]]['new_medication_code'],
+                                 temp_df.iloc[[0]]['dose_form_code'], temp_conditions, temp_conditions_arrays])
+
+
+# merged_df_2 = pd.DataFrame(encounter_id_new_dict)
+# merged_df_2 = pd.DataFrame.from_dict(
+#     encounter_id_new_dict, orient='index').transpose()
+# merged_df_2 = pd.concat({k: pd.Series(v)
+#                         for k, v in encounter_id_new_dict.items()}, axis=1)
+merged_df_2 = pd.DataFrame(encounter_id_new_map, columns=['encounter_id', 'year', 'patient_id',
+                                                          'encounter_type_code', 'encounter_description', 'new_encounter_type_code', 'medication_code', 'medication',
+                                                          'new_medication_code', 'dose_form_code', 'condition_type_code', 'new_condition_type_code'])
+# merged_df_2 = merged_df_2[[
+#     'encounter_id', 'year', 'patient_id', 'encounter_type_code', 'encounter_description', 'new_encounter_type_code', 'medication_code', 'medication',
+#     'new_medication_code', 'dose_form_code', 'condition_type_code', 'new_condition_type_code']]
+merged_df_2.set_index('encounter_id')
+put_to_csv(base_path, merged_df_2, "merged_df_2_post.csv")
+print("merged_df_2: ", merged_df_2)
+print("merged_df_2: ", merged_df_2['encounter_id'])
+print("merged_df_2: ", merged_df_2['medication_code'])
+
+merged_df_1.to_pickle('merged_df_1_post_pickle.pkl')
+merged_df_2.to_pickle('merged_df_2_post_pickle.pkl')
 
 # ======================================================================
 # ----------------------------------------------------------------------
@@ -82,8 +167,10 @@ put_to_csv(base_path, merged_df, "merged_df_2.csv")
 merged_df_1 = merged_df_1.drop_duplicates(subset=['encounter_id', 'medication_code',
                                                   'procedure_type_code', 'year'], keep='first')
 
-merged_df_2 = merged_df_2.drop_duplicates(subset=['encounter_id', 'medication_code',
-                                                  'condition_type_code', 'year'], keep='first')
+merged_df_2 = merged_df_2.drop_duplicates(
+    subset=['encounter_id', 'medication_code'], keep='first')
+put_to_csv(base_path, merged_df_1, "merged_df_1.csv")
+put_to_csv(base_path, merged_df_2, "merged_df_2.csv")
 # print("dropping duplicates procedure: ", list(merged_df_1.columns.values))
 # print("dropping duplicates condition: ", list(merged_df_2.columns.values))
 
@@ -96,7 +183,7 @@ merged_df_1.to_pickle('tempdf1.pkl')
 merged_df_2.to_pickle('tempdf2.pkl')
 
 merged_df = merged_df_1.merge(merged_df_2, on=['encounter_id', 'patient_id', 'encounter_type_code', 'encounter_description',
-                                               'medication_code', 'medication', 'year', 'dose_form_code'], how='outer')
+                                               'medication_code', 'medication', 'dose_form_code'], how='outer')
 print("after merging the conditions and procedures: ",
       list(merged_df.columns.values))
 

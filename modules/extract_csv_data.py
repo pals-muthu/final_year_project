@@ -271,6 +271,11 @@ def merge_data(*args):
 
     # ----------------------------------------------------------------------
 
+    medications_df.to_pickle('medications_df.pkl')
+    encounters_df.to_pickle('encounters_df.pkl')
+    procedures_df.to_pickle('procedures_df.pkl')
+    conditions_df.to_pickle('conditions_df.pkl')
+
     return {
         "medications_df": medications_df,
         "encounters_df": encounters_df,
@@ -283,26 +288,40 @@ def merge_data(*args):
         # "allergies_df": allergies_df
     }
 
+def return_pickle():
+
+    return {
+        "medications_df": pd.read_pickle('medications_df.pkl'),
+        "encounters_df": pd.read_pickle('encounters_df.pkl'),
+        "procedures_df": pd.read_pickle('procedures_df.pkl'),
+        "conditions_df": pd.read_pickle('conditions_df.pkl'),
+        # "observations_df": observations_df,
+        # "patients_df": patients_df,
+        # "immunizations_df": immunizations_df,
+        # "careplans_df": careplans_df,
+        # "allergies_df": allergies_df
+    }
 
 def get_merged_data():
 
-    list_of_paths = [
-        'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_1',
-        # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_3',
-        # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_4',
-        # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_5',
-        # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_6',
-        # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_7',
-        # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_8',
-        # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_9',
-    ]
-    data = []
-    for path in list_of_paths:
-        temp_base_path = Path(__file__).resolve().parents[2].joinpath(path)
-        temp_data = get_csv_data(temp_base_path)
-        data.append(temp_data)
+    # list_of_paths = [
+    #     'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_1',
+    #     # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_3',
+    #     # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_4',
+    #     # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_5',
+    #     # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_6',
+    #     # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_7',
+    #     # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_8',
+    #     # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_9',
+    # ]
+    # data = []
+    # for path in list_of_paths:
+    #     temp_base_path = Path(__file__).resolve().parents[2].joinpath(path)
+    #     temp_data = get_csv_data(temp_base_path)
+    #     data.append(temp_data)
 
-    return merge_data(*data)
+    # return merge_data(*data)
+    return return_pickle()
 
 
 def get_drug_data_from_csv():
