@@ -27,241 +27,241 @@ import sys
 import ast
 import datetime
 
-# ======================================================================
-# ----------------------------------------------------------------------
-# Extracting the requried data
-# ----------------------------------------------------------------------
-print("start time: ", datetime.datetime.now())
-data = get_merged_data()
-medications_df = data['medications_df']
-encounters_df = data['encounters_df']
-procedures_df = data['procedures_df']
-conditions_df = data['conditions_df']
-# patients_df = data['patients_df']
-# observations_df = data['observations_df']
+# # ======================================================================
+# # ----------------------------------------------------------------------
+# # Extracting the requried data
+# # ----------------------------------------------------------------------
+# print("start time: ", datetime.datetime.now())
+# data = get_merged_data()
+# medications_df = data['medications_df']
+# encounters_df = data['encounters_df']
+# procedures_df = data['procedures_df']
+# conditions_df = data['conditions_df']
+# # patients_df = data['patients_df']
+# # observations_df = data['observations_df']
 
 
-# # Merging encounter with patients to get more information
+# # # Merging encounter with patients to get more information
+# # merged_df = encounters_df.merge(
+# #     patients_df, left_on='patient_id', right_on='patient_id', how='inner')
+
+# # Merging encounter with medication to get the target variable
 # merged_df = encounters_df.merge(
-#     patients_df, left_on='patient_id', right_on='patient_id', how='inner')
+#     medications_df, left_on='encounter_id', right_on='encounter_id', how='inner')
 
-# Merging encounter with medication to get the target variable
-merged_df = encounters_df.merge(
-    medications_df, left_on='encounter_id', right_on='encounter_id', how='inner')
+# print("#2")
+# print("merged_df: ", list(merged_df.columns.values))
 
-print("#2")
-print("merged_df: ", list(merged_df.columns.values))
+# put_to_csv(base_path, merged_df, "temp1.csv")
+# # sys.exit(0)
 
-put_to_csv(base_path, merged_df, "temp1.csv")
-# sys.exit(0)
+# # First hundred/thousand entries
+# # merged_df = merged_df.head(2000)
 
-# First hundred/thousand entries
-# merged_df = merged_df.head(2000)
+# # ----------------------------------------------------------------------
+# # Mapping the encounter, procedure and conditions with the medications.
+# merged_df_1 = merged_df.merge(
+#     procedures_df, left_on='encounter_id', right_on='encounter_id', how='inner')
+# print("#2")
+# print("merged_df_1 procedure: ", list(merged_df_1.columns.values))
 
-# ----------------------------------------------------------------------
-# Mapping the encounter, procedure and conditions with the medications.
-merged_df_1 = merged_df.merge(
-    procedures_df, left_on='encounter_id', right_on='encounter_id', how='inner')
-print("#2")
-print("merged_df_1 procedure: ", list(merged_df_1.columns.values))
+# merged_df_2 = merged_df.merge(
+#     conditions_df, left_on='encounter_id', right_on='encounter_id', how='inner')
+# print("#3")
+# print("merged_df_2 condition: ", list(merged_df_2.columns.values))
 
-merged_df_2 = merged_df.merge(
-    conditions_df, left_on='encounter_id', right_on='encounter_id', how='inner')
-print("#3")
-print("merged_df_2 condition: ", list(merged_df_2.columns.values))
+# subset_merged_df_1 = merged_df_1[[
+#     'encounter_id', 'encounter_type_code', 'medication_code']]
+# subset_merged_df_1 = subset_merged_df_1.drop_duplicates(
+#     subset=['encounter_id', 'encounter_type_code', 'medication_code'], keep='first')
 
-subset_merged_df_1 = merged_df_1[[
-    'encounter_id', 'encounter_type_code', 'medication_code']]
-subset_merged_df_1 = subset_merged_df_1.drop_duplicates(
-    subset=['encounter_id', 'encounter_type_code', 'medication_code'], keep='first')
+# encounter_id_set = subset_merged_df_1.values.tolist()
 
-encounter_id_set = subset_merged_df_1.values.tolist()
+# encounter_id_new_map = []
 
-encounter_id_new_map = []
+# for encounter_id, encounter_type_code, medication_code in encounter_id_set:
+#     temp_df = merged_df_1[(merged_df_1['encounter_id'] ==
+#                           encounter_id) & (merged_df_1['medication_code'] == medication_code)]
+#     temp_procedures = []
+#     temp_procedures_arrays = []
 
-for encounter_id, encounter_type_code, medication_code in encounter_id_set:
-    temp_df = merged_df_1[(merged_df_1['encounter_id'] ==
-                          encounter_id) & (merged_df_1['medication_code'] == medication_code)]
-    temp_procedures = []
-    temp_procedures_arrays = []
+#     for index, row in temp_df.iterrows():
+#         temp_procedures.append(row['procedure_type_code'])
+#         temp_procedures_arrays += row['new_procedure_type_code']
 
-    for index, row in temp_df.iterrows():
-        temp_procedures.append(row['procedure_type_code'])
-        temp_procedures_arrays += row['new_procedure_type_code']
+#     encounter_id_new_map.append([encounter_id, temp_df['year'].values[0],
+#                                  temp_df['patient_id'].values[0],
+#                                  encounter_type_code,
+#                                  temp_df['encounter_description'].values[0],
+#                                  temp_df['new_encounter_type_code'].values[0],
+#                                  medication_code,
+#                                  temp_df['medication'].values[0],
+#                                  temp_df['new_medication_code'].values[0],
+#                                  temp_df['dose_form_code'].values[0],
+#                                  temp_procedures,
+#                                  temp_df['procedure_description'].values[0],
+#                                  temp_procedures_arrays])
 
-    encounter_id_new_map.append([encounter_id, temp_df['year'].values[0],
-                                 temp_df['patient_id'].values[0],
-                                 encounter_type_code,
-                                 temp_df['encounter_description'].values[0],
-                                 temp_df['new_encounter_type_code'].values[0],
-                                 medication_code,
-                                 temp_df['medication'].values[0],
-                                 temp_df['new_medication_code'].values[0],
-                                 temp_df['dose_form_code'].values[0],
-                                 temp_procedures,
-                                 temp_df['procedure_description'].values[0],
-                                 temp_procedures_arrays])
+# merged_df_1 = pd.DataFrame(encounter_id_new_map, columns=['encounter_id', 'year', 'patient_id',
+#                                                           'encounter_type_code', 'encounter_description', 'new_encounter_type_code', 'medication_code', 'medication',
+#                                                           'new_medication_code', 'dose_form_code', 'procedure_type_code', 'procedure_description', 'new_procedure_type_code'])
 
-merged_df_1 = pd.DataFrame(encounter_id_new_map, columns=['encounter_id', 'year', 'patient_id',
-                                                          'encounter_type_code', 'encounter_description', 'new_encounter_type_code', 'medication_code', 'medication',
-                                                          'new_medication_code', 'dose_form_code', 'procedure_type_code', 'procedure_description', 'new_procedure_type_code'])
+# merged_df_1.set_index('encounter_id')
+# put_to_csv(base_path, merged_df_1, "merged_df_1_post.csv")
 
-merged_df_1.set_index('encounter_id')
-put_to_csv(base_path, merged_df_1, "merged_df_1_post.csv")
+# # ------------------------------
 
-# ------------------------------
+# put_to_csv(base_path, merged_df_2, "merged_df_2_pre.csv")
 
-put_to_csv(base_path, merged_df_2, "merged_df_2_pre.csv")
+# subset_merged_df_2 = merged_df_2[[
+#     'encounter_id', 'encounter_type_code', 'medication_code']]
+# subset_merged_df_2 = subset_merged_df_2.drop_duplicates(
+#     subset=['encounter_id', 'encounter_type_code', 'medication_code'], keep='first')
 
-subset_merged_df_2 = merged_df_2[[
-    'encounter_id', 'encounter_type_code', 'medication_code']]
-subset_merged_df_2 = subset_merged_df_2.drop_duplicates(
-    subset=['encounter_id', 'encounter_type_code', 'medication_code'], keep='first')
+# encounter_id_set = subset_merged_df_2.values.tolist()
 
-encounter_id_set = subset_merged_df_2.values.tolist()
+# encounter_id_new_map = []
 
-encounter_id_new_map = []
+# for encounter_id, encounter_type_code, medication_code in encounter_id_set:
+#     temp_df = merged_df_2[(merged_df_2['encounter_id'] ==
+#                           encounter_id) & (merged_df_2['medication_code'] == medication_code)]
+#     temp_conditions = []
+#     temp_conditions_arrays = []
 
-for encounter_id, encounter_type_code, medication_code in encounter_id_set:
-    temp_df = merged_df_2[(merged_df_2['encounter_id'] ==
-                          encounter_id) & (merged_df_2['medication_code'] == medication_code)]
-    temp_conditions = []
-    temp_conditions_arrays = []
+#     for index, row in temp_df.iterrows():
+#         temp_conditions.append(row['condition_type_code'])
+#         temp_conditions_arrays += row['new_condition_type_code']
 
-    for index, row in temp_df.iterrows():
-        temp_conditions.append(row['condition_type_code'])
-        temp_conditions_arrays += row['new_condition_type_code']
+#     encounter_id_new_map.append([encounter_id, temp_df['year'].values[0],
+#                                  temp_df['patient_id'].values[0],
+#                                  encounter_type_code,
+#                                  temp_df['encounter_description'].values[0],
+#                                  temp_df['new_encounter_type_code'].values[0],
+#                                  medication_code,
+#                                  temp_df['medication'].values[0],
+#                                  temp_df['new_medication_code'].values[0],
+#                                  temp_df['dose_form_code'].values[0],
+#                                  temp_conditions,
+#                                  temp_df['condition_description'].values[0],
+#                                  temp_conditions_arrays])
 
-    encounter_id_new_map.append([encounter_id, temp_df['year'].values[0],
-                                 temp_df['patient_id'].values[0],
-                                 encounter_type_code,
-                                 temp_df['encounter_description'].values[0],
-                                 temp_df['new_encounter_type_code'].values[0],
-                                 medication_code,
-                                 temp_df['medication'].values[0],
-                                 temp_df['new_medication_code'].values[0],
-                                 temp_df['dose_form_code'].values[0],
-                                 temp_conditions,
-                                 temp_df['condition_description'].values[0],
-                                 temp_conditions_arrays])
+# merged_df_2 = pd.DataFrame(encounter_id_new_map, columns=['encounter_id', 'year', 'patient_id',
+#                                                           'encounter_type_code', 'encounter_description', 'new_encounter_type_code', 'medication_code', 'medication',
+#                                                           'new_medication_code', 'dose_form_code', 'condition_type_code', 'condition_description', 'new_condition_type_code'])
 
-merged_df_2 = pd.DataFrame(encounter_id_new_map, columns=['encounter_id', 'year', 'patient_id',
-                                                          'encounter_type_code', 'encounter_description', 'new_encounter_type_code', 'medication_code', 'medication',
-                                                          'new_medication_code', 'dose_form_code', 'condition_type_code', 'condition_description', 'new_condition_type_code'])
+# merged_df_2.set_index('encounter_id')
+# put_to_csv(base_path, merged_df_2, "merged_df_2_post.csv")
 
-merged_df_2.set_index('encounter_id')
-put_to_csv(base_path, merged_df_2, "merged_df_2_post.csv")
+# merged_df_1.to_pickle('merged_df_1_post_pickle.pkl')
+# merged_df_2.to_pickle('merged_df_2_post_pickle.pkl')
 
-merged_df_1.to_pickle('merged_df_1_post_pickle.pkl')
-merged_df_2.to_pickle('merged_df_2_post_pickle.pkl')
+# # ======================================================================
+# # ----------------------------------------------------------------------
+# #  Dropping the duplicates
+# # ----------------------------------------------------------------------
+# #
 
-# ======================================================================
-# ----------------------------------------------------------------------
-#  Dropping the duplicates
-# ----------------------------------------------------------------------
-#
+# merged_df_1 = merged_df_1.drop_duplicates(
+#     subset=['encounter_id', 'medication_code'], keep='first')
 
-merged_df_1 = merged_df_1.drop_duplicates(
-    subset=['encounter_id', 'medication_code'], keep='first')
+# merged_df_2 = merged_df_2.drop_duplicates(
+#     subset=['encounter_id', 'medication_code'], keep='first')
+# put_to_csv(base_path, merged_df_1, "merged_df_1.csv")
+# put_to_csv(base_path, merged_df_2, "merged_df_2.csv")
 
-merged_df_2 = merged_df_2.drop_duplicates(
-    subset=['encounter_id', 'medication_code'], keep='first')
-put_to_csv(base_path, merged_df_1, "merged_df_1.csv")
-put_to_csv(base_path, merged_df_2, "merged_df_2.csv")
+# # ======================================================================
+# # ----------------------------------------------------------------------
+# # Merging the dataframes
+# # ----------------------------------------------------------------------
 
-# ======================================================================
-# ----------------------------------------------------------------------
-# Merging the dataframes
-# ----------------------------------------------------------------------
+# merged_df_1.to_pickle('tempdf1.pkl')
+# merged_df_2.to_pickle('tempdf2.pkl')
 
-merged_df_1.to_pickle('tempdf1.pkl')
-merged_df_2.to_pickle('tempdf2.pkl')
+# merged_df = merged_df_1.merge(merged_df_2, on=['encounter_id', 'patient_id', 'encounter_type_code', 'encounter_description',
+#                                                'medication_code', 'medication', 'dose_form_code'], how='outer')
 
-merged_df = merged_df_1.merge(merged_df_2, on=['encounter_id', 'patient_id', 'encounter_type_code', 'encounter_description',
-                                               'medication_code', 'medication', 'dose_form_code'], how='outer')
+# print("after merging the conditions and procedures: ",
+#       list(merged_df.columns.values))
 
-print("after merging the conditions and procedures: ",
-      list(merged_df.columns.values))
+# # Remove duplicates here once again
 
-# Remove duplicates here once again
+# # ======================================================================
+# # ----------------------------------------------------------------------
+# # Writing to a file
+# # ----------------------------------------------------------------------
 
-# ======================================================================
-# ----------------------------------------------------------------------
-# Writing to a file
-# ----------------------------------------------------------------------
+# print("writing to file and exiting")
+# put_to_csv(base_path, merged_df, "temp2.csv")
+# # sys.exit(0)
 
-print("writing to file and exiting")
-put_to_csv(base_path, merged_df, "temp2.csv")
-# sys.exit(0)
+# # ======================================================================
+# # ----------------------------------------------------------------------
+# # Reacalibrating the dataframe
+# # ----------------------------------------------------------------------
 
-# ======================================================================
-# ----------------------------------------------------------------------
-# Reacalibrating the dataframe
-# ----------------------------------------------------------------------
+# merged_df.to_pickle('temp2.pkl')
 
-merged_df.to_pickle('temp2.pkl')
+# # merged_df = pd.read_pickle('temp2.pkl')
 
-# merged_df = pd.read_pickle('temp2.pkl')
+# # merged_df = merged_df[428191000124101 not in merged_df['procedure_type_code']]
+# merged_df = merged_df[merged_df['procedure_type_code'].apply(
+#     lambda x: [428191000124101] != x)]
 
-# merged_df = merged_df[428191000124101 not in merged_df['procedure_type_code']]
-merged_df = merged_df[merged_df['procedure_type_code'].apply(
-    lambda x: [428191000124101] != x)]
+# print("writing to file and exiting")
+# put_to_csv(base_path, merged_df, "tempPre.csv")
 
-print("writing to file and exiting")
-put_to_csv(base_path, merged_df, "tempPre.csv")
+# # Again - Dropping columns that are not required
+# # 51.9 % accuracy
+# merged_df = merged_df.drop(
+#     [
+#         'medication_code',
+#         'encounter_type_code',
+#         'condition_type_code',
+#         'procedure_type_code'
+#     ], axis=1)
 
-# Again - Dropping columns that are not required
-# 51.9 % accuracy
-merged_df = merged_df.drop(
-    [
-        'medication_code',
-        'encounter_type_code',
-        'condition_type_code',
-        'procedure_type_code'
-    ], axis=1)
-
-merged_df = merged_df.rename(
-    columns={
-        'new_medication_code_x': 'medication_code',
-        'new_encounter_type_code_x': 'encounter_type_code',
-        'new_condition_type_code': 'condition_type_code',
-        'new_procedure_type_code': 'procedure_type_code'
-    })
+# merged_df = merged_df.rename(
+#     columns={
+#         'new_medication_code_x': 'medication_code',
+#         'new_encounter_type_code_x': 'encounter_type_code',
+#         'new_condition_type_code': 'condition_type_code',
+#         'new_procedure_type_code': 'procedure_type_code'
+#     })
 
 
-def merged_df_mapping(row):
+# def merged_df_mapping(row):
 
-    row['encounter_type_code'] = row['new_encounter_type_code_y'] if not isinstance(
-        row['encounter_type_code'], (list, tuple, np.ndarray)) else []
-    row['medication_code'] = row['new_medication_code_y'] if not isinstance(
-        row['medication_code'], (list, tuple, np.ndarray)) else []
+#     row['encounter_type_code'] = row['new_encounter_type_code_y'] if not isinstance(
+#         row['encounter_type_code'], (list, tuple, np.ndarray)) else []
+#     row['medication_code'] = row['new_medication_code_y'] if not isinstance(
+#         row['medication_code'], (list, tuple, np.ndarray)) else []
 
-    row['procedure_type_code'] = row['procedure_type_code'] if isinstance(
-        row['procedure_type_code'], (list, tuple, np.ndarray)) else []
-    row['condition_type_code'] = row['condition_type_code'] if isinstance(
-        row['condition_type_code'], (list, tuple, np.ndarray)) else []
+#     row['procedure_type_code'] = row['procedure_type_code'] if isinstance(
+#         row['procedure_type_code'], (list, tuple, np.ndarray)) else []
+#     row['condition_type_code'] = row['condition_type_code'] if isinstance(
+#         row['condition_type_code'], (list, tuple, np.ndarray)) else []
 
-    return row
+#     return row
 
 
-merged_df = merged_df.apply(
-    lambda row: merged_df_mapping(row), axis=1)
+# merged_df = merged_df.apply(
+#     lambda row: merged_df_mapping(row), axis=1)
 
-# ----------------------------------------------------------------------
-# Data Pre-preprocessing
-# ----------------------------------------------------------------------
+# # ----------------------------------------------------------------------
+# # Data Pre-preprocessing
+# # ----------------------------------------------------------------------
 
-# Dropping columns that are not required
+# # Dropping columns that are not required
 
-# 25 % accuracy
-merged_df = merged_df[['dose_form_code', 'encounter_type_code',
-                       'condition_type_code', 'procedure_type_code', 'medication_code']]
+# # 25 % accuracy
+# merged_df = merged_df[['dose_form_code', 'encounter_type_code',
+#                        'condition_type_code', 'procedure_type_code', 'medication_code']]
 
-print("starting mapping...")
+# print("starting mapping...")
 
-merged_df.to_pickle('temp1.pkl')
+# merged_df.to_pickle('temp1.pkl')
 
-# merged_df = pd.read_pickle('temp1.pkl')
+merged_df = pd.read_pickle('temp1.pkl')
 
 
 print("writing to file and exiting")
@@ -386,10 +386,10 @@ X_train, X_test, y_train, y_test = train_test_split(
 # ----------------------------------------------------------------------
 
 # Training the Random Forest model on the Training set
-classifier = RandomForestClassifier(
-    n_estimators=20, criterion='entropy', random_state=0,
-    min_samples_split=2, min_samples_leaf=4, max_features='sqrt', max_depth=80, bootstrap=False)
-classifier.fit(X_train, y_train)
+# classifier = RandomForestClassifier(
+#     n_estimators=20, criterion='entropy', random_state=0,
+#     min_samples_split=2, min_samples_leaf=4, max_features='sqrt', max_depth=80, bootstrap=False)
+# classifier.fit(X_train, y_train)
 
 # ----------------------------------------------------------------------
 
@@ -402,10 +402,10 @@ classifier.fit(X_train, y_train)
 # ----------------------------------------------------------------------
 
 # SVM - Linear SVC classifier - 48%
-# classifier = LinearSVC(penalty='l1', loss='squared_hinge', dual=False, tol=0.0001,
-#                        C=1.0, multi_class='ovr', fit_intercept=True, intercept_scaling=1,
-#                        class_weight=None, verbose=0, random_state=None, max_iter=2000)
-# classifier.fit(X_train, y_train)
+classifier = LinearSVC(penalty='l1', loss='squared_hinge', dual=False, tol=0.0001,
+                       C=1.0, multi_class='ovr', fit_intercept=True, intercept_scaling=1,
+                       class_weight=None, verbose=0, random_state=None, max_iter=2000)
+classifier.fit(X_train, y_train)
 
 # ----------------------------------------------------------------------
 
