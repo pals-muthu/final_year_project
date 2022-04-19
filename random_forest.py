@@ -169,99 +169,102 @@ import datetime
 # put_to_csv(base_path, merged_df_1, "merged_df_1.csv")
 # put_to_csv(base_path, merged_df_2, "merged_df_2.csv")
 
-# # ======================================================================
-# # ----------------------------------------------------------------------
-# # Merging the dataframes
-# # ----------------------------------------------------------------------
+# ======================================================================
+# ----------------------------------------------------------------------
+# Merging the dataframes
+# ----------------------------------------------------------------------
 
 # merged_df_1.to_pickle('tempdf1.pkl')
 # merged_df_2.to_pickle('tempdf2.pkl')
 
-# merged_df = merged_df_1.merge(merged_df_2, on=['encounter_id', 'patient_id', 'encounter_type_code', 'encounter_description',
-#                                                'medication_code', 'medication', 'dose_form_code'], how='outer')
+merged_df_1 = pd.read_pickle('tempdf1.pkl')
+merged_df_2 = pd.read_pickle('tempdf2.pkl')
 
-# print("after merging the conditions and procedures: ",
-#       list(merged_df.columns.values))
+merged_df = merged_df_1.merge(merged_df_2, on=['encounter_id', 'patient_id', 'encounter_type_code', 'encounter_description',
+                                               'medication_code', 'medication', 'dose_form_code'], how='left')
 
-# # Remove duplicates here once again
+print("after merging the conditions and procedures: ",
+      list(merged_df.columns.values))
 
-# # ======================================================================
-# # ----------------------------------------------------------------------
-# # Writing to a file
-# # ----------------------------------------------------------------------
+# Remove duplicates here once again
 
-# print("writing to file and exiting")
-# put_to_csv(base_path, merged_df, "temp2.csv")
-# # sys.exit(0)
+# ======================================================================
+# ----------------------------------------------------------------------
+# Writing to a file
+# ----------------------------------------------------------------------
 
-# # ======================================================================
-# # ----------------------------------------------------------------------
-# # Reacalibrating the dataframe
-# # ----------------------------------------------------------------------
+print("writing to file and exiting")
+put_to_csv(base_path, merged_df, "temp2.csv")
+# sys.exit(0)
+
+# ======================================================================
+# ----------------------------------------------------------------------
+# Reacalibrating the dataframe
+# ----------------------------------------------------------------------
 
 # merged_df.to_pickle('temp2.pkl')
 
-# # merged_df = pd.read_pickle('temp2.pkl')
+# merged_df = pd.read_pickle('temp2.pkl')
 
-# # merged_df = merged_df[428191000124101 not in merged_df['procedure_type_code']]
-# merged_df = merged_df[merged_df['procedure_type_code'].apply(
-#     lambda x: [428191000124101] != x)]
+# Removing entries, where the procedure was recording of drugs.
+merged_df = merged_df[merged_df['procedure_type_code'].apply(
+    lambda x: [428191000124101] != x)]
 
-# print("writing to file and exiting")
-# put_to_csv(base_path, merged_df, "tempPre.csv")
+print("writing to file and exiting")
+put_to_csv(base_path, merged_df, "tempPre.csv")
 
-# # Again - Dropping columns that are not required
-# # 51.9 % accuracy
-# merged_df = merged_df.drop(
-#     [
-#         'medication_code',
-#         'encounter_type_code',
-#         'condition_type_code',
-#         'procedure_type_code'
-#     ], axis=1)
+# Again - Dropping columns that are not required
+# 51.9 % accuracy
+merged_df = merged_df.drop(
+    [
+        'medication_code',
+        'encounter_type_code',
+        'condition_type_code',
+        'procedure_type_code'
+    ], axis=1)
 
-# merged_df = merged_df.rename(
-#     columns={
-#         'new_medication_code_x': 'medication_code',
-#         'new_encounter_type_code_x': 'encounter_type_code',
-#         'new_condition_type_code': 'condition_type_code',
-#         'new_procedure_type_code': 'procedure_type_code'
-#     })
-
-
-# def merged_df_mapping(row):
-
-#     row['encounter_type_code'] = row['new_encounter_type_code_y'] if not isinstance(
-#         row['encounter_type_code'], (list, tuple, np.ndarray)) else []
-#     row['medication_code'] = row['new_medication_code_y'] if not isinstance(
-#         row['medication_code'], (list, tuple, np.ndarray)) else []
-
-#     row['procedure_type_code'] = row['procedure_type_code'] if isinstance(
-#         row['procedure_type_code'], (list, tuple, np.ndarray)) else []
-#     row['condition_type_code'] = row['condition_type_code'] if isinstance(
-#         row['condition_type_code'], (list, tuple, np.ndarray)) else []
-
-#     return row
+merged_df = merged_df.rename(
+    columns={
+        'new_medication_code_x': 'medication_code',
+        'new_encounter_type_code_x': 'encounter_type_code',
+        'new_condition_type_code': 'condition_type_code',
+        'new_procedure_type_code': 'procedure_type_code'
+    })
 
 
-# merged_df = merged_df.apply(
-#     lambda row: merged_df_mapping(row), axis=1)
+def merged_df_mapping(row):
 
-# # ----------------------------------------------------------------------
-# # Data Pre-preprocessing
-# # ----------------------------------------------------------------------
+    row['encounter_type_code'] = row['new_encounter_type_code_y'] if not isinstance(
+        row['encounter_type_code'], (list, tuple, np.ndarray)) else []
+    row['medication_code'] = row['new_medication_code_y'] if not isinstance(
+        row['medication_code'], (list, tuple, np.ndarray)) else []
 
-# # Dropping columns that are not required
+    row['procedure_type_code'] = row['procedure_type_code'] if isinstance(
+        row['procedure_type_code'], (list, tuple, np.ndarray)) else []
+    row['condition_type_code'] = row['condition_type_code'] if isinstance(
+        row['condition_type_code'], (list, tuple, np.ndarray)) else []
 
-# # 25 % accuracy
-# merged_df = merged_df[['dose_form_code', 'encounter_type_code',
-#                        'condition_type_code', 'procedure_type_code', 'medication_code']]
+    return row
 
-# print("starting mapping...")
+
+merged_df = merged_df.apply(
+    lambda row: merged_df_mapping(row), axis=1)
+
+# ----------------------------------------------------------------------
+# Data Pre-preprocessing
+# ----------------------------------------------------------------------
+
+# Dropping columns that are not required
+
+# 25 % accuracy
+merged_df = merged_df[['dose_form_code', 'encounter_type_code',
+                       'condition_type_code', 'procedure_type_code', 'medication_code']]
+
+print("starting mapping...")
 
 # merged_df.to_pickle('temp1.pkl')
 
-merged_df = pd.read_pickle('temp1.pkl')
+# merged_df = pd.read_pickle('temp1.pkl')
 
 
 print("writing to file and exiting")
