@@ -56,7 +56,7 @@ put_to_csv(base_path, merged_df, "temp1.csv")
 # sys.exit(0)
 
 # First hundred/thousand entries
-# merged_df = merged_df.head(1000)
+# merged_df = merged_df.head(2000)
 
 # ----------------------------------------------------------------------
 # Mapping the encounter, procedure and conditions with the medications.
