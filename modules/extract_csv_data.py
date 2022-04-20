@@ -288,6 +288,7 @@ def merge_data(*args):
         # "allergies_df": allergies_df
     }
 
+
 def return_pickle():
 
     return {
@@ -302,13 +303,14 @@ def return_pickle():
         # "allergies_df": allergies_df
     }
 
+
 def get_merged_data():
 
     # list_of_paths = [
     #     'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_1',
-    #     # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_3',
-    #     # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_4',
-    #     # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_5',
+    #     'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_3',
+    #     'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_4',
+    #     'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_5',
     #     # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_6',
     #     # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_7',
     #     # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_8',
