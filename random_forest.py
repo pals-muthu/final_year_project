@@ -79,13 +79,22 @@ encounter_id_set = subset_merged_df_1.values.tolist()
 
 encounter_id_new_map = []
 
+index = 0
+total_length = len(encounter_id_set)
+print("started iterations..")
+
 for encounter_id, encounter_type_code, medication_code in encounter_id_set:
+
+    index += 1
+    if index % 500 == 0:
+        print(f"processed {index} of {total_length}")
+
     temp_df = merged_df_1[(merged_df_1['encounter_id'] ==
                           encounter_id) & (merged_df_1['medication_code'] == medication_code)]
     temp_procedures = []
     temp_procedures_arrays = []
 
-    for index, row in temp_df.iterrows():
+    for index_2, row in temp_df.iterrows():
         temp_procedures.append(row['procedure_type_code'])
         temp_procedures_arrays += row['new_procedure_type_code']
 
@@ -123,13 +132,20 @@ encounter_id_set = subset_merged_df_2.values.tolist()
 
 encounter_id_new_map = []
 
+index = 0
+total_length = len(encounter_id_set)
+print("started iterations..")
 for encounter_id, encounter_type_code, medication_code in encounter_id_set:
+    index += 1
+    if index % 500 == 0:
+        print(f"processed {index} of {total_length}")
+
     temp_df = merged_df_2[(merged_df_2['encounter_id'] ==
                           encounter_id) & (merged_df_2['medication_code'] == medication_code)]
     temp_conditions = []
     temp_conditions_arrays = []
 
-    for index, row in temp_df.iterrows():
+    for index_2, row in temp_df.iterrows():
         temp_conditions.append(row['condition_type_code'])
         temp_conditions_arrays += row['new_condition_type_code']
 
