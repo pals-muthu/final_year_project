@@ -26,6 +26,7 @@ from pathlib import Path
 import sys
 import ast
 import datetime
+from matplotlib import pyplot as plt
 
 # ======================================================================
 # ----------------------------------------------------------------------
@@ -52,8 +53,73 @@ merged_df = encounters_df.merge(
 print("#2")
 print("merged_df: ", list(merged_df.columns.values))
 
-put_to_csv(base_path, merged_df, "temp1.csv")
-# sys.exit(0)
+# put_to_csv(base_path, merged_df, "temp1.csv")
+# ----------------------------------------------------------------------
+# Getting the ratio of balanced dataset
+
+# plot_df = merged_df.groupby(
+#     ['medication_code']).size().reset_index(name='counts')
+# print("plot df: ", plot_df)
+# put_to_csv(base_path, plot_df, "plot_df.csv")
+# plot_df_list = plot_df.values.tolist()
+# medication_less_than_100 = 0
+# medication_less_than_1000 = 0
+# medication_1000_to_5000 = 0
+# medication_5000_to_10000 = 0
+# medication_10000_to_20000 = 0
+# medication_20000_to_40000 = 0
+# medication_greater_than_40000 = 0
+# for medication_code, count in plot_df_list:
+#     if count < 100:
+#         medication_less_than_100 += 1
+#     elif count < 1000:
+#         medication_less_than_1000 += 1
+#     elif count < 5000:
+#         medication_1000_to_5000 += 1
+#     elif count < 10000:
+#         medication_5000_to_10000 += 1
+#     elif count < 20000:
+#         medication_10000_to_20000 += 1
+#     elif count < 40000:
+#         medication_20000_to_40000 += 1
+#     else:
+#         medication_greater_than_40000 += 1
+
+# x = ['Less than 100', '100 to 1000', '1000 to 5000', '5000 to 10000',
+#      '10000 to 20000', '20000 to 40000', 'Grater than 40000']
+# y = [medication_less_than_100, medication_less_than_1000, medication_1000_to_5000, medication_5000_to_10000,
+#      medication_10000_to_20000, medication_20000_to_40000, medication_greater_than_40000]
+# plt.bar(x, y)
+# plt.show()
+
+# https://www.listendata.com/2019/06/matplotlib-tutorial-learn-plot-python.html
+# ----------------------------------------------------------------------
+#  encounter type
+
+encounter_plot_df = merged_df.groupby(
+    ['encounter_type_code']).size().reset_index(name='counts')
+encounter_plot_df = encounter_plot_df.sort_values(by='counts')
+put_to_csv(base_path, encounter_plot_df, "encounter_plot_df.csv")
+
+# ----------------------------------------------------------------------
+
+procedure_plot_df = merged_df.groupby(
+    ['encounter_type_code']).size().reset_index(name='counts')
+procedure_plot_df = procedure_plot_df.sort_values(by='counts')
+put_to_csv(base_path, procedure_plot_df, "procedure_plot_df.csv")
+
+# ----------------------------------------------------------------------
+
+condition_plot_df = merged_df.groupby(
+    ['encounter_type_code']).size().reset_index(name='counts')
+condition_plot_df = condition_plot_df.sort_values(by='counts')
+put_to_csv(base_path, condition_plot_df, "condition_plot_df.csv")
+
+# ----------------------------------------------------------------------
+
+
+sys.exit(0)
+
 
 # First hundred/thousand entries
 # merged_df = merged_df.head(2000)
@@ -379,6 +445,7 @@ X = np.concatenate((temp_X1, temp_X2, temp_X3, temp_X4), axis=1)
 # Encoding the Dependent Variable
 le = LabelEncoder()
 y = le.fit_transform(y)
+
 # print(y)
 
 # ----------------------------------------------------------------------
@@ -386,6 +453,7 @@ y = le.fit_transform(y)
 # Splitting the dataset into the Training set and Test set
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=1)
+
 # print(X_train)
 # print(X_test)
 # print(y_train)
@@ -404,7 +472,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 # ----------------------------------------------------------------------
 
-# Training the Random Forest model on the Training set
+# # Training the Random Forest model on the Training set
 # classifier = RandomForestClassifier(
 #     n_estimators=20, criterion='entropy', random_state=0,
 #     min_samples_split=2, min_samples_leaf=4, max_features='sqrt', max_depth=80, bootstrap=False)
@@ -420,7 +488,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 # ----------------------------------------------------------------------
 
-# SVM - Linear SVC classifier - 48%
+# # Training with the SVM - Linear SVC classifier on the Training set
 classifier = LinearSVC(penalty='l1', loss='squared_hinge', dual=False, tol=0.0001,
                        C=1.0, multi_class='ovr', fit_intercept=True, intercept_scaling=1,
                        class_weight=None, verbose=0, random_state=None, max_iter=2000)
@@ -428,7 +496,7 @@ classifier.fit(X_train, y_train)
 
 # ----------------------------------------------------------------------
 
-#  C- support SVM
+#  Training with the C- support SVM
 # classifier = SVC(C=1.0, kernel='rbf', degree=3, gamma='scale', coef0=0.0, shrinking=True,
 #                  probability=False, tol=0.001, cache_size=200, class_weight=None, verbose=False, max_iter=-1,
 #                  decision_function_shape='ovr', break_ties=False, random_state=None)
@@ -436,7 +504,7 @@ classifier.fit(X_train, y_train)
 
 # ----------------------------------------------------------------------
 
-# K-Means clustering - 37%
+# # Training with the K-nearest neighbours (KNN) classifier on the Training set
 # classifier = KNeighborsClassifier(n_neighbors=5, weights='uniform', algorithm='auto',
 #                                   leaf_size=30, p=2, metric='minkowski', metric_params=None, n_jobs=None)
 # classifier.fit(X_train, y_train)
