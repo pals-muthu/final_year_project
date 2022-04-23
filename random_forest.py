@@ -214,6 +214,20 @@ print("start time: ", datetime.datetime.now())
 # print("after merging the conditions and procedures: ",
 #       list(merged_df.columns.values))
 
+# # ----------------------------------------------------------------------
+# # Getting the heatmap
+# heatmap_df = merged_df[[
+#     'medication_code',
+#     'encounter_type_code',
+#     'condition_type_code',
+#     'procedure_type_code'
+# ]]
+# print("getting the heatmap")
+# print("heatmap_df: ", list(heatmap_df.columns.values))
+# print(heatmap_df)
+# sns.heatmap(heatmap_df, annot=True)
+# sys.exit(0)
+# # ----------------------------------------------------------------------
 
 # # ======================================================================
 # # ----------------------------------------------------------------------
@@ -280,12 +294,6 @@ merged_df = merged_df.apply(
 # ----------------------------------------------------------------------
 # Plotting
 # ----------------------------------------------------------------------
-# ----------------------------------------------------------------------
-# Getting the heatmap
-
-# corr = merged_df.corr()
-# sns.heatmap(merged_df, annot=True)
-
 # ----------------------------------------------------------------------
 # Getting the ratio of balanced dataset
 
@@ -367,15 +375,6 @@ def plot_graph(plot_df_list):
     plt.show()
     # sys.exit(0)
 
-# merged_df = merged_df[merged_df['medication_code'].apply(
-#     lambda x: x not in [236077.0])]
-
-
-# merged_df = merged_df[merged_df['medication_code'].apply(
-#     lambda x: x not in [236077.0, 1191.0, 72625.0, 30003.0, 187832.0, 14584.0])]
-
-merged_df = merged_df[merged_df['medication_code'].apply(
-    lambda x: x not in [10318.0, 2683.0, 187832.0, 30003.0, 519.0, 82063.0, 6851.0])]
 
 # ----------------------------------------------------------------------
 # Data Pre-preprocessing
@@ -392,7 +391,6 @@ merged_df = merged_df[['dose_form_code', 'encounter_type_code',
 # merged_df.to_pickle('temp1.pkl')
 
 # merged_df = pd.read_pickle('temp1.pkl')
-
 
 # ----------------------------------------------------------------------
 # Dumping and loading pickle file for faster processing
@@ -481,40 +479,41 @@ y = le.fit_transform(y)
 # print(y)
 
 # ----------------------------------------------------------------------
-print("performing oversampling")
-# oversample = SMOTE()
-# X, y = oversample.fit_resample(X, y)
+print("Performing over-sampling")
 print(Counter(y))
 plot_graph(Counter(y))
 over_sampling_dict = {}
 
 for key, value in dict(Counter(y)).items():
-    if (value < 2500):
-        new_value = 2500
+    if (value < 15000):
+        new_value = 15000
     else:
         new_value = value
     over_sampling_dict[key] = new_value
 
-print("new over sampling dict: ", over_sampling_dict)
+print("Over-sampling dict: ", over_sampling_dict)
 # define oversampling strategy
 over = RandomOverSampler(sampling_strategy=over_sampling_dict)
 # fit and apply the transform
 X, y = over.fit_resample(X, y)
+# ----------------------------------------------------------------------
 
-print("performing under-sampling")
+# ----------------------------------------------------------------------
+print("Performing under-sampling")
 print(Counter(y))
 under_sampling_dict = {}
 for key, value in dict(Counter(y)).items():
-    if (value > 25000):
-        new_value = 25000
+    if (value > 15000):
+        new_value = 15000
     else:
         new_value = value
     under_sampling_dict[key] = new_value
-print("new under sampling dict: ", under_sampling_dict)
+print("Under-sampling dict: ", under_sampling_dict)
 # define undersampling strategy
 under = RandomUnderSampler(sampling_strategy=under_sampling_dict)
 # fit and apply the transform
 X, y = under.fit_resample(X, y)
+# ----------------------------------------------------------------------
 
 print("sampling complete")
 print(Counter(y))
@@ -538,16 +537,16 @@ X_train, X_test, y_train, y_test = train_test_split(
 print("starting training")
 
 # Training the Decision Tree Classification model on the Training set
-classifier = DecisionTreeClassifier(criterion='entropy', random_state=0)
-classifier.fit(X_train, y_train)
+# classifier = DecisionTreeClassifier(criterion='entropy', random_state=0)
+# classifier.fit(X_train, y_train)
 
 # ----------------------------------------------------------------------
 
 # Training the Random Forest model on the Training set
-# classifier = RandomForestClassifier(
-#     n_estimators=20, criterion='entropy', random_state=0,
-#     min_samples_split=2, min_samples_leaf=4, max_features='sqrt', max_depth=80, bootstrap=False)
-# classifier.fit(X_train, y_train)
+classifier = RandomForestClassifier(
+    n_estimators=20, criterion='entropy', random_state=0,
+    min_samples_split=2, min_samples_leaf=4, max_features='sqrt', max_depth=80, bootstrap=False)
+classifier.fit(X_train, y_train)
 
 # ----------------------------------------------------------------------
 
@@ -633,8 +632,9 @@ ac = accuracy_score(y_test, y_pred)
 print("")
 print("Accuracy score: ", ac*100.0)
 print("")
-print("RMSE Train: ", sqrt(mean_squared_error(y_train_predict, y_train_pred)))
-print("RMSE Test: ", sqrt(mean_squared_error(y_test, y_pred)))
+print("RMSE Train: ", mean_squared_error(
+    y_train_predict, y_train_pred, squared=False))
+print("RMSE Test: ", mean_squared_error(y_test, y_pred, squared=False))
 print("")
 print("end time: ", datetime.datetime.now())
 
