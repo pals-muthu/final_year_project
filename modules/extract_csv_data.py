@@ -88,16 +88,16 @@ def get_csv_data(base_path):
     # # Patients Data
     # # ----------------------------------------------------------------------
 
-    # patients_path = Path(base_path).resolve().joinpath('patients.csv')
-    # # print("patients_path: ", patients_path)
-    # patients_df = pd.read_csv(patients_path, low_memory=False)
-    # patients_df = patients_df.drop(['BIRTHDATE', 'DEATHDATE', 'SSN', 'DRIVERS', 'PASSPORT', 'PREFIX', 'FIRST', 'LAST',
-    #                                 'SUFFIX', 'MAIDEN', 'MARITAL', 'BIRTHPLACE', 'ADDRESS'], axis=1)
+    patients_path = Path(base_path).resolve().joinpath('patients.csv')
+    # print("patients_path: ", patients_path)
+    patients_df = pd.read_csv(patients_path, low_memory=False)
+    patients_df = patients_df.drop(['BIRTHDATE', 'DEATHDATE', 'SSN', 'DRIVERS', 'PASSPORT', 'PREFIX', 'FIRST', 'LAST',
+                                    'SUFFIX', 'MAIDEN', 'MARITAL', 'BIRTHPLACE', 'ADDRESS'], axis=1)
 
-    # patients_df = patients_df.query('GENDER == "M" or GENDER == "F"')
-    # patients_df = patients_df.rename(columns={
-    #     'ID': 'patient_id', 'RACE': 'race', 'ETHNICITY': 'ethnicity', 'GENDER': 'gender'})
-    # patients_df = patients_df[['patient_id', 'race', 'ethnicity', 'gender']]
+    patients_df = patients_df.query('GENDER == "M" or GENDER == "F"')
+    patients_df = patients_df.rename(columns={
+        'ID': 'patient_id', 'RACE': 'race', 'ETHNICITY': 'ethnicity', 'GENDER': 'gender'})
+    patients_df = patients_df[['patient_id', 'race', 'ethnicity', 'gender']]
 
     # ----------------------------------------------------------------------
     # Procedures Data
@@ -117,7 +117,7 @@ def get_csv_data(base_path):
         "procedures_df": procedures_df,
         "conditions_df": conditions_df,
         # "observations_df": observations_df,
-        # "patients_df": patients_df,
+        "patients_df": patients_df,
         # "immunizations_df": immunizations_df,
         # "careplans_df": careplans_df,
         # "allergies_df": allergies_df
@@ -142,7 +142,7 @@ def merge_data(*args):
         procedures_frames.append(arg["procedures_df"])
         conditions_frames.append(arg["conditions_df"])
         # observations_frames.append(arg["observations_df"])
-        # patients_frames.append(arg["patients_df"])
+        patients_frames.append(arg["patients_df"])
         # immunizations_frames.append(arg["immunizations_df"])
         # careplans_frames.append(arg["careplans_df"])
         # allergies_frames.append(arg["allergies_df"])
@@ -152,129 +152,129 @@ def merge_data(*args):
     procedures_df = pd.concat(procedures_frames)
     conditions_df = pd.concat(conditions_frames)
     # observations_df = pd.concat(observations_frames)
-    # patients_df = pd.concat(patients_frames)
+    patients_df = pd.concat(patients_frames)
     # immunizations_df = pd.concat(immunizations_frames)
     # careplans_df = pd.concat(careplans_frames)
     # allergies_df = pd.concat(allergies_frames)
 
-    # ----------------------------------------------------------------------
-    # ----------------------------------------------------------------------
-    # Re-mapping
-    # ----------------------------------------------------------------------
-    # ----------------------------------------------------------------------
-    #  Medications
-    # ----------------------------------------------------------------------
-    # adding new_medication_code
-    # read the medication file.
-    drugs_df = get_drug_data_from_csv()
-    print("obtained drugs df")
-    drugs_dict = {}
-    drugs_df = drugs_df.reset_index()
-    for index, row in drugs_df.iterrows():
+    # # ----------------------------------------------------------------------
+    # # ----------------------------------------------------------------------
+    # # Re-mapping
+    # # ----------------------------------------------------------------------
+    # # ----------------------------------------------------------------------
+    # #  Medications
+    # # ----------------------------------------------------------------------
+    # # adding new_medication_code
+    # # read the medication file.
+    # drugs_df = get_drug_data_from_csv()
+    # print("obtained drugs df")
+    # drugs_dict = {}
+    # drugs_df = drugs_df.reset_index()
+    # for index, row in drugs_df.iterrows():
 
-        drugs_dict[row['medication_code']] = {
-            'parent_code': row['parent_code'],
-            'dose_form_code': row['dose_form_code']
-        }
+    #     drugs_dict[row['medication_code']] = {
+    #         'parent_code': row['parent_code'],
+    #         'dose_form_code': row['dose_form_code']
+    #     }
 
-    # print("drugs_dict: ", drugs_dict)
+    # # print("drugs_dict: ", drugs_dict)
 
-    def medication_mapping(row):
+    # def medication_mapping(row):
 
-        row['new_medication_code'] = drugs_dict[int(
-            row['medication_code'])]['parent_code']
-        row['dose_form_code'] = drugs_dict[int(
-            row['medication_code'])]['dose_form_code']
+    #     row['new_medication_code'] = drugs_dict[int(
+    #         row['medication_code'])]['parent_code']
+    #     row['dose_form_code'] = drugs_dict[int(
+    #         row['medication_code'])]['dose_form_code']
 
-        return row
+    #     return row
 
-    medications_df = medications_df.apply(
-        lambda row: medication_mapping(row), axis=1)
+    # medications_df = medications_df.apply(
+    #     lambda row: medication_mapping(row), axis=1)
 
-    # dropping duplicates
-    medications_df = medications_df.drop_duplicates(
-        subset=['encounter_id', 'new_medication_code'], keep='first')
+    # # dropping duplicates
+    # medications_df = medications_df.drop_duplicates(
+    #     subset=['encounter_id', 'new_medication_code'], keep='first')
 
-    print("medications_df: ", list(medications_df.columns.values), medications_df)
+    # print("medications_df: ", list(medications_df.columns.values), medications_df)
 
-    # ----------------------------------------------------------------------
+    # # ----------------------------------------------------------------------
 
-    conditions_feature_df = get_condition_data_from_csv()
-    conditions_feature_dict = {}
-    conditions_feature_df = conditions_feature_df.reset_index()
-    for index, row in conditions_feature_df.iterrows():
+    # conditions_feature_df = get_condition_data_from_csv()
+    # conditions_feature_dict = {}
+    # conditions_feature_df = conditions_feature_df.reset_index()
+    # for index, row in conditions_feature_df.iterrows():
 
-        conditions_feature_dict[row['reason_code']] = ast.literal_eval(
-            row['compiled_codes'])
+    #     conditions_feature_dict[row['reason_code']] = ast.literal_eval(
+    #         row['compiled_codes'])
 
-    # print("conditions_feature_df: ", conditions_feature_dict)
+    # # print("conditions_feature_df: ", conditions_feature_dict)
 
-    def conditions_mapping(row):
+    # def conditions_mapping(row):
 
-        row['new_condition_type_code'] = conditions_feature_dict[int(
-            row['condition_type_code'])] if not pd.isnull(row['condition_type_code']) else []
+    #     row['new_condition_type_code'] = conditions_feature_dict[int(
+    #         row['condition_type_code'])] if not pd.isnull(row['condition_type_code']) else []
 
-        return row
+    #     return row
 
-    conditions_df = conditions_df.apply(
-        lambda row: conditions_mapping(row), axis=1)
+    # conditions_df = conditions_df.apply(
+    #     lambda row: conditions_mapping(row), axis=1)
 
-    print("conditions_df: ", list(conditions_df.columns.values), conditions_df)
+    # print("conditions_df: ", list(conditions_df.columns.values), conditions_df)
 
-    # ----------------------------------------------------------------------
+    # # ----------------------------------------------------------------------
 
-    procedure_feature_df = get_procedure_data_from_csv()
-    procedure_feature_dict = {}
-    procedure_feature_df = procedure_feature_df.reset_index()
-    for index, row in procedure_feature_df.iterrows():
+    # procedure_feature_df = get_procedure_data_from_csv()
+    # procedure_feature_dict = {}
+    # procedure_feature_df = procedure_feature_df.reset_index()
+    # for index, row in procedure_feature_df.iterrows():
 
-        procedure_feature_dict[row['reason_code']
-                               ] = ast.literal_eval(row['compiled_codes'])
+    #     procedure_feature_dict[row['reason_code']
+    #                            ] = ast.literal_eval(row['compiled_codes'])
 
-    # print("procedure_feature_dict: ", procedure_feature_dict)
+    # # print("procedure_feature_dict: ", procedure_feature_dict)
 
-    def procedure_mapping(row):
+    # def procedure_mapping(row):
 
-        row['new_procedure_type_code'] = procedure_feature_dict[int(
-            row['procedure_type_code'])] if not pd.isnull(row['procedure_type_code']) else []
+    #     row['new_procedure_type_code'] = procedure_feature_dict[int(
+    #         row['procedure_type_code'])] if not pd.isnull(row['procedure_type_code']) else []
 
-        return row
+    #     return row
 
-    procedures_df = procedures_df.apply(
-        lambda row: procedure_mapping(row), axis=1)
+    # procedures_df = procedures_df.apply(
+    #     lambda row: procedure_mapping(row), axis=1)
 
-    print("procedures_df: ", list(procedures_df.columns.values), procedures_df)
+    # print("procedures_df: ", list(procedures_df.columns.values), procedures_df)
 
-    # ----------------------------------------------------------------------
+    # # ----------------------------------------------------------------------
 
-    encounter_feature_df = get_encounter_data_from_csv()
-    encounter_feature_dict = {}
-    encounter_feature_df = encounter_feature_df.reset_index()
-    for index, row in encounter_feature_df.iterrows():
+    # encounter_feature_df = get_encounter_data_from_csv()
+    # encounter_feature_dict = {}
+    # encounter_feature_df = encounter_feature_df.reset_index()
+    # for index, row in encounter_feature_df.iterrows():
 
-        encounter_feature_dict[row['reason_code']
-                               ] = ast.literal_eval(row['compiled_codes'])
+    #     encounter_feature_dict[row['reason_code']
+    #                            ] = ast.literal_eval(row['compiled_codes'])
 
-    # print("encounter_feature_df: ", encounter_feature_dict)
+    # # print("encounter_feature_df: ", encounter_feature_dict)
 
-    def encounter_mapping(row):
+    # def encounter_mapping(row):
 
-        row['new_encounter_type_code'] = encounter_feature_dict[int(
-            row['encounter_type_code'])]
+    #     row['new_encounter_type_code'] = encounter_feature_dict[int(
+    #         row['encounter_type_code'])]
 
-        return row
+    #     return row
 
-    encounters_df = encounters_df.apply(
-        lambda row: encounter_mapping(row), axis=1)
+    # encounters_df = encounters_df.apply(
+    #     lambda row: encounter_mapping(row), axis=1)
 
-    print("encounters_df: ", list(encounters_df.columns.values), encounters_df)
+    # print("encounters_df: ", list(encounters_df.columns.values), encounters_df)
 
-    # ----------------------------------------------------------------------
+    # # ----------------------------------------------------------------------
 
-    medications_df.to_pickle('medications_df.pkl')
-    encounters_df.to_pickle('encounters_df.pkl')
-    procedures_df.to_pickle('procedures_df.pkl')
-    conditions_df.to_pickle('conditions_df.pkl')
+    # medications_df.to_pickle('medications_df.pkl')
+    # encounters_df.to_pickle('encounters_df.pkl')
+    # procedures_df.to_pickle('procedures_df.pkl')
+    # conditions_df.to_pickle('conditions_df.pkl')
 
     return {
         "medications_df": medications_df,
@@ -282,7 +282,7 @@ def merge_data(*args):
         "procedures_df": procedures_df,
         "conditions_df": conditions_df,
         # "observations_df": observations_df,
-        # "patients_df": patients_df,
+        "patients_df": patients_df,
         # "immunizations_df": immunizations_df,
         # "careplans_df": careplans_df,
         # "allergies_df": allergies_df
@@ -306,24 +306,24 @@ def return_pickle():
 
 def get_merged_data():
 
-    # list_of_paths = [
-    #     'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_1',
-    #     'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_3',
-    #     'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_4',
-    #     'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_5',
-    #     # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_6',
-    #     # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_7',
-    #     # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_8',
-    #     # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_9',
-    # ]
-    # data = []
-    # for path in list_of_paths:
-    #     temp_base_path = Path(__file__).resolve().parents[2].joinpath(path)
-    #     temp_data = get_csv_data(temp_base_path)
-    #     data.append(temp_data)
+    list_of_paths = [
+        'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_1',
+        # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_3',
+        # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_4',
+        # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_5',
+        # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_6',
+        # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_7',
+        # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_8',
+        # 'dataset\\synthea_1m_fhir_3_0_May_24\\csv_output_9',
+    ]
+    data = []
+    for path in list_of_paths:
+        temp_base_path = Path(__file__).resolve().parents[2].joinpath(path)
+        temp_data = get_csv_data(temp_base_path)
+        data.append(temp_data)
 
-    # return merge_data(*data)
-    return return_pickle()
+    return merge_data(*data)
+    # return return_pickle()
 
 
 def get_drug_data_from_csv():

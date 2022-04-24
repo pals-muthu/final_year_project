@@ -23,5 +23,7 @@ plt.xticks(x_axis, model)
 plt.legend()
 
 # Display
-
+plt.title("RMSE for different models")
+plt.xlabel('Models')
+plt.ylabel('RMSE')
 plt.show()
