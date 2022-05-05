@@ -812,14 +812,26 @@ ac = accuracy_score(y_test, y_pred)
 print("")
 print("Accuracy score: ", ac*100.0)
 print("")
-print("RMSE Train: ", mean_squared_error(
-    y_train_predict, y_train_pred, squared=False))
-print("RMSE Test: ", mean_squared_error(y_test, y_pred, squared=False))
-print("")
+# print("RMSE Train: ", mean_squared_error(
+#     y_train_predict, y_train_pred, squared=False))
+# print("RMSE Test: ", mean_squared_error(y_test, y_pred, squared=False))
+# print("")
 print("end time: ", datetime.datetime.now())
 
 # ======================================================================
-
+# computed:
+true_values = 0
+total_values = 0
+for i in range(len(cm)):
+    for j in range(len(cm[i])):
+        if i == j:
+            true_values += cm[i][j]
+        total_values += cm[i][j]
+print("")
+print("Computed Accuracy Score: ", (true_values/total_values)*100.0)
+# print("Computed Precision: ", (true_values/total_values)*100.0)
+print("")
+# ======================================================================
 # ----------------------------------------------------------------------
 
 # Training the Random Forest model on the Training set - K-cross validation
