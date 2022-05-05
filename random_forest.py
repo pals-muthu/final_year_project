@@ -37,46 +37,46 @@ from math import sqrt
 
 print("start time: ", datetime.datetime.now())
 
-# ======================================================================
-# ----------------------------------------------------------------------
-# Extracting the requried data
-# ----------------------------------------------------------------------
-data = get_merged_data()
-medications_df = data['medications_df']
-encounters_df = data['encounters_df']
-procedures_df = data['procedures_df']
-conditions_df = data['conditions_df']
-patients_df = data['patients_df']
-# observations_df = data['observations_df']
-
-
-# # Merging encounter with patients to get more information
-merged_df = encounters_df.merge(
-    patients_df, left_on='patient_id', right_on='patient_id', how='inner')
-
-# Merging encounter with medication to get the target variable
-merged_df = merged_df.merge(
-    medications_df, left_on='encounter_id', right_on='encounter_id', how='inner')
-
-print("#2")
-print("merged_df: ", list(merged_df.columns.values))
-
-# First hundred/thousand entries
-# merged_df = merged_df.head(10000)
-
-# sys.exit(0)
-
+# # ======================================================================
 # # ----------------------------------------------------------------------
-# # Mapping the encounter, procedure and conditions with the medications.
-merged_df_1 = merged_df.merge(
-    procedures_df, left_on='encounter_id', right_on='encounter_id', how='inner')
-print("#2")
-print("merged_df_1 procedure: ", list(merged_df_1.columns.values))
+# # Extracting the requried data
+# # ----------------------------------------------------------------------
+# data = get_merged_data()
+# medications_df = data['medications_df']
+# encounters_df = data['encounters_df']
+# procedures_df = data['procedures_df']
+# conditions_df = data['conditions_df']
+# patients_df = data['patients_df']
+# # observations_df = data['observations_df']
 
-merged_df_2 = merged_df.merge(
-    conditions_df, left_on='encounter_id', right_on='encounter_id', how='inner')
-print("#3")
-print("merged_df_2 condition: ", list(merged_df_2.columns.values))
+
+# # # Merging encounter with patients to get more information
+# merged_df = encounters_df.merge(
+#     patients_df, left_on='patient_id', right_on='patient_id', how='inner')
+
+# # Merging encounter with medication to get the target variable
+# merged_df = merged_df.merge(
+#     medications_df, left_on='encounter_id', right_on='encounter_id', how='inner')
+
+# print("#2")
+# print("merged_df: ", list(merged_df.columns.values))
+
+# # First hundred/thousand entries
+# # merged_df = merged_df.head(10000)
+
+# # sys.exit(0)
+
+# # # ----------------------------------------------------------------------
+# # # Mapping the encounter, procedure and conditions with the medications.
+# merged_df_1 = merged_df.merge(
+#     procedures_df, left_on='encounter_id', right_on='encounter_id', how='inner')
+# print("#2")
+# print("merged_df_1 procedure: ", list(merged_df_1.columns.values))
+
+# merged_df_2 = merged_df.merge(
+#     conditions_df, left_on='encounter_id', right_on='encounter_id', how='inner')
+# print("#3")
+# print("merged_df_2 condition: ", list(merged_df_2.columns.values))
 
 # subset_merged_df_1 = merged_df_1[[
 #     'encounter_id', 'encounter_type_code', 'medication_code']]
@@ -185,8 +185,8 @@ print("merged_df_2 condition: ", list(merged_df_2.columns.values))
 # # ----------------------------------------------------------------------
 # #
 
-# merged_df_1 = pd.read_pickle('merged_df_1_post_pickle.pkl')
-# merged_df_2 = pd.read_pickle('merged_df_2_post_pickle.pkl')
+merged_df_1 = pd.read_pickle('merged_df_1_post_pickle.pkl')
+merged_df_2 = pd.read_pickle('merged_df_2_post_pickle.pkl')
 
 merged_df_1 = merged_df_1.drop_duplicates(
     subset=['encounter_id', 'medication_code'], keep='first')
@@ -208,7 +208,7 @@ merged_df_2 = merged_df_2.drop_duplicates(
 # # merged_df_2 = pd.read_pickle('tempdf2.pkl')
 
 merged_df = merged_df_1.merge(merged_df_2, on=['encounter_id', 'patient_id', 'encounter_type_code', 'encounter_description',
-                                               'medication_code', 'medication'], how='left')
+                                               'medication_code', 'medication', 'dose_form_code'], how='left')
 
 # put_to_csv(base_path, merged_df, "temp1.csv")
 # merged_df.to_pickle('merged_df_heatmap.pkl')
@@ -305,106 +305,106 @@ def column(matrix, i):
 
 # # ----------------------------------------------------------------------
 
-# For condtion codes
-plot_df = merged_df.groupby(
-    ['condition_type_code', 'condition_description']).size().reset_index(name='counts')
-plot_df = plot_df.sort_values(by='counts', ascending=False)
-put_to_csv(base_path, plot_df, "plot_df_condition.csv")
-plot_df_list = plot_df.values.tolist()
-print("plot df: ", plot_df_list)
-x = column(plot_df_list[:8], 1)
-y = column(plot_df_list[:8], 2)
-plt.title("Top conditions of a hospital")
-plt.xlabel('Condition Type')
-# plt.ylabel('RMSE')
-# plt.bar(x, y)
+# # For condtion codes
+# plot_df = merged_df.groupby(
+#     ['condition_type_code', 'condition_description']).size().reset_index(name='counts')
+# plot_df = plot_df.sort_values(by='counts', ascending=False)
+# put_to_csv(base_path, plot_df, "plot_df_condition.csv")
+# plot_df_list = plot_df.values.tolist()
+# print("plot df: ", plot_df_list)
+# x = column(plot_df_list[:8], 1)
+# y = column(plot_df_list[:8], 2)
+# plt.title("Top conditions of a hospital")
+# plt.xlabel('Condition Type')
+# # plt.ylabel('RMSE')
+# # plt.bar(x, y)
+# # plt.show()
+
+# change_count = 0
+# for _, _, count in plot_df.values.tolist():
+#     if count > 2200:
+#         change_count += 1
+
+# # the full dataframe
+# df = pd.DataFrame(
+#     data={'conditions': column(
+#         plot_df.values.tolist()[0:change_count], 1), 'value': column(
+#         plot_df.values.tolist()[0:change_count], 2)},
+# ).sort_values('value', ascending=False)
+
+# # others
+# new_row = pd.DataFrame(data={
+#     'conditions': ['others'],
+#     'value': [sum(column(plot_df.values.tolist()[change_count:], 2))]
+# })
+
+# # combining top 5 with others
+# df = pd.concat([df, new_row])
+
+# print("df now: ", df)
+# # plotting -- for comparison left all countries and right
+# # the others combined
+# # fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(9, 4))
+# df.plot(kind='pie', y='value', labels=df['conditions'], legend=False)
+# plt.title('All Conditions')
+# plt.ylabel('')
 # plt.show()
 
-change_count = 0
-for _, _, count in plot_df.values.tolist():
-    if count > 2200:
-        change_count += 1
+# # sys.exit(0)
 
-# the full dataframe
-df = pd.DataFrame(
-    data={'conditions': column(
-        plot_df.values.tolist()[0:change_count], 1), 'value': column(
-        plot_df.values.tolist()[0:change_count], 2)},
-).sort_values('value', ascending=False)
 
-# others
-new_row = pd.DataFrame(data={
-    'conditions': ['others'],
-    'value': [sum(column(plot_df.values.tolist()[change_count:], 2))]
-})
+# # ----------------------------------------------------------------------
 
-# combining top 5 with others
-df = pd.concat([df, new_row])
+# # ----------------------------------------------------------------------
 
-print("df now: ", df)
-# plotting -- for comparison left all countries and right
-# the others combined
-# fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(9, 4))
-df.plot(kind='pie', y='value', labels=df['conditions'], legend=False)
-plt.title('All Conditions')
-plt.ylabel('')
-plt.show()
+# # For procedure codes
+# plot_df = merged_df.groupby(
+#     ['procedure_type_code', 'procedure_description']).size().reset_index(name='counts')
+# # plot_df = plot_df[plot_df['procedure_type_code'].apply(
+# #     lambda x: 428191000124101 != x)]
+# plot_df = plot_df.sort_values(by='counts', ascending=False)
+# put_to_csv(base_path, plot_df, "plot_df_procedure.csv")
+# plot_df_list = plot_df.values.tolist()
+# print("plot df: ", plot_df_list)
+# x = column(plot_df_list[:8], 1)
+# y = column(plot_df_list[:8], 2)
+# plt.title("Top procedures in a hospital")
+# plt.xlabel('Procedure Type')
+# # plt.ylabel('RMSE')
+# # plt.bar(x, y)
+# # plt.show()
+
+# change_count = 0
+# for _, _, count in plot_df.values.tolist():
+#     if count > 2500:
+#         change_count += 1
+
+# # the full dataframe
+# df = pd.DataFrame(
+#     data={'procedures': column(
+#         plot_df.values.tolist()[0:change_count], 1), 'value': column(
+#         plot_df.values.tolist()[0:change_count], 2)},
+# ).sort_values('value', ascending=False)
+
+# # others
+# new_row = pd.DataFrame(data={
+#     'procedures': ['others'],
+#     'value': [sum(column(plot_df.values.tolist()[change_count:], 2))]
+# })
+
+# # combining top 5 with others
+# df = pd.concat([df, new_row])
+
+# print("df now: ", df)
+# # plotting -- for comparison left all countries and right
+# # the others combined
+# # fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(9, 4))
+# df.plot(kind='pie', y='value', labels=df['procedures'], legend=False)
+# plt.title('All Procedures')
+# plt.ylabel('')
+# plt.show()
 
 # sys.exit(0)
-
-
-# # ----------------------------------------------------------------------
-
-# # ----------------------------------------------------------------------
-
-# For procedure codes
-plot_df = merged_df.groupby(
-    ['procedure_type_code', 'procedure_description']).size().reset_index(name='counts')
-# plot_df = plot_df[plot_df['procedure_type_code'].apply(
-#     lambda x: 428191000124101 != x)]
-plot_df = plot_df.sort_values(by='counts', ascending=False)
-put_to_csv(base_path, plot_df, "plot_df_procedure.csv")
-plot_df_list = plot_df.values.tolist()
-print("plot df: ", plot_df_list)
-x = column(plot_df_list[:8], 1)
-y = column(plot_df_list[:8], 2)
-plt.title("Top procedures in a hospital")
-plt.xlabel('Procedure Type')
-# plt.ylabel('RMSE')
-# plt.bar(x, y)
-# plt.show()
-
-change_count = 0
-for _, _, count in plot_df.values.tolist():
-    if count > 2500:
-        change_count += 1
-
-# the full dataframe
-df = pd.DataFrame(
-    data={'procedures': column(
-        plot_df.values.tolist()[0:change_count], 1), 'value': column(
-        plot_df.values.tolist()[0:change_count], 2)},
-).sort_values('value', ascending=False)
-
-# others
-new_row = pd.DataFrame(data={
-    'procedures': ['others'],
-    'value': [sum(column(plot_df.values.tolist()[change_count:], 2))]
-})
-
-# combining top 5 with others
-df = pd.concat([df, new_row])
-
-print("df now: ", df)
-# plotting -- for comparison left all countries and right
-# the others combined
-# fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(9, 4))
-df.plot(kind='pie', y='value', labels=df['procedures'], legend=False)
-plt.title('All Procedures')
-plt.ylabel('')
-plt.show()
-
-sys.exit(0)
 
 
 # # ----------------------------------------------------------------------
@@ -425,7 +425,7 @@ sys.exit(0)
 
 # merged_df.to_pickle('temp2.pkl')
 
-merged_df = pd.read_pickle('temp2.pkl')
+# merged_df = pd.read_pickle('temp2.pkl')
 
 # Removing entries, where the procedure was recording of drugs.
 merged_df = merged_df[merged_df['procedure_type_code'].apply(
@@ -477,83 +477,83 @@ merged_df = merged_df.apply(
 # ----------------------------------------------------------------------
 # Getting the ratio of balanced dataset
 
-plot_df = merged_df.groupby(
-    ['medication_code']).size().reset_index(name='counts')
-plot_df = plot_df.sort_values(by='counts')
-print("plot df: ", plot_df)
-put_to_csv(base_path, plot_df, "plot_df.csv")
-plot_df_list = plot_df.values.tolist()
-# sys.exit(0)
+# plot_df = merged_df.groupby(
+#     ['medication_code']).size().reset_index(name='counts')
+# plot_df = plot_df.sort_values(by='counts')
+# print("plot df: ", plot_df)
+# put_to_csv(base_path, plot_df, "plot_df.csv")
+# plot_df_list = plot_df.values.tolist()
+# # sys.exit(0)
 
 
-def plot_graph_list_old(plot_df_list):
-    medication_less_than_100 = 0
-    medication_less_than_1000 = 0
-    medication_1000_to_5000 = 0
-    medication_5000_to_10000 = 0
-    medication_10000_to_20000 = 0
-    medication_20000_to_40000 = 0
-    medication_greater_than_40000 = 0
-    # for medication_code, count in plot_df_list:
-    for medication_code, count in plot_df_list.items():
-        if count < 100:
-            medication_less_than_100 += 1
-        elif count < 1000:
-            medication_less_than_1000 += 1
-        elif count < 5000:
-            medication_1000_to_5000 += 1
-        elif count < 10000:
-            medication_5000_to_10000 += 1
-        elif count < 20000:
-            medication_10000_to_20000 += 1
-        elif count < 40000:
-            medication_20000_to_40000 += 1
-        else:
-            medication_greater_than_40000 += 1
+# def plot_graph_list_old(plot_df_list):
+#     medication_less_than_100 = 0
+#     medication_less_than_1000 = 0
+#     medication_1000_to_5000 = 0
+#     medication_5000_to_10000 = 0
+#     medication_10000_to_20000 = 0
+#     medication_20000_to_40000 = 0
+#     medication_greater_than_40000 = 0
+#     # for medication_code, count in plot_df_list:
+#     for medication_code, count in plot_df_list.items():
+#         if count < 100:
+#             medication_less_than_100 += 1
+#         elif count < 1000:
+#             medication_less_than_1000 += 1
+#         elif count < 5000:
+#             medication_1000_to_5000 += 1
+#         elif count < 10000:
+#             medication_5000_to_10000 += 1
+#         elif count < 20000:
+#             medication_10000_to_20000 += 1
+#         elif count < 40000:
+#             medication_20000_to_40000 += 1
+#         else:
+#             medication_greater_than_40000 += 1
 
-    x = ['Less than 100', '100 to 1000', '1000 to 5000', '5000 to 10000',
-         '10000 to 20000', '20000 to 40000', 'Greater than 40000']
-    y = [medication_less_than_100, medication_less_than_1000, medication_1000_to_5000, medication_5000_to_10000,
-         medication_10000_to_20000, medication_20000_to_40000, medication_greater_than_40000]
+#     x = ['Less than 100', '100 to 1000', '1000 to 5000', '5000 to 10000',
+#          '10000 to 20000', '20000 to 40000', 'Greater than 40000']
+#     y = [medication_less_than_100, medication_less_than_1000, medication_1000_to_5000, medication_5000_to_10000,
+#          medication_10000_to_20000, medication_20000_to_40000, medication_greater_than_40000]
 
-    plt.bar(x, y)
-    plt.show()
-    # sys.exit(0)
+#     plt.bar(x, y)
+#     plt.show()
+#     # sys.exit(0)
 
 
-def plot_graph(plot_df_list):
-    medication_less_than_100 = 0
-    medication_less_than_1000 = 0
-    medication_1000_to_5000 = 0
-    medication_5000_to_10000 = 0
-    medication_10000_to_15000 = 0
-    medication_15000_to_25000 = 0
-    medication_greater_than_25000 = 0
-    # for medication_code, count in plot_df_list:
-    for medication_code, count in plot_df_list.items():
-        if count < 101:
-            medication_less_than_100 += 1
-        elif count < 1001:
-            medication_less_than_1000 += 1
-        elif count < 5001:
-            medication_1000_to_5000 += 1
-        elif count < 10001:
-            medication_5000_to_10000 += 1
-        elif count < 15001:
-            medication_10000_to_15000 += 1
-        elif count < 25001:
-            medication_15000_to_25000 += 1
-        else:
-            medication_greater_than_25000 += 1
+# def plot_graph(plot_df_list):
+#     medication_less_than_100 = 0
+#     medication_less_than_1000 = 0
+#     medication_1000_to_5000 = 0
+#     medication_5000_to_10000 = 0
+#     medication_10000_to_15000 = 0
+#     medication_15000_to_25000 = 0
+#     medication_greater_than_25000 = 0
+#     # for medication_code, count in plot_df_list:
+#     for medication_code, count in plot_df_list.items():
+#         if count < 101:
+#             medication_less_than_100 += 1
+#         elif count < 1001:
+#             medication_less_than_1000 += 1
+#         elif count < 5001:
+#             medication_1000_to_5000 += 1
+#         elif count < 10001:
+#             medication_5000_to_10000 += 1
+#         elif count < 15001:
+#             medication_10000_to_15000 += 1
+#         elif count < 25001:
+#             medication_15000_to_25000 += 1
+#         else:
+#             medication_greater_than_25000 += 1
 
-    x = ['Less than 100', '100 to 1000', '1000 to 5000', '5000 to 10000',
-         '10000 to 15000', '15000 to 25000', 'Greater than 25000']
-    y = [medication_less_than_100, medication_less_than_1000, medication_1000_to_5000, medication_5000_to_10000,
-         medication_10000_to_15000, medication_15000_to_25000, medication_greater_than_25000]
+#     x = ['Less than 100', '100 to 1000', '1000 to 5000', '5000 to 10000',
+#          '10000 to 15000', '15000 to 25000', 'Greater than 25000']
+#     y = [medication_less_than_100, medication_less_than_1000, medication_1000_to_5000, medication_5000_to_10000,
+#          medication_10000_to_15000, medication_15000_to_25000, medication_greater_than_25000]
 
-    # plt.bar(x, y)
-    # plt.show()
-    # sys.exit(0)
+#     # plt.bar(x, y)
+#     # plt.show()
+#     # sys.exit(0)
 
 
 # ----------------------------------------------------------------------
@@ -577,7 +577,7 @@ merged_df = merged_df[['dose_form_code', 'encounter_type_code',
 # ----------------------------------------------------------------------
 
 
-# merged_df.to_pickle('temp.pkl')
+merged_df.to_pickle('temp.pkl')
 
 # merged_df = pd.read_pickle('temp.pkl')
 
@@ -661,7 +661,7 @@ y = le.fit_transform(y)
 # ----------------------------------------------------------------------
 print("Performing over-sampling")
 print(Counter(y))
-plot_graph(Counter(y))
+# plot_graph(Counter(y))
 over_sampling_dict = {}
 
 for key, value in dict(Counter(y)).items():
@@ -697,7 +697,7 @@ X, y = under.fit_resample(X, y)
 
 print("sampling complete")
 print(Counter(y))
-plot_graph(Counter(y))
+# plot_graph(Counter(y))
 # ----------------------------------------------------------------------
 
 # Splitting the dataset into the Training set and Test set
