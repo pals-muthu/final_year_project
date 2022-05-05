@@ -185,30 +185,30 @@ print("start time: ", datetime.datetime.now())
 # # ----------------------------------------------------------------------
 # #
 
-merged_df_1 = pd.read_pickle('merged_df_1_post_pickle.pkl')
-merged_df_2 = pd.read_pickle('merged_df_2_post_pickle.pkl')
+# merged_df_1 = pd.read_pickle('merged_df_1_post_pickle.pkl')
+# merged_df_2 = pd.read_pickle('merged_df_2_post_pickle.pkl')
 
-merged_df_1 = merged_df_1.drop_duplicates(
-    subset=['encounter_id', 'medication_code'], keep='first')
+# merged_df_1 = merged_df_1.drop_duplicates(
+#     subset=['encounter_id', 'medication_code'], keep='first')
 
-merged_df_2 = merged_df_2.drop_duplicates(
-    subset=['encounter_id', 'medication_code'], keep='first')
-# put_to_csv(base_path, merged_df_1, "merged_df_1.csv")
-# put_to_csv(base_path, merged_df_2, "merged_df_2.csv")
+# merged_df_2 = merged_df_2.drop_duplicates(
+#     subset=['encounter_id', 'medication_code'], keep='first')
+# # put_to_csv(base_path, merged_df_1, "merged_df_1.csv")
+# # put_to_csv(base_path, merged_df_2, "merged_df_2.csv")
 
-# # ======================================================================
-# # ----------------------------------------------------------------------
-# # Merging the dataframes
-# # ----------------------------------------------------------------------
+# # # ======================================================================
+# # # ----------------------------------------------------------------------
+# # # Merging the dataframes
+# # # ----------------------------------------------------------------------
 
-# merged_df_1.to_pickle('tempdf1.pkl')
-# merged_df_2.to_pickle('tempdf2.pkl')
+# # merged_df_1.to_pickle('tempdf1.pkl')
+# # merged_df_2.to_pickle('tempdf2.pkl')
 
-# # merged_df_1 = pd.read_pickle('tempdf1.pkl')
-# # merged_df_2 = pd.read_pickle('tempdf2.pkl')
+# # # merged_df_1 = pd.read_pickle('tempdf1.pkl')
+# # # merged_df_2 = pd.read_pickle('tempdf2.pkl')
 
-merged_df = merged_df_1.merge(merged_df_2, on=['encounter_id', 'patient_id', 'encounter_type_code', 'encounter_description',
-                                               'medication_code', 'medication', 'dose_form_code'], how='left')
+# merged_df = merged_df_1.merge(merged_df_2, on=['encounter_id', 'patient_id', 'encounter_type_code', 'encounter_description',
+#                                                'medication_code', 'medication', 'dose_form_code'], how='left')
 
 # put_to_csv(base_path, merged_df, "temp1.csv")
 # merged_df.to_pickle('merged_df_heatmap.pkl')
@@ -423,53 +423,53 @@ def column(matrix, i):
 # # Reacalibrating the dataframe
 # # ----------------------------------------------------------------------
 
-# merged_df.to_pickle('temp2.pkl')
+# # merged_df.to_pickle('temp2.pkl')
 
-# merged_df = pd.read_pickle('temp2.pkl')
+# # merged_df = pd.read_pickle('temp2.pkl')
 
-# Removing entries, where the procedure was recording of drugs.
-merged_df = merged_df[merged_df['procedure_type_code'].apply(
-    lambda x: [428191000124101] != x)]
+# # Removing entries, where the procedure was recording of drugs.
+# merged_df = merged_df[merged_df['procedure_type_code'].apply(
+#     lambda x: [428191000124101] != x)]
 
-# print("writing to file and exiting")
-# put_to_csv(base_path, merged_df, "tempPre.csv")
+# # print("writing to file and exiting")
+# # put_to_csv(base_path, merged_df, "tempPre.csv")
 
-# Again - Dropping columns that are not required
-# 51.9 % accuracy
-merged_df = merged_df.drop(
-    [
-        'medication_code',
-        'encounter_type_code',
-        'condition_type_code',
-        'procedure_type_code'
-    ], axis=1)
+# # Again - Dropping columns that are not required
+# # 51.9 % accuracy
+# merged_df = merged_df.drop(
+#     [
+#         'medication_code',
+#         'encounter_type_code',
+#         'condition_type_code',
+#         'procedure_type_code'
+#     ], axis=1)
 
-merged_df = merged_df.rename(
-    columns={
-        'new_medication_code_x': 'medication_code',
-        'new_encounter_type_code_x': 'encounter_type_code',
-        'new_condition_type_code': 'condition_type_code',
-        'new_procedure_type_code': 'procedure_type_code'
-    })
-
-
-def merged_df_mapping(row):
-
-    row['encounter_type_code'] = row['new_encounter_type_code_y'] if not isinstance(
-        row['encounter_type_code'], (list, tuple, np.ndarray)) else []
-    row['medication_code'] = row['new_medication_code_y'] if not isinstance(
-        row['medication_code'], (list, tuple, np.ndarray)) else []
-
-    row['procedure_type_code'] = row['procedure_type_code'] if isinstance(
-        row['procedure_type_code'], (list, tuple, np.ndarray)) else []
-    row['condition_type_code'] = row['condition_type_code'] if isinstance(
-        row['condition_type_code'], (list, tuple, np.ndarray)) else []
-
-    return row
+# merged_df = merged_df.rename(
+#     columns={
+#         'new_medication_code_x': 'medication_code',
+#         'new_encounter_type_code_x': 'encounter_type_code',
+#         'new_condition_type_code': 'condition_type_code',
+#         'new_procedure_type_code': 'procedure_type_code'
+#     })
 
 
-merged_df = merged_df.apply(
-    lambda row: merged_df_mapping(row), axis=1)
+# def merged_df_mapping(row):
+
+#     row['encounter_type_code'] = row['new_encounter_type_code_y'] if not isinstance(
+#         row['encounter_type_code'], (list, tuple, np.ndarray)) else []
+#     row['medication_code'] = row['new_medication_code_y'] if not isinstance(
+#         row['medication_code'], (list, tuple, np.ndarray)) else []
+
+#     row['procedure_type_code'] = row['procedure_type_code'] if isinstance(
+#         row['procedure_type_code'], (list, tuple, np.ndarray)) else []
+#     row['condition_type_code'] = row['condition_type_code'] if isinstance(
+#         row['condition_type_code'], (list, tuple, np.ndarray)) else []
+
+#     return row
+
+
+# merged_df = merged_df.apply(
+#     lambda row: merged_df_mapping(row), axis=1)
 
 # ----------------------------------------------------------------------
 # Plotting
@@ -563,8 +563,8 @@ merged_df = merged_df.apply(
 # Dropping columns that are not required
 
 # 25 % accuracy
-merged_df = merged_df[['dose_form_code', 'encounter_type_code',
-                       'condition_type_code', 'procedure_type_code', 'medication_code']]
+# merged_df = merged_df[['dose_form_code', 'encounter_type_code',
+#                        'condition_type_code', 'procedure_type_code', 'medication_code']]
 
 # print("starting mapping...")
 
@@ -577,9 +577,9 @@ merged_df = merged_df[['dose_form_code', 'encounter_type_code',
 # ----------------------------------------------------------------------
 
 
-merged_df.to_pickle('temp.pkl')
+# merged_df.to_pickle('temp.pkl')
 
-# merged_df = pd.read_pickle('temp.pkl')
+merged_df = pd.read_pickle('temp.pkl')
 
 # print("writing to file and exiting")
 # put_to_csv(base_path, merged_df)
